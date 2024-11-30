@@ -1,0 +1,22 @@
+.bord {
+  background-image: linear-gradient(
+    to right,
+    #3d3dd8,
+    #ac3dac,
+    #ea5aa8,
+    yellow
+  );
+  padding-block-start: 6rem;
+  padding-block-end: 3rem;
+  padding-inline: 2.5rem;
+
+  border-radius: 0.8rem;
+  color: var(--color-gray-97);
+  display: grid;
+  gap: 1rem;
+
+  .title {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+}

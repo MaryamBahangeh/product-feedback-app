@@ -27,7 +27,7 @@ optgroup {
 
 body {
   font-size: 1.5rem;
-  max-inline-size: 85rem;
+  max-inline-size: 90rem;
   margin-inline: auto;
   background-color: var(--color-gray-90);
 }

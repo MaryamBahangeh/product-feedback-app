@@ -1,0 +1,29 @@
+.content {
+  display: grid;
+  margin-block-start: 6rem;
+  gap: 2rem;
+
+  grid-template-areas:
+    "bord header"
+    "bord suggestions";
+
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+
+  align-items: start;
+  .header {
+    grid-area: header;
+  }
+
+  .bord {
+    grid-area: bord;
+    display: grid;
+    gap: 2rem;
+    padding-inline-end: 1rem;
+  }
+
+  .suggestions {
+    grid-area: suggestions;
+    align-self: start;
+  }
+}

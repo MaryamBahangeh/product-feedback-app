@@ -1,12 +1,8 @@
 import "./styles/color.css";
-import Suggestions from "./components/Suggestions/Suggestions.tsx";
+import LandingComponent from "./components/LandingComponent/LandingComponent.tsx";
 
 function App() {
-  return (
-    <div>
-      <Suggestions></Suggestions>
-    </div>
-  );
+  return <LandingComponent />;
 }
 
 export default App;

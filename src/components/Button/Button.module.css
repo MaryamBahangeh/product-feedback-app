@@ -1,0 +1,25 @@
+.button {
+  padding: 1rem;
+  border-radius: 0.8rem;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+
+  &.gray {
+    background-color: var(--color-gray-90);
+    color: hsl(230, 83%, 37%);
+  }
+
+  &.purple {
+    background-color: hsl(300, 75%, 57%);
+    color: var(--color-gray-97);
+  }
+
+  &.blue {
+    background-color: hsl(230, 83%, 37%);
+    color: var(--color-gray-97);
+  }
+}

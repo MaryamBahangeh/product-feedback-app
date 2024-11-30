@@ -6,14 +6,13 @@
   gap: 3rem;
 
   .rank {
+    background-color: var(--color-gray-90);
     align-self: start;
     justify-self: start;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: none;
     display: grid;
     gap: 0.5rem;
   }
+
   .content {
     flex: 1;
     display: grid;
@@ -22,7 +21,17 @@
     .title {
       font-weight: 700;
     }
+
+    .suggestionType {
+      justify-self: start;
+      background-color: var(--color-gray-90);
+      padding: 1rem;
+      border-radius: 0.8rem;
+      border: none;
+      font-size: 1.2rem;
+    }
   }
+
   .comments {
     display: flex;
     gap: 0.5rem;

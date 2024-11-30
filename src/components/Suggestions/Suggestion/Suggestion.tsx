@@ -2,25 +2,25 @@ import styles from "./Suggestion.module.css";
 import { SuggestionModel } from "../../../models/suggestion.ts";
 import { IoIosArrowUp } from "react-icons/io";
 import { FaComment } from "react-icons/fa";
+import Button, { Color } from "../../Button/Button.tsx";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   return (
     <div className={styles.suggestion}>
-      <button className={styles.rank}>
-        <IoIosArrowUp />
-        {suggestion.rank}
-      </button>
+      <Button color={Color.gray} className={styles.rank}>
+        <IoIosArrowUp /> {suggestion.rank}
+      </Button>
 
       <div className={styles.content}>
         <div className={styles.title}>{suggestion.title}</div>
         <div>{suggestion.description}</div>
-        <button className={styles.rank}>
+        <div className={styles.suggestionType}>
           {suggestion.suggestionType.name}
-        </button>
+        </div>
       </div>
 
       <div className={styles.comments}>
-        <FaComment color="gray" />
+        <FaComment color="lightgray" />
         {suggestion.comments.length}
       </div>
     </div>
