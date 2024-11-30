@@ -1,0 +1,31 @@
+.suggestion {
+  border-radius: 1rem;
+  background-color: var(--color-gray-97);
+  padding: 2rem;
+  display: flex;
+  gap: 3rem;
+
+  .rank {
+    align-self: start;
+    justify-self: start;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .content {
+    flex: 1;
+    display: grid;
+    gap: 1rem;
+    font-weight: 400;
+    .title {
+      font-weight: 700;
+    }
+  }
+  .comments {
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+  }
+}
