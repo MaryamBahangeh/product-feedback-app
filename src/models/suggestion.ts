@@ -1,15 +1,10 @@
-import { Person } from "./person.ts";
-import { SuggestionType } from "./suggestion-type.ts";
+import { Comment } from "./comment.ts";
 
 export type SuggestionModel = {
+  id: string;
   title: string;
   description: string;
-  suggestionType: SuggestionType;
+  suggestionType: string;
   rank: number;
-  comments: [
-    {
-      sender: Person;
-      commentText: string;
-    },
-  ];
+  comments: Comment[] | null;
 };

@@ -2,15 +2,15 @@
   display: grid;
   margin-block-start: 6rem;
   gap: 2rem;
+  align-items: start;
 
   grid-template-areas:
     "bord header"
     "bord suggestions";
 
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr auto;
+  grid-template-columns: 25% auto;
+  grid-template-rows: auto 1fr;
 
-  align-items: start;
   .header {
     grid-area: header;
   }
@@ -24,6 +24,5 @@
 
   .suggestions {
     grid-area: suggestions;
-    align-self: start;
   }
 }

@@ -1,0 +1,46 @@
+.dialog {
+  margin: auto;
+  border: 1px solid gray;
+  border-radius: 1rem;
+
+  .dialog-info {
+    display: grid;
+
+    background-color: var(--color-gray-97);
+    padding: 2rem;
+
+    gap: 3rem;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        border: none;
+        appearance: none;
+      }
+    }
+
+    .add-comment {
+      display: grid;
+      gap: 1rem;
+
+      label {
+        display: flex;
+        align-items: start;
+        gap: 0.5rem;
+
+        textarea {
+          padding: 0.5rem;
+          font-size: 1.5rem;
+          border-radius: 0.5rem;
+          min-inline-size: 70%;
+        }
+      }
+
+      .add {
+        justify-self: start;
+      }
+    }
+  }
+}

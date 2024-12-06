@@ -5,6 +5,10 @@
   display: flex;
   gap: 3rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .rank {
     background-color: var(--color-gray-90);
     align-self: start;
@@ -18,8 +22,9 @@
     display: grid;
     gap: 1rem;
     font-weight: 400;
+
     .title {
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .suggestionType {

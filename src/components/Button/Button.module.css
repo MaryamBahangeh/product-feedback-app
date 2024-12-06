@@ -6,11 +6,19 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 
   &.gray {
     background-color: var(--color-gray-90);
     color: hsl(230, 83%, 37%);
+    &:hover {
+      cursor: pointer;
+    }
+    /*&:focus {*/
+    /*  background-color: hsl(230, 83%, 37%);*/
+    /*  color: var(--color-gray-97);*/
+    /*}*/
   }
 
   &.purple {

@@ -1,0 +1,14 @@
+.reply-info {
+  display: grid;
+  gap: 2rem;
+
+  .comment-reply {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      border: none;
+      appearance: none;
+    }
+  }
+}
