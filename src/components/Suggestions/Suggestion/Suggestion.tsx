@@ -11,6 +11,8 @@ import ViewSuggestionModal from "../../ViewSuggestionModal/ViewSuggestionModal.t
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { increaseRank } = useContext(SuggestionContext);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const onAddRankClickHandler = (id: string) => {
     increaseRank(id);
     setShowSuggestionInfo(!showSuggestionInfo);
@@ -21,18 +23,25 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const ref = useRef<HTMLDialogElement | null>(null);
 
   const openModalHandler = () => {
+    setIsOpen(true);
+
     if (!ref.current) {
       return;
     }
+
     ref.current.showModal();
   };
 
   const onCancelClickHandler = () => {
+    setIsOpen(false);
+
     if (!ref.current) {
       return;
     }
+
     ref.current.close();
   };
+
   return (
     <>
       <div
@@ -67,6 +76,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
 
       <ViewSuggestionModal
         suggestion={suggestion}
+        isOpen={isOpen}
         onCancel={onCancelClickHandler}
         ref={ref}
       ></ViewSuggestionModal>

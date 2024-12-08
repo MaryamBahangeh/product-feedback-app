@@ -6,5 +6,5 @@ export type SuggestionModel = {
   description: string;
   suggestionType: string;
   rank: number;
-  comments: Comment[] | null;
+  comments: Comment[];
 };

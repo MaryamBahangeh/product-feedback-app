@@ -20,7 +20,7 @@ function AddModal(
     title: "",
     description: "",
     suggestionType: SUGGESTION_Options[0].value,
-    comments: null,
+    comments: [],
   };
 
   const defaultErrors = { title: "", description: "" };
@@ -103,8 +103,8 @@ function AddModal(
             Description:
             <textarea
               name="description"
-              rows="3"
-              cols="40"
+              rows={3}
+              cols={40}
               value={fields.description}
               onChange={(e) => handleChange("description", e.target.value)}
             ></textarea>

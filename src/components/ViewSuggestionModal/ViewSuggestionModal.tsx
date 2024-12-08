@@ -8,12 +8,30 @@ import CommentInfo from "../CommentInfo/CommentInfo.tsx";
 import { Comment } from "../../models/comment.ts";
 import { persons } from "../../models/person.ts";
 
-type Props = { suggestion: SuggestionModel; onCancel: () => void };
+type Props = {
+  suggestion: SuggestionModel;
+  isOpen: boolean;
+  onCancel: () => void;
+};
 
 function ViewSuggestionModal(
-  { suggestion, onCancel }: Props,
+  { suggestion, isOpen, onCancel }: Props,
   ref?: ForwardedRef<HTMLDialogElement>,
 ) {
+  return (
+    <dialog className={styles.dialog} ref={ref}>
+      {isOpen && (
+        <ViewSuggestionModalContent
+          suggestion={suggestion}
+          isOpen={isOpen}
+          onCancel={onCancel}
+        />
+      )}
+    </dialog>
+  );
+}
+
+function ViewSuggestionModalContent({ suggestion, onCancel }: Props) {
   const { addComment } = useContext(SuggestionContext);
   const [comment, setComment] = useState("");
 
@@ -25,46 +43,45 @@ function ViewSuggestionModal(
     setComment("");
     onCancel();
   };
+
   return (
-    <dialog className={styles.dialog} ref={ref}>
-      <div className={styles["dialog-info"]}>
-        <div className={styles.header}>
-          <h3>{suggestion.comments?.length} comments</h3>
-          <button onClick={onCancelClick}>
-            <AiOutlineCloseSquare size="2.5rem" />
-          </button>
-        </div>
-
-        {suggestion.comments?.map((comment: Comment) => (
-          <CommentInfo
-            comment={comment}
-            suggestionId={suggestion.id}
-          ></CommentInfo>
-        ))}
-
-        <div className={styles["add-comment"]}>
-          <label>
-            comment:
-            <textarea
-              cols="50"
-              rows="2"
-              value={comment}
-              onChange={(e) => {
-                setComment(e.target.value);
-              }}
-            ></textarea>
-          </label>
-
-          <Button
-            color={Color.blue}
-            className={styles.add}
-            onClick={onAddHandler}
-          >
-            Add
-          </Button>
-        </div>
+    <div className={styles["dialog-info"]}>
+      <div className={styles.header}>
+        <h3>{suggestion.comments?.length} comments</h3>
+        <button onClick={onCancelClick}>
+          <AiOutlineCloseSquare size="2.5rem" />
+        </button>
       </div>
-    </dialog>
+
+      {suggestion.comments?.map((comment: Comment) => (
+        <CommentInfo
+          comment={comment}
+          suggestionId={suggestion.id}
+        ></CommentInfo>
+      ))}
+
+      <div className={styles["add-comment"]}>
+        <label>
+          comment:
+          <textarea
+            cols="50"
+            rows="2"
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          ></textarea>
+        </label>
+
+        <Button
+          color={Color.blue}
+          className={styles.add}
+          onClick={onAddHandler}
+        >
+          Add
+        </Button>
+      </div>
+    </div>
   );
 }
 

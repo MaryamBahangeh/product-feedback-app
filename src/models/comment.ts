@@ -4,5 +4,5 @@ export type Comment = {
   id: string;
   sender: Person;
   commentText: string;
-  reply: Comment[] | null;
+  reply: Comment[];
 };

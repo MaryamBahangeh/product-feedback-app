@@ -70,23 +70,12 @@ function SuggestionProvider({ children }: Props) {
     const old = [...suggestions];
     old.map((suggestion) => {
       if (suggestion.id === suggestionId) {
-        if (!suggestion.comments) {
-          suggestion.comments = [
-            {
-              id: uuidv4(),
-              sender: sender,
-              commentText: commentText,
-              reply: null,
-            },
-          ];
-        } else {
-          suggestion.comments.push({
-            id: uuidv4(),
-            sender: sender,
-            commentText: commentText,
-            reply: null,
-          });
-        }
+        suggestion.comments.push({
+          id: uuidv4(),
+          sender: sender,
+          commentText: commentText,
+          reply: [],
+        });
       }
       return suggestion;
     });
@@ -105,23 +94,12 @@ function SuggestionProvider({ children }: Props) {
       if (suggestion.id === suggestionId) {
         suggestion.comments?.map((comment) => {
           if (comment.id === commentId) {
-            if (!comment.reply) {
-              comment.reply = [
-                {
-                  id: uuidv4(),
-                  sender: sender,
-                  commentText: replyText,
-                  reply: null,
-                },
-              ];
-            } else {
-              comment.reply.push({
-                id: uuidv4(),
-                sender: sender,
-                commentText: replyText,
-                reply: null,
-              });
-            }
+            comment.reply.push({
+              id: uuidv4(),
+              sender: sender,
+              commentText: replyText,
+              reply: [],
+            });
           }
           return comment;
         });
