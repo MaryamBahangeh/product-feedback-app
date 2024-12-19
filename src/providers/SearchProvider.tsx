@@ -1,51 +1,45 @@
 import {
   createContext,
+  Dispatch,
   PropsWithChildren,
+  SetStateAction,
   useContext,
-  useEffect,
+  useMemo,
   useState,
 } from "react";
+
 import { SuggestionContext } from "./SuggestionProvider.tsx";
-import { SuggestionModel } from "../models/suggestion.ts";
+import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
 
 type ContextType = {
-  filterByType: (type: string) => void;
-  type: string;
+  filteredType: string;
+  setFilteredType: Dispatch<SetStateAction<string>>;
   filteredSuggestions: SuggestionModel[];
 };
 
 export const SearchContext = createContext<ContextType>({
-  filterByType: () => {},
-  type: "All",
+  filteredType: "All",
+  setFilteredType: () => {},
   filteredSuggestions: [],
 });
 
 function SearchProvider({ children }: PropsWithChildren) {
   const { suggestions } = useContext(SuggestionContext);
-  const [filteredSuggestions, setFilteredSuggestions] =
-    useState<SuggestionModel[]>(suggestions);
 
-  const [type, setType] = useState("All");
+  const [filteredType, setFilteredType] = useState("All");
 
-  const filterByType = (type: string) => {
-    setType(type);
-    if (type === "All") {
-      setFilteredSuggestions([...suggestions]);
-      return;
-    }
-    setFilteredSuggestions(
-      [...suggestions].filter((suggestion) => {
-        return suggestion.suggestionType === type;
-      }),
-    );
-  };
-
-  useEffect(() => {
-    filterByType(type);
-  }, [suggestions]);
+  const filteredSuggestions = useMemo(() => {
+    if (filteredType === "All") return [...suggestions];
+    else
+      return [...suggestions].filter(
+        (suggestion) => suggestion.suggestionType === filteredType,
+      );
+  }, [filteredType, suggestions]);
 
   return (
-    <SearchContext.Provider value={{ filterByType, type, filteredSuggestions }}>
+    <SearchContext.Provider
+      value={{ filteredType, setFilteredType, filteredSuggestions }}
+    >
       {children}
     </SearchContext.Provider>
   );

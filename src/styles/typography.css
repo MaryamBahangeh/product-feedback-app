@@ -1,0 +1,9 @@
+.subtitle {
+  color: var(--color-gray-40);
+  font-size: 1.5rem;
+}
+
+h2,
+h3 {
+  color: hsl(239, 22%, 37%);
+}

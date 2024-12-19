@@ -1,8 +1,8 @@
-import { Person } from "./person.ts";
+import { User } from "@/assets/data/users.ts";
 
 export type Comment = {
   id: string;
-  sender: Person;
-  commentText: string;
-  reply: Comment[] | null;
+  text: string;
+  user: User;
+  parentId: string;
 };

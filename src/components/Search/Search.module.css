@@ -2,7 +2,4 @@
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
-  border-radius: 0.8rem;
-  background-color: var(--color-gray-97);
-  padding: 2rem;
 }

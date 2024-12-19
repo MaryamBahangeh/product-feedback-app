@@ -1,24 +1,26 @@
 .header {
+  background-color: hsl(230, 31%, 31%);
+  color: var(--color-gray-97);
+
   border-radius: 1rem;
-  background-color: #1b1b7a;
   padding-inline: 2rem;
-  padding-block: 1rem;
+  padding-block: 1.2rem;
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  color: var(--color-gray-97);
 
   .content {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
 
     label {
-      margin-inline-start: 1.5rem;
+      padding-inline-start: 1.5rem;
     }
+
     select {
-      margin-inline-start: 0.5rem;
+      padding-inline-start: 0.5rem;
       background-color: transparent;
       color: var(--color-gray-97);
       border: none;

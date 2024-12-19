@@ -1,28 +1,33 @@
-import styles from "./Search.module.css";
-import { SUGGESTION_Options } from "../../models/suggestion-options.ts";
-import Button, { Color } from "../Button/Button.tsx";
 import { useContext } from "react";
-import { SearchContext } from "../../providers/SearchProvider.tsx";
+import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+import { SearchContext } from "@/providers/SearchProvider.tsx";
+import Div from "@/components/Div/Div.tsx";
+import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import styles from "./Search.module.css";
 
 function Search() {
-  const { filterByType, type } = useContext(SearchContext);
+  const { filteredType, setFilteredType } = useContext(SearchContext);
   return (
-    <div className={styles.search}>
+    <Div className={styles.search}>
       <Button
-        color={type === "All" ? Color.blue : Color.gray}
-        onClick={() => filterByType("All")}
+        variant={Variant.SECONDARY}
+        color={filteredType === "All" ? Color.BLUE : Color.GRAY}
+        onClick={() => setFilteredType("All")}
       >
         All
       </Button>
-      {SUGGESTION_Options.map((option) => (
+
+      {SUGGESTION_OPTIONS.map((option) => (
         <Button
-          color={type === option.name ? Color.blue : Color.gray}
-          onClick={() => filterByType(option.value)}
+          key={option.value}
+          variant={Variant.SECONDARY}
+          color={filteredType === option.name ? Color.BLUE : Color.GRAY}
+          onClick={() => setFilteredType(option.value)}
         >
           {option.name}
         </Button>
       ))}
-    </div>
+    </Div>
   );
 }
 

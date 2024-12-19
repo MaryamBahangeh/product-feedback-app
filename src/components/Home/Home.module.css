@@ -1,22 +1,23 @@
 .content {
+  margin-block: 6rem;
+
   display: grid;
-  margin-block-start: 6rem;
   gap: 2rem;
   align-items: start;
 
   grid-template-areas:
-    "bord header"
-    "bord suggestions";
+    "left-content header"
+    "left-content suggestions";
 
-  grid-template-columns: 25% auto;
+  grid-template-columns: 30% auto;
   grid-template-rows: auto 1fr;
 
   .header {
     grid-area: header;
   }
 
-  .bord {
-    grid-area: bord;
+  .left-content {
+    grid-area: left-content;
     display: grid;
     gap: 2rem;
     padding-inline-end: 1rem;

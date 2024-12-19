@@ -1,76 +1,54 @@
+import { useContext } from "react";
+
+import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+import { RoutingContext } from "@/providers/RoutingProvider.tsx";
+
+import Div from "@/components/Div/Div.tsx";
+import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
 import styles from "./Suggestion.module.css";
-import { SuggestionModel } from "../../../models/suggestion.ts";
-import { IoIosArrowUp } from "react-icons/io";
-import { FaComment } from "react-icons/fa";
-import Button, { Color } from "../../Button/Button.tsx";
-import { useContext, useRef, useState } from "react";
-import { SuggestionContext } from "../../../providers/SuggestionProvider.tsx";
-// import ViewSuggestionInfo from "./ViewSuggestionInfo/ViewSuggestionInfo.tsx";
-import ViewSuggestionModal from "../../ViewSuggestionModal/ViewSuggestionModal.tsx";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank } = useContext(SuggestionContext);
+  const { setPage, setParams } = useContext(RoutingContext);
+  const { increaseRank, getComments } = useContext(SuggestionContext);
 
-  const onAddRankClickHandler = (id: string) => {
-    increaseRank(id);
-    setShowSuggestionInfo(!showSuggestionInfo);
+  const addRankClickHandler = (suggestionId: string) => {
+    increaseRank(suggestionId);
   };
 
-  const [showSuggestionInfo, setShowSuggestionInfo] = useState(false);
-
-  const ref = useRef<HTMLDialogElement | null>(null);
-
-  const openModalHandler = () => {
-    if (!ref.current) {
-      return;
-    }
-    ref.current.showModal();
+  const suggestionClickHandler = () => {
+    setPage("suggestion-comments");
+    setParams({ suggestionId: suggestion.id });
   };
 
-  const onCancelClickHandler = () => {
-    if (!ref.current) {
-      return;
-    }
-    ref.current.close();
-  };
   return (
-    <>
-      <div
-        className={styles.suggestion}
-        // onClick={() => setShowSuggestionInfo(!showSuggestionInfo)}
+    <Div className={styles.suggestion}>
+      <Button
+        variant={Variant.SECONDARY}
+        color={Color.GRAY}
+        className={styles.rank}
+        onClick={() => addRankClickHandler(suggestion.id)}
       >
-        <Button
-          color={Color.gray}
-          className={styles.rank}
-          onClick={() => onAddRankClickHandler(suggestion.id)}
-        >
-          <IoIosArrowUp /> {suggestion.rank}
-        </Button>
+        <img
+          src="/images/icones/shared/icon-arrow-up.svg"
+          alt="increase rank"
+        />
+        {suggestion.rank}
+      </Button>
 
-        <div className={styles.content} onClick={openModalHandler}>
-          <h2 className={styles.title}> {suggestion.title}</h2>
+      <div className={styles.content} onClick={suggestionClickHandler}>
+        <h2>{suggestion.title}</h2>
 
-          <div>{suggestion.description}</div>
-          <div className={styles.suggestionType}>
-            {suggestion.suggestionType}
-          </div>
-        </div>
+        <div>{suggestion.description}</div>
 
-        <div className={styles.comments}>
-          <FaComment color="lightgray" />
-          {suggestion.comments ? suggestion.comments.length : 0}
-        </div>
+        <div className={styles.suggestionType}>{suggestion.suggestionType}</div>
       </div>
-      {/*{showSuggestionInfo ? (*/}
-      {/*  <ViewSuggestionInfo suggestion={suggestion}></ViewSuggestionInfo>*/}
-      {/*) : null}*/}
 
-      <ViewSuggestionModal
-        suggestion={suggestion}
-        onCancel={onCancelClickHandler}
-        ref={ref}
-      ></ViewSuggestionModal>
-    </>
+      <div className={styles.comments}>
+        <img src="/images/icones/shared/icon-comments.svg" alt="" />
+        {getComments(suggestion.id).length}
+      </div>
+    </Div>
   );
 }
 

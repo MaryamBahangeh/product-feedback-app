@@ -1,144 +1,123 @@
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
-import { SuggestionModel } from "../models/suggestion.ts";
-import { Person } from "../models/person.ts";
-import { v4 as uuidv4 } from "uuid";
+
+import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+import { Comment } from "@/models/comment.ts";
+
+import {
+  LOCAL_STORAGE_SUGGESTION_KEY,
+  LOCAL_STORAGE_COMMENT_KEY,
+} from "@/constants/localstorage.constants.ts";
 
 type CotextTypes = {
   suggestions: SuggestionModel[];
+  addSuggestion: (newSuggestion: SuggestionModel) => void;
+  editSuggestion: (
+    suggestionId: string,
+    newSuggestion: SuggestionModel,
+  ) => void;
+  getComments: (parentId: string) => Comment[];
+  addComment: (newComment: Comment) => void;
   increaseRank: (id: string) => void;
-  addSuggestion: (suggestionInfo: SuggestionModel) => void;
-
-  addComment: (
-    sender: Person,
-    suggestionId: string,
-    commentText: string,
-  ) => void;
-
-  reply: (
-    sender: Person,
-    suggestionId: string,
-    commentId: string,
-    replyText: string,
-  ) => void;
 };
+
 export const SuggestionContext = createContext<CotextTypes>({
   suggestions: [],
-  increaseRank: () => {},
   addSuggestion: () => {},
+  editSuggestion: () => {},
+  getComments: () => {
+    return [];
+  },
   addComment: () => {},
-  reply: () => {},
+  increaseRank: () => {},
 });
 
 type Props = PropsWithChildren;
 
 function SuggestionProvider({ children }: Props) {
-  const LOCAL_STORAGE_KEY = "suggestion";
-
   const defaultSuggestions = () => {
-    if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
+    if (!localStorage.getItem(LOCAL_STORAGE_SUGGESTION_KEY)) {
       return [];
     }
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) as string);
+    return JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_SUGGESTION_KEY) as string,
+    );
   };
 
   const [suggestions, setSuggestions] =
     useState<SuggestionModel[]>(defaultSuggestions);
 
-  const increaseRank = (id: string) => {
-    const old = [...suggestions];
-    old.map((suggestion) => {
-      if (suggestion.id === id) {
-        suggestion.rank++;
-      }
-      return suggestion;
-    });
-    old.sort((a, b) => b.rank - a.rank);
-    setSuggestions(old);
+  const defaultComments = () => {
+    if (!localStorage.getItem(LOCAL_STORAGE_COMMENT_KEY)) {
+      return [];
+    }
+    return JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_COMMENT_KEY) as string,
+    );
   };
 
-  const addSuggestion = (suggestionInfo: SuggestionModel) => {
-    const old = [...suggestions, suggestionInfo];
-    old.sort((a, b) => b.rank - a.rank);
-    setSuggestions(old);
+  const [comments, setComments] = useState<Comment[]>(defaultComments);
+
+  const addSuggestion = (newSuggestion: SuggestionModel) => {
+    setSuggestions((old) =>
+      [...old, newSuggestion].sort((a, b) => b.rank - a.rank),
+    );
   };
 
-  const addComment = (
-    sender: Person,
+  const editSuggestion = (
     suggestionId: string,
-    commentText: string,
+    newSuggestion: SuggestionModel,
   ) => {
-    const old = [...suggestions];
-    old.map((suggestion) => {
-      if (suggestion.id === suggestionId) {
-        if (!suggestion.comments) {
-          suggestion.comments = [
-            {
-              id: uuidv4(),
-              sender: sender,
-              commentText: commentText,
-              reply: null,
-            },
-          ];
-        } else {
-          suggestion.comments.push({
-            id: uuidv4(),
-            sender: sender,
-            commentText: commentText,
-            reply: null,
-          });
+    setSuggestions((old) =>
+      old.map((suggestion: SuggestionModel) => {
+        if (suggestion.id === suggestionId) {
+          return newSuggestion;
         }
-      }
-      return suggestion;
-    });
-
-    setSuggestions(old);
+        return suggestion;
+      }),
+    );
   };
 
-  const reply = (
-    sender: Person,
-    suggestionId: string,
-    commentId: string,
-    replyText: string,
-  ) => {
-    const old = [...suggestions];
-    old.map((suggestion) => {
-      if (suggestion.id === suggestionId) {
-        suggestion.comments?.map((comment) => {
-          if (comment.id === commentId) {
-            if (!comment.reply) {
-              comment.reply = [
-                {
-                  id: uuidv4(),
-                  sender: sender,
-                  commentText: replyText,
-                  reply: null,
-                },
-              ];
-            } else {
-              comment.reply.push({
-                id: uuidv4(),
-                sender: sender,
-                commentText: replyText,
-                reply: null,
-              });
-            }
-          }
-          return comment;
-        });
-      }
-      return suggestion;
-    });
+  const getComments = (parentId: string): Comment[] => {
+    //return comments.filter((comment: Comment) => comment.parentId === parentId);
+    return comments;
+  };
 
-    setSuggestions(old);
+  const addComment = (newComment: Comment) => {
+    setComments((old) => [...old, newComment]);
+  };
+
+  const increaseRank = (id: string) => {
+    setSuggestions((old) =>
+      old.map((suggestion: SuggestionModel) => {
+        if (suggestion.id === id) {
+          return { ...suggestion, rank: suggestion.rank + 1 };
+        }
+        return suggestion;
+      }),
+    );
   };
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(suggestions));
+    localStorage.setItem(
+      LOCAL_STORAGE_SUGGESTION_KEY,
+      JSON.stringify(suggestions),
+    );
   }, [suggestions]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_COMMENT_KEY, JSON.stringify(comments));
+  }, [comments]);
 
   return (
     <SuggestionContext.Provider
-      value={{ suggestions, increaseRank, addSuggestion, addComment, reply }}
+      value={{
+        suggestions,
+        addSuggestion,
+        editSuggestion,
+        getComments,
+        addComment,
+        increaseRank,
+      }}
     >
       {children}
     </SuggestionContext.Provider>

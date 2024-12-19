@@ -1,10 +1,7 @@
-import { Comment } from "./comment.ts";
-
-export type SuggestionModel = {
+export type Suggestion = {
   id: string;
   title: string;
   description: string;
   suggestionType: string;
   rank: number;
-  comments: Comment[] | null;
 };

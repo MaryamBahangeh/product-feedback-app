@@ -1,0 +1,48 @@
+.reply-info {
+  display: flex;
+  gap: 3rem;
+
+  img {
+    width: 4rem;
+    align-self: start;
+    border-radius: 100%;
+  }
+
+  .user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    > span {
+      font-size: 1.2rem;
+    }
+
+    p {
+      line-height: 3rem;
+      text-align: justify;
+      padding-block-start: 1rem;
+      span {
+        color: var(--color-purple);
+      }
+    }
+
+    .textarea-container {
+      display: flex;
+
+      div {
+        flex: 1;
+      }
+
+      button {
+        align-self: end;
+      }
+    }
+  }
+
+  .reply-button {
+    align-self: start;
+    color: hsl(240, 100%, 50%);
+    font-size: 1.4rem;
+  }
+}

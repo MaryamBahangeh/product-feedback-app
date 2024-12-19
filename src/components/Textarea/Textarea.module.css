@@ -1,0 +1,10 @@
+textarea {
+  border: none;
+  border-radius: 0.5rem;
+  min-inline-size: 100%;
+
+  background-color: var(--color-gray-230);
+  padding-inline: 2rem;
+  padding-block: 1.5rem;
+  font-size: 1.5rem;
+}

@@ -1,21 +1,32 @@
-import styles from "./Button.module.css";
-import clsx from "clsx";
 import { ComponentProps } from "react";
+import clsx from "clsx";
+import styles from "./Button.module.css";
 
 export enum Color {
-  gray = "gray",
-  purple = "purple",
-  blue = "blue",
+  GRAY = "gray",
+  PURPLE = "purple",
+  BLUE = "blue",
+  DARKBLUE = "dark-blue",
+  TRANSPARENT = "transparent",
+}
+
+export enum Variant {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
 }
 
 type Props = ComponentProps<"button"> & {
+  variant: Variant;
   color: Color;
   className?: string;
 };
 
-function Button({ color, className, children, ...rest }: Props) {
+function Button({ variant, color, className, children, ...rest }: Props) {
   return (
-    <button className={clsx(styles.button, styles[color], className)} {...rest}>
+    <button
+      className={clsx(styles.button, styles[variant], styles[color], className)}
+      {...rest}
+    >
       {children}
     </button>
   );

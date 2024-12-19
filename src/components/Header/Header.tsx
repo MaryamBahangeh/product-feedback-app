@@ -1,42 +1,41 @@
+import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import { SearchContext } from "@/providers/SearchProvider.tsx";
+import { RoutingContext } from "@/providers/RoutingProvider.tsx";
+
+import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import styles from "./Header.module.css";
-import Button, { Color } from "../Button/Button.tsx";
-import { FiPlus } from "react-icons/fi";
-import { MdNoteAlt } from "react-icons/md";
-import AddModal from "../AddModal/AddModal.tsx";
-import { useContext, useRef } from "react";
-import { SuggestionContext } from "../../providers/SuggestionProvider.tsx";
-import { SuggestionModel } from "../../models/suggestion.ts";
+
+const suggestion = {
+  id: uuidv4(),
+  title: "",
+  description: "",
+  suggestionType: SUGGESTION_OPTIONS[0].value,
+  rank: 0,
+};
 
 function Header() {
-  const { addSuggestion } = useContext(SuggestionContext);
-  const ref = useRef<HTMLDialogElement>(null);
+  const { filteredSuggestions } = useContext(SearchContext);
+  const { setPage, setParams } = useContext(RoutingContext);
 
-  const onAddClickHandler = () => {
-    if (!ref.current) {
-      return;
-    }
-    ref.current.showModal();
+  const addClickHandler = () => {
+    setPage("edit-suggestion");
+    setParams({ suggestion: suggestion, isEditing: false });
   };
 
-  const onCancelClickHandler = () => {
-    if (!ref.current) {
-      return;
-    }
-    ref.current.close();
-  };
-  const onSubmitHandler = (newSuggestion: SuggestionModel) => {
-    if (!ref.current) {
-      return;
-    }
-    addSuggestion(newSuggestion);
-    ref.current.close();
-  };
+  const suggestionCounts: string =
+    filteredSuggestions.length +
+    (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion");
 
   return (
     <div className={styles.header}>
       <div className={styles.content}>
-        <MdNoteAlt />
-        <div>6 suggestion</div>
+        <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
+
+        <span>{suggestionCounts}</span>
+
         <label>
           Sort by:
           <select>
@@ -46,18 +45,13 @@ function Header() {
       </div>
 
       <Button
-        color={Color.purple}
-        className={styles.add}
-        onClick={onAddClickHandler}
+        variant={Variant.PRIMARY}
+        color={Color.PURPLE}
+        onClick={addClickHandler}
       >
-        <FiPlus /> Add Feedback
+        <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" /> Add
+        Feedback
       </Button>
-
-      <AddModal
-        onSubmit={onSubmitHandler}
-        onCancel={onCancelClickHandler}
-        ref={ref}
-      />
     </div>
   );
 }
