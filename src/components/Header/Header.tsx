@@ -8,17 +8,17 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import styles from "./Header.module.css";
 
-const suggestion = {
-  id: uuidv4(),
-  title: "",
-  description: "",
-  suggestionType: SUGGESTION_OPTIONS[0].value,
-  rank: 0,
-};
-
 function Header() {
   const { filteredSuggestions } = useContext(SearchContext);
   const { setPage, setParams } = useContext(RoutingContext);
+
+  const suggestion = {
+    id: uuidv4(),
+    title: "",
+    description: "",
+    suggestionType: SUGGESTION_OPTIONS[0].value,
+    rank: 0,
+  };
 
   const addClickHandler = () => {
     setPage("edit-suggestion");

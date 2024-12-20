@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import { RoutingContext } from "@/providers/RoutingProvider.tsx";
@@ -40,7 +41,13 @@ function SuggestionComments() {
   };
 
   const addCommentClickHandler = () => {
-    addComment(commentText, persons[1], suggestion.id);
+    const newComment = {
+      id: uuidv4(),
+      text: commentText,
+      user: persons[0],
+      parentId: suggestion.id,
+    };
+    addComment(newComment);
     setCommentText("");
   };
 

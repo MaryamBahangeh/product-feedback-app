@@ -78,8 +78,7 @@ function SuggestionProvider({ children }: Props) {
   };
 
   const getComments = (parentId: string): Comment[] => {
-    //return comments.filter((comment: Comment) => comment.parentId === parentId);
-    return comments;
+    return comments.filter((comment: Comment) => comment.parentId === parentId);
   };
 
   const addComment = (newComment: Comment) => {

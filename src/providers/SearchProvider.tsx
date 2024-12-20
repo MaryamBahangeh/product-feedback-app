@@ -34,7 +34,7 @@ function SearchProvider({ children }: PropsWithChildren) {
       return [...suggestions].filter(
         (suggestion) => suggestion.suggestionType === filteredType,
       );
-  }, [filteredType, suggestions]);
+  }, [filteredType, suggestions]).sort((a, b) => b.rank - a.rank);
 
   return (
     <SearchContext.Provider
