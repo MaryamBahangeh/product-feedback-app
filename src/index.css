@@ -1,3 +1,8 @@
+:root {
+  --full-width: 90rem;
+  --full-width-padding-inline: calc(max(100% - var(--full-width), 2rem) / 2);
+}
+
 *,
 *::before,
 *::after {
@@ -29,9 +34,10 @@ optgroup {
 body {
   font-size: 1.5rem;
 
-  max-inline-size: 90rem;
+  max-inline-size: var(--full-width);
   margin-inline: auto;
+ >* padding: var(--full-width-padding-inline);
 
-  background-color: var(--color-gray-98);
-  color: hsl(239, 22%, 37%);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }

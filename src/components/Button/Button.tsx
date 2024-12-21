@@ -1,5 +1,7 @@
 import { ComponentProps } from "react";
+
 import clsx from "clsx";
+
 import styles from "./Button.module.css";
 
 export enum Color {

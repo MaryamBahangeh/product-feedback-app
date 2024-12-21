@@ -1,7 +1,11 @@
 import { useContext } from "react";
+
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+
 import Reply from "@/components/Reply/Reply.tsx";
+
 import { Comment } from "@/models/comment.ts";
+
 import styles from "./CommentsInfo.module.css";
 
 type Props = {

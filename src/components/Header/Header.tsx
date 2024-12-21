@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
@@ -6,6 +7,7 @@ import { RoutingContext } from "@/providers/RoutingProvider.tsx";
 
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+
 import styles from "./Header.module.css";
 
 function Header() {

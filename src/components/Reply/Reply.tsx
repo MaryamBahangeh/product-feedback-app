@@ -1,12 +1,16 @@
 import { useContext, useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowUp } from "react-icons/fa6";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { persons, User } from "@/assets/data/users.ts";
+
 import { Comment } from "@/models/comment.ts";
+
 import styles from "./Reply.module.css";
 
 type Props = {

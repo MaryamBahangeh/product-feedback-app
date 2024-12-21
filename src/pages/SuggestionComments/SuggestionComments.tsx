@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
@@ -13,6 +14,7 @@ import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
 import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
 import { Comment } from "@/models/comment.ts";
+
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionComments.module.css";

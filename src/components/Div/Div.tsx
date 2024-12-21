@@ -1,5 +1,7 @@
 import { PropsWithChildren } from "react";
+
 import clsx from "clsx";
+
 import styles from "./Div.module.css";
 
 type Props = PropsWithChildren & {

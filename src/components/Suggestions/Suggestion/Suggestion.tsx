@@ -5,7 +5,9 @@ import { RoutingContext } from "@/providers/RoutingProvider.tsx";
 
 import Div from "@/components/Div/Div.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+
 import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+
 import styles from "./Suggestion.module.css";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {

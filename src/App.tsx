@@ -1,7 +1,7 @@
 import SuggestionProvider from "./providers/SuggestionProvider.tsx";
 import SearchProvider from "./providers/SearchProvider.tsx";
-import RoutingProvider from "@/providers/RoutingProvider.tsx";
-import Routing from "@/Routing.tsx";
+import RoutingProvider from "./providers/RoutingProvider.tsx";
+import Routing from "./Routing.tsx";
 
 function App() {
   return (

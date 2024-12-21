@@ -1,5 +1,7 @@
 import { PropsWithChildren } from "react";
+
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+
 import styles from "./PageHeader.module.css";
 
 type Props = PropsWithChildren & {

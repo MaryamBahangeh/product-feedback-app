@@ -9,6 +9,7 @@ import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
+
 import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
 
 import styles from "./EditSuggestion.module.css";
