@@ -15,7 +15,7 @@
     gap: 0.5rem;
 
     > span {
-      font-size: 1.2rem;
+      font-size: var(--fz-300);
     }
 
     p {
@@ -43,6 +43,6 @@
   .reply-button {
     align-self: start;
     color: hsl(240, 100%, 50%);
-    font-size: 1.4rem;
+    font-size: var(--fz-500);
   }
 }

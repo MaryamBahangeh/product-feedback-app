@@ -9,10 +9,21 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 
 import styles from "./Header.module.css";
+import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
+import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+
+const pluralRules = new Intl.PluralRules("en");
+
+function getPluralizedWord(count: number, singular: string, plural: string) {
+  return (
+    count + " " + (pluralRules.select(count) === "one" ? singular : plural)
+  );
+}
 
 function Header() {
   const { filteredSuggestions } = useContext(SearchContext);
   const { setPage, setParams } = useContext(RoutingContext);
+  const { sortBy, setSortBy } = useContext(SuggestionContext);
 
   const suggestion = {
     id: uuidv4(),
@@ -27,21 +38,43 @@ function Header() {
     setParams({ suggestion: suggestion, isEditing: false });
   };
 
-  const suggestionCounts: string =
-    filteredSuggestions.length +
-    (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion");
+  const count = filteredSuggestions.length;
+  console.log(
+    `${count} ${getPluralizedWord(filteredSuggestions.length, "Suggestion", "Suggestions")}`,
+  );
 
   return (
     <div className={styles.header}>
       <div className={styles.content}>
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
-        <span>{suggestionCounts}</span>
+        <span>
+          {getPluralizedWord(
+            filteredSuggestions.length,
+            "Suggestion",
+            "Suggestions",
+          )}
+        </span>
 
         <label>
           Sort by:
           <select>
-            <option value="MostUpvotes">Most Upvotes</option>
+            {SORT_OPTIONS.map((sortOption) => {
+              return (
+                <option
+                  key={sortOption.value}
+                  value={sortBy.value}
+                  onChange={(e) =>
+                    setSortBy({
+                      name: e.currentTarget.text,
+                      value: e.currentTarget.value,
+                    })
+                  }
+                >
+                  {sortOption.name}
+                </option>
+              );
+            })}
           </select>
         </label>
       </div>

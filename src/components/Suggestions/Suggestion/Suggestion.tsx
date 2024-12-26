@@ -3,16 +3,16 @@ import { useContext } from "react";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import { RoutingContext } from "@/providers/RoutingProvider.tsx";
 
-import Div from "@/components/Div/Div.tsx";
+import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
-import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { setPage, setParams } = useContext(RoutingContext);
-  const { increaseRank, getComments } = useContext(SuggestionContext);
+  const { increaseRank, getCommentsByParentId } = useContext(SuggestionContext);
 
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
@@ -24,7 +24,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   };
 
   return (
-    <Div className={styles.suggestion}>
+    <Card className={styles.suggestion}>
       <Button
         variant={Variant.SECONDARY}
         color={Color.GRAY}
@@ -48,9 +48,9 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
 
       <div className={styles.comments}>
         <img src="/images/icones/shared/icon-comments.svg" alt="" />
-        {getComments(suggestion.id).length}
+        {getCommentsByParentId(suggestion.id).length}
       </div>
-    </Div>
+    </Card>
   );
 }
 

@@ -1,6 +1,6 @@
-import styles from "./Bord.module.css";
+import styles from "./Board.module.css";
 
-function Bord() {
+function Board() {
   return (
     <div className={styles.bord}>
       <div>Frontend Mentor</div>
@@ -9,4 +9,4 @@ function Bord() {
   );
 }
 
-export default Bord;
+export default Board;

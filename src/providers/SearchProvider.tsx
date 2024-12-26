@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import { SuggestionContext } from "./SuggestionProvider.tsx";
-import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 type ContextType = {
   filteredType: string;
@@ -29,12 +29,14 @@ function SearchProvider({ children }: PropsWithChildren) {
   const [filteredType, setFilteredType] = useState("All");
 
   const filteredSuggestions = useMemo(() => {
-    if (filteredType === "All") return [...suggestions];
-    else
-      return [...suggestions].filter(
-        (suggestion) => suggestion.suggestionType === filteredType,
-      );
-  }, [filteredType, suggestions]).sort((a, b) => b.rank - a.rank);
+    if (filteredType === "All") {
+      return [...suggestions];
+    }
+
+    return suggestions.filter(
+      (suggestion) => suggestion.suggestionType === filteredType,
+    );
+  }, [filteredType, suggestions]);
 
   return (
     <SearchContext.Provider

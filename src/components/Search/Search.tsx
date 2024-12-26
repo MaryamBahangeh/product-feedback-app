@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
-import Div from "@/components/Div/Div.tsx";
+import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
@@ -13,7 +13,7 @@ function Search() {
   const { filteredType, setFilteredType } = useContext(SearchContext);
 
   return (
-    <Div className={styles.search}>
+    <Card className={styles.search}>
       <Button
         variant={Variant.SECONDARY}
         color={filteredType === "All" ? Color.BLUE : Color.GRAY}
@@ -32,7 +32,7 @@ function Search() {
           {option.name}
         </Button>
       ))}
-    </Div>
+    </Card>
   );
 }
 

@@ -1,9 +1,11 @@
-.subtitle {
-  color: var(--color-gray-40);
-  font-size: 1.5rem;
+:root {
+  --fz-300: clamp(0.75rem, 0.5571rem + 0.8571vw, 1.2rem);
+  --fz-400: clamp(1rem, 0.7857rem + 0.9524vw, 1.5rem);
+  --fz-500: clamp(1rem, 0.8286rem + 0.7619vw, 1.4rem);
+  --fz-600: clamp(1.2rem, 1.0286rem + 0.7619vw, 1.6rem);
 }
 
-h2,
-h3 {
-  color: hsl(239, 22%, 37%);
+.subtitle {
+  color: var(--color-gray-40);
+  font-size: var(--fz-400);
 }

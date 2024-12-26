@@ -9,10 +9,10 @@ import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import CommentsInfo from "@/components/CommentsInfo/CommentsInfo.tsx";
 import Textarea from "@/components/Textarea/Textarea.tsx";
-import Div from "@/components/Div/Div.tsx";
+import Card from "@/components/Card/Card.tsx";
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
-import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { Comment } from "@/models/comment.ts";
 
 import { persons } from "@/assets/data/users.ts";
@@ -20,11 +20,13 @@ import { persons } from "@/assets/data/users.ts";
 import styles from "./SuggestionComments.module.css";
 
 function SuggestionComments() {
-  const { suggestions, getComments, addComment } =
+  const { suggestions, getCommentsByParentId, addComment } =
     useContext(SuggestionContext);
   const { setPage, params, setParams } = useContext(RoutingContext);
 
-  const comments: Comment[] = getComments(params.suggestionId as string);
+  const comments: Comment[] = getCommentsByParentId(
+    params.suggestionId as string,
+  );
   const [commentText, setCommentText] = useState<string>("");
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
@@ -67,7 +69,7 @@ function SuggestionComments() {
 
       <Suggestion suggestion={suggestion}></Suggestion>
 
-      <Div className={styles.comments}>
+      <Card className={styles.comments}>
         <h2>
           {comments.length + (comments.length > 1 ? " Comments" : " Comment")}
         </h2>
@@ -75,9 +77,9 @@ function SuggestionComments() {
         {comments.length > 0 && (
           <CommentsInfo comments={comments}></CommentsInfo>
         )}
-      </Div>
+      </Card>
 
-      <Div className={styles["add-comment"]}>
+      <Card className={styles["add-comment"]}>
         <h2>Add Comment</h2>
         <Textarea
           value={commentText}
@@ -96,7 +98,7 @@ function SuggestionComments() {
             Post Comment
           </Button>
         </div>
-      </Div>
+      </Card>
     </div>
   );
 }

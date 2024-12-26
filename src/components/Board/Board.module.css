@@ -20,11 +20,11 @@
 
   div {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: var(--fz-400);
   }
 
   span {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: var(--fz-300);
   }
 }

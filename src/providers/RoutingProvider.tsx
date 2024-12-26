@@ -6,10 +6,7 @@ import {
   useState,
 } from "react";
 
-import { v4 as uuidv4 } from "uuid";
-
-import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
-import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 type Params = {
   suggestionId?: string;
@@ -17,7 +14,7 @@ type Params = {
   isEditing?: boolean;
 };
 
-type ContexType = {
+type ContextType = {
   page: string;
   setPage: Dispatch<SetStateAction<string>>;
 
@@ -25,29 +22,17 @@ type ContexType = {
   setParams: Dispatch<SetStateAction<Params>>;
 };
 
-export const RoutingContext = createContext<ContexType>({
+export const RoutingContext = createContext<ContextType>({
   page: "",
   setPage: () => {},
 
-  params: {
-    suggestionId: "",
-
-    suggestion: {
-      id: uuidv4(),
-      title: "",
-      description: "",
-      suggestionType: SUGGESTION_OPTIONS[0].value,
-      rank: 0,
-    },
-
-    isEditing: false,
-  },
+  params: {},
   setParams: () => {},
 });
 
 function RoutingProvider({ children }: PropsWithChildren) {
   const [page, setPage] = useState("home");
-  const [params, setParams] = useState<Params>({ suggestionId: "" });
+  const [params, setParams] = useState<Params>({});
 
   return (
     <RoutingContext.Provider value={{ page, setPage, params, setParams }}>

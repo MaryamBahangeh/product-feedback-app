@@ -10,7 +10,7 @@ import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 
-import { Suggestion as SuggestionModel } from "@/models/suggestion.ts";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./EditSuggestion.module.css";
 
@@ -36,14 +36,22 @@ function EditSuggestion({ suggestion, isEditing }: Props) {
     setFields({ ...fields, [field]: value });
   };
 
-  const handleValidation = (): boolean => {
-    if (!fields.title) {
-      setErrors({ ...errors, ["title"]: "*" });
-      return false;
+  const requiredValidator = (value: string, errorFieldName: string) => {
+    if (!value) {
+      setErrors((old) => ({
+        ...old,
+        [errorFieldName]: "Fill the " + errorFieldName + " field",
+      }));
+    } else {
+      setErrors((old) => ({ ...old, [errorFieldName]: "" }));
     }
+  };
 
-    if (!fields.description) {
-      setErrors({ ...errors, ["description"]: "*" });
+  const handleValidation = (): boolean => {
+    requiredValidator(fields.title, "title");
+    requiredValidator(fields.description, "description");
+
+    if (!fields.title || !fields.description) {
       return false;
     }
     return true;
@@ -84,9 +92,12 @@ function EditSuggestion({ suggestion, isEditing }: Props) {
         <h2>{pageTitle}</h2>
 
         <div>
-          <h3>Feedback Title</h3>
+          <h3>
+            Feedback Title <span className={styles.star}> *</span>
+          </h3>
           <span className={"subtitle"}>Add a short, descriptive headline</span>
           <input
+            className={errors.title && styles.error}
             value={fields.title}
             onChange={(e) => handleChange("title", e.currentTarget.value)}
           />
@@ -126,12 +137,16 @@ function EditSuggestion({ suggestion, isEditing }: Props) {
         </div>
 
         <div>
-          <h3>Feedback Detail</h3>
+          <h3>
+            Feedback Detail <span className={styles.star}>*</span>
+          </h3>
+
           <span className={"subtitle"}>
             Include any specific comments on what should be improved, added,
             etc.
           </span>
           <Textarea
+            className={errors.description && styles.error}
             value={fields.description}
             onChange={(e) => {
               handleChange("description", e.target.value);

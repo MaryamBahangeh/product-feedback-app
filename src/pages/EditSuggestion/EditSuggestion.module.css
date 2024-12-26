@@ -32,14 +32,27 @@
       display: grid;
       gap: 1.6rem;
 
+      h3 {
+        display: flex;
+        gap: 0.5rem;
+      }
+
       input,
       select {
         background-color: var(--color-gray-230);
         padding-inline: 2rem;
         padding-block: 1.5rem;
-        font-size: 1.5rem;
         border: none;
         border-radius: 0.5rem;
+      }
+
+      .star {
+        color: red;
+        align-self: center;
+      }
+
+      .error {
+        border: 0.1rem solid red;
       }
     }
 

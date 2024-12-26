@@ -13,11 +13,11 @@ type Props = {
 };
 
 function CommentsInfo({ comments }: Props) {
-  const { getComments } = useContext(SuggestionContext);
+  const { getCommentsByParentId } = useContext(SuggestionContext);
 
   return (
     <div className={styles.comments}>
-      {comments.map((comment: Comment) => (
+      {comments.map((comment) => (
         <div key={comment.id} className={styles["comment-info"]}>
           <Reply
             parentId={comment.id}
@@ -29,7 +29,7 @@ function CommentsInfo({ comments }: Props) {
           <div className={styles["replies-container"]}>
             <div className={styles.line}></div>
             <div className={styles.replies}>
-              {getComments(comment.id).map((reply: Comment) => (
+              {getCommentsByParentId(comment.id).map((reply) => (
                 <Reply
                   key={reply.id}
                   parentId={comment.id}
