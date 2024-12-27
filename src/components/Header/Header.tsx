@@ -11,7 +11,6 @@ import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import styles from "./Header.module.css";
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-import { Link, Navigate, useNavigate } from "react-router";
 
 const pluralRules = new Intl.PluralRules("en");
 
@@ -22,8 +21,8 @@ function getPluralizedWord(count: number, singular: string, plural: string) {
 }
 
 function Header() {
-  let navigate = useNavigate();
   const { filteredSuggestions } = useContext(SearchContext);
+  const { setPage, setParams } = useContext(RoutingContext);
   const { sortBy, setSortBy } = useContext(SuggestionContext);
 
   const suggestion = {
@@ -35,7 +34,8 @@ function Header() {
   };
 
   const addClickHandler = () => {
-    navigate("/editSuggestion/false");
+    setPage("edit-suggestion");
+    setParams({ suggestion: suggestion, isEditing: false });
   };
 
   const count = filteredSuggestions.length;

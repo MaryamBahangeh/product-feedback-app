@@ -10,40 +10,27 @@ import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 
-import { useParams } from "react-router";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./EditSuggestion.module.css";
-import { v4 as uuidv4 } from "uuid";
 
-function EditSuggestion() {
+type Props = {
+  suggestion: SuggestionModel;
+  isEditing: boolean;
+};
+
+function EditSuggestion({ suggestion, isEditing }: Props) {
   const { addSuggestion, editSuggestion } = useContext(SuggestionContext);
   const { setPage, setParams } = useContext(RoutingContext);
 
-  const { isEditing } = useParams();
-  const suggestion = {
-    id: uuidv4(),
-    title: "",
-    description: "",
-    suggestionType: SUGGESTION_OPTIONS[0].value,
-    rank: 0,
-  };
-  const [fields, setFields] = useState<SuggestionModel>(
-    suggestion as SuggestionModel,
-  );
+  const [fields, setFields] = useState<SuggestionModel>(suggestion);
 
   const defaultErrors = { title: "", description: "" };
   const [errors, setErrors] = useState(defaultErrors);
 
-  let pageTitle = isEditing
+  const pageTitle = isEditing
     ? `Editing '${suggestion.title}'`
     : `Add a new suggestion`;
-
-  console.log(isEditing);
-  if (!isEditing) {
-    console.log("kjhsdjkfhjshde");
-    pageTitle = "Add a new suggestion";
-  }
 
   const handleChange = (field: string, value: string) => {
     setFields({ ...fields, [field]: value });

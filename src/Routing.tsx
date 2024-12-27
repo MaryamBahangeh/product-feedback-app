@@ -1,17 +1,35 @@
-import ReactDOM from "react-dom/client";
-import { Routes, Route, BrowserRouter } from "react-router";
+import { useContext } from "react";
 
+import { RoutingContext } from "@/providers/RoutingProvider.tsx";
+
+import Home from "@/pages/Home/Home.tsx";
+
+import SuggestionDetail from "@/pages/SuggestionComments/SuggestionComments.tsx";
+import EditSuggestion from "@/pages/EditSuggestion/EditSuggestion.tsx";
+
+import { SuggestionModel as SuggestionModel } from "@/models/suggestion-model.ts";
 import NotFound from "@/pages/NotFound/NotFound..tsx";
-import App from "@/App.tsx";
 
-const root = document.getElementById("root");
+function Routing() {
+  const { page, params } = useContext(RoutingContext);
 
-ReactDOM.createRoot(root as HTMLElement).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/notfound" element={<NotFound />} />
-    </Routes>
-    ,
-  </BrowserRouter>,
-);
+  if (page === "home") {
+    return <Home />;
+  }
+
+  if (page === "suggestion-comments") {
+    return <SuggestionDetail />;
+  }
+
+  if (page === "edit-suggestion") {
+    return (
+      <EditSuggestion
+        suggestion={params.suggestion as SuggestionModel}
+        isEditing={params.isEditing as boolean}
+      />
+    );
+  }
+  return <NotFound />;
+}
+
+export default Routing;

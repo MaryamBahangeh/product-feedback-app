@@ -1,16 +1,18 @@
 import SuggestionProvider from "./providers/SuggestionProvider.tsx";
 import SearchProvider from "./providers/SearchProvider.tsx";
-
-import Home from "@/pages/Home/Home.tsx";
+import RoutingProvider from "./providers/RoutingProvider.tsx";
+import Routing from "./Routing.tsx";
 
 function App() {
   return (
     <>
-      <SuggestionProvider>
-        <SearchProvider>
-          <Home></Home>
-        </SearchProvider>
-      </SuggestionProvider>
+      <RoutingProvider>
+        <SuggestionProvider>
+          <SearchProvider>
+            <Routing></Routing>
+          </SearchProvider>
+        </SuggestionProvider>
+      </RoutingProvider>
     </>
   );
 }

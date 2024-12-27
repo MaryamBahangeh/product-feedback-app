@@ -4,6 +4,7 @@ import {
   PropsWithChildren,
   SetStateAction,
   useEffect,
+  useReducer,
   useState,
 } from "react";
 
@@ -17,6 +18,42 @@ import {
 
 import { SortType } from "@/models/sort-type.ts";
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
+
+type Action = {
+  type: string;
+  newSuggestion?: SuggestionModel;
+  suggestionId?: string;
+};
+
+function suggestionReducer(suggestions: SuggestionModel[], action: Action) {
+  switch (action.type) {
+    case "added_suggestion": {
+      return [...suggestions, action.newSuggestion];
+    }
+
+    case "edited_suggestion": {
+      return suggestions.map((suggestion) => {
+        if (suggestion.id === action.suggestionId) {
+          return { ...action.newSuggestion };
+        }
+        return suggestion;
+      });
+    }
+
+    case "rank_increased": {
+      return suggestions.map((suggestion) => {
+        if (suggestion.id === action.suggestionId) {
+          return { ...suggestion, rank: suggestion.rank + 1 };
+        }
+        return suggestion;
+      });
+    }
+
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
 
 type CotextTypes = {
   suggestions: SuggestionModel[];
@@ -55,10 +92,14 @@ const defaultLocalstorage = (key: string, defaultValue: any) => {
 type Props = PropsWithChildren;
 
 function SuggestionProvider({ children }: Props) {
-  const [suggestions, setSuggestions] = useState<SuggestionModel[]>(
+  // const [suggestions, setSuggestions] = useState<SuggestionModel[]>(
+  //   defaultLocalstorage(LOCAL_STORAGE_SUGGESTION_KEY, []),
+  // );
+
+  const [suggestions, dispatch] = useReducer(
+    suggestionReducer,
     defaultLocalstorage(LOCAL_STORAGE_SUGGESTION_KEY, []),
   );
-
   const [comments, setComments] = useState<Comment[]>(
     defaultLocalstorage(LOCAL_STORAGE_COMMENT_KEY, []),
   );
@@ -66,21 +107,21 @@ function SuggestionProvider({ children }: Props) {
   const [sortBy, setSortBy] = useState<SortType>(SORT_OPTIONS[0]);
 
   const addSuggestion = (newSuggestion: SuggestionModel) => {
-    setSuggestions((old) => [...old, { ...newSuggestion }]);
+    dispatch({ type: "added_suggestion", newSuggestion: newSuggestion });
   };
 
   const editSuggestion = (
     suggestionId: string,
     newSuggestion: SuggestionModel,
   ) => {
-    setSuggestions((old) =>
-      old.map((suggestion) => {
-        if (suggestion.id === suggestionId) {
-          return { ...newSuggestion };
-        }
-        return suggestion;
-      }),
-    );
+    // setSuggestions((old) =>
+    //   old.map((suggestion) => {
+    //     if (suggestion.id === suggestionId) {
+    //       return { ...newSuggestion };
+    //     }
+    //     return suggestion;
+    //   }),
+    // );
   };
 
   const getCommentsByParentId = (parentId: string): Comment[] => {
@@ -92,20 +133,20 @@ function SuggestionProvider({ children }: Props) {
   };
 
   const increaseRank = (id: string) => {
-    setSuggestions((old) =>
-      old.map((suggestion) => {
-        if (suggestion.id === id) {
-          return { ...suggestion, rank: suggestion.rank + 1 };
-        }
-        return suggestion;
-      }),
-    );
+    // setSuggestions((old) =>
+    //   old.map((suggestion) => {
+    //     if (suggestion.id === id) {
+    //       return { ...suggestion, rank: suggestion.rank + 1 };
+    //     }
+    //     return suggestion;
+    //   }),
+    // );
   };
 
   const sort = () => {
-    if (sortBy.value === "rank")
-      setSuggestions((old) => old.sort((a, b) => b.rank - a.rank));
-    if (sortBy.value === "title") setSuggestions((old) => old.sort());
+    // if (sortBy.value === "rank")
+    //   setSuggestions((old) => old.sort((a, b) => b.rank - a.rank));
+    // if (sortBy.value === "title") setSuggestions((old) => old.sort());
   };
 
   useEffect(() => {
