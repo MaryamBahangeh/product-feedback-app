@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-import { RoutingContext } from "@/providers/RoutingProvider.tsx";
 
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -9,9 +8,11 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
+import { useNavigate } from "react-router";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { setPage, setParams } = useContext(RoutingContext);
+  const navigate = useNavigate();
+
   const { increaseRank, getCommentsByParentId } = useContext(SuggestionContext);
 
   const addRankClickHandler = (suggestionId: string) => {
@@ -19,8 +20,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   };
 
   const suggestionClickHandler = () => {
-    setPage("suggestion-comments");
-    setParams({ suggestionId: suggestion.id });
+    navigate(`/suggestion-comments/${suggestion.id}`);
   };
 
   return (
