@@ -40,13 +40,26 @@
       border-radius: 0.5rem;
     }
 
+    input,
+    textarea {
+      &:not(:user-invalid) {
+        + .error-message {
+          display: none;
+        }
+      }
+
+      &:user-invalid {
+        border: 0.1rem solid red;
+      }
+    }
+
+    .error-message {
+      color: red;
+    }
+
     .star {
       color: red;
       align-self: center;
-    }
-
-    .error {
-      border: 0.1rem solid red;
     }
   }
 

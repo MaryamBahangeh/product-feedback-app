@@ -33,40 +33,12 @@ export default function CreateEditFormComponent({
     ...defaultValues,
   });
 
-  const defaultErrors = { title: "", description: "" };
-  const [errors, setErrors] = useState(defaultErrors);
-
   const handleChange = (field: string, value: string) => {
     setFields({ ...fields, [field]: value });
   };
 
-  const requiredValidator = (value: string, errorFieldName: string) => {
-    if (!value) {
-      setErrors((old) => ({
-        ...old,
-        [errorFieldName]: "Fill the " + errorFieldName + " field",
-      }));
-    } else {
-      setErrors((old) => ({ ...old, [errorFieldName]: "" }));
-    }
-  };
-
-  const handleValidation = (): boolean => {
-    requiredValidator(fields.title, "title");
-    requiredValidator(fields.description, "description");
-
-    if (!fields.title || !fields.description) {
-      return false;
-    }
-    return true;
-  };
-
   const onSubmitClickHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!handleValidation()) {
-      return;
-    }
 
     onSubmit(fields);
   };
@@ -85,11 +57,11 @@ export default function CreateEditFormComponent({
         </h3>
         <span className={"subtitle"}>Add a short, descriptive headline</span>
         <input
-          className={errors.title && styles.error}
           value={fields.title}
+          required
           onChange={(e) => handleChange("title", e.currentTarget.value)}
         />
-        {errors.title && <span>{errors.title}</span>}
+        <span className={styles["error-message"]}>Title is required.</span>
       </div>
 
       <div>
@@ -131,14 +103,16 @@ export default function CreateEditFormComponent({
           Include any specific comments on what should be improved, added, etc.
         </span>
         <Textarea
-          className={errors.description && styles.error}
           value={fields.description}
           onChange={(e) => {
             handleChange("description", e.target.value);
           }}
           name="description"
+          required
         ></Textarea>
-        {errors.description && <span>{errors.description}</span>}
+        <span className={styles["error-message"]}>
+          Description is required.
+        </span>
       </div>
 
       <div className={styles["button-container"]}>
