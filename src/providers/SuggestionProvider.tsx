@@ -114,6 +114,8 @@ function SuggestionProvider({ children }: Props) {
     suggestionId: string,
     newSuggestion: SuggestionModel,
   ) => {
+    dispatch({ type: "edited_suggestion", newSuggestion, suggestionId });
+
     // setSuggestions((old) =>
     //   old.map((suggestion) => {
     //     if (suggestion.id === suggestionId) {

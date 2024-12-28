@@ -19,7 +19,7 @@ function EditSuggestion() {
   }, [id, suggestions]);
 
   const goBackHandler = (): void => {
-    navigate(`/suggestion-comments/${id}}`);
+    navigate(`/suggestion-comments/${id}`);
   };
 
   const submitHandler = (fields: SuggestionModel): void => {
@@ -37,6 +37,7 @@ function EditSuggestion() {
       <PageHeader onGoBack={goBackHandler} />
       <CreateEditFormComponent
         pageTitle={`Editing '${suggestion.title}'`}
+        defaultValues={suggestion}
         titleIcon={
           <img src="/images/icones/shared/icon-edit-feedback.svg" alt="" />
         }

@@ -1,35 +1,37 @@
 import { ComponentProps, FormEvent, ReactElement, useState } from "react";
 
+import { v4 as uuidv4 } from "uuid";
+
 import styles from "./CreateEditForm.module.css";
 import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   pageTitle: string;
   onSubmit: (fields: SuggestionModel) => void;
   onCancel: () => void;
+  defaultValues?: Partial<SuggestionModel>;
   titleIcon?: ReactElement<ComponentProps<"img">> | null;
-};
-
-const suggestion = {
-  id: uuidv4(),
-  title: "",
-  description: "",
-  suggestionType: SUGGESTION_OPTIONS[0].value,
-  rank: 0,
 };
 
 export default function CreateEditFormComponent({
   pageTitle,
   onSubmit,
   onCancel,
+  defaultValues,
   titleIcon = null,
 }: Props): ReactElement {
-  const [fields, setFields] = useState<SuggestionModel>(suggestion);
+  const [fields, setFields] = useState<SuggestionModel>({
+    id: uuidv4(),
+    title: "",
+    description: "",
+    suggestionType: SUGGESTION_OPTIONS[0].value,
+    rank: 0,
+    ...defaultValues,
+  });
 
   const defaultErrors = { title: "", description: "" };
   const [errors, setErrors] = useState(defaultErrors);
