@@ -19,13 +19,29 @@ import {
 import { SortType } from "@/models/sort-type.ts";
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 
-type Action = {
-  type: string;
-  newSuggestion?: SuggestionModel;
-  suggestionId?: string;
-};
+type SuggestionAction =
+  | {
+      type: "added_suggestion";
+      newSuggestion: SuggestionModel;
+    }
+  | {
+      type: "edited_suggestion";
+      newSuggestion: SuggestionModel;
+      suggestionId: string;
+    }
+  | {
+      type: "rank_increased";
+      suggestionId: string;
+    }
+  | {
+      type: "sorted_suggestions";
+      sortBy: SortType;
+    };
 
-function suggestionReducer(suggestions: SuggestionModel[], action: Action) {
+function suggestionReducer(
+  suggestions: SuggestionModel[],
+  action: SuggestionAction,
+): SuggestionModel[] {
   switch (action.type) {
     case "added_suggestion": {
       return [...suggestions, action.newSuggestion];
@@ -49,11 +65,41 @@ function suggestionReducer(suggestions: SuggestionModel[], action: Action) {
       });
     }
 
+    case "sorted_suggestions": {
+      if (action.sortBy.value === "rank") {
+        return suggestions.sort((a, b) => b.rank - a.rank);
+      }
+      if (action.sortBy.value === "title") {
+        return suggestions.sort((a, b) => a.title.localeCompare(b.title));
+      }
+      return suggestions;
+    }
+
     default: {
-      throw Error("Unknown action: " + action.type);
+      throw Error("Unknown action");
     }
   }
 }
+
+type CommentAction = {
+  type: "added_comment";
+  newComment: Comment;
+};
+
+const commentReducer = (
+  comments: Comment[],
+  action: CommentAction,
+): Comment[] => {
+  switch (action.type) {
+    case "added_comment": {
+      return [...comments, action.newComment];
+    }
+
+    default: {
+      throw Error("Unknown action");
+    }
+  }
+};
 
 type CotextTypes = {
   suggestions: SuggestionModel[];
@@ -92,15 +138,13 @@ const defaultLocalstorage = (key: string, defaultValue: any) => {
 type Props = PropsWithChildren;
 
 function SuggestionProvider({ children }: Props) {
-  // const [suggestions, setSuggestions] = useState<SuggestionModel[]>(
-  //   defaultLocalstorage(LOCAL_STORAGE_SUGGESTION_KEY, []),
-  // );
-
   const [suggestions, dispatch] = useReducer(
     suggestionReducer,
     defaultLocalstorage(LOCAL_STORAGE_SUGGESTION_KEY, []),
   );
-  const [comments, setComments] = useState<Comment[]>(
+
+  const [comments, commentsDispatch] = useReducer(
+    commentReducer,
     defaultLocalstorage(LOCAL_STORAGE_COMMENT_KEY, []),
   );
 
@@ -114,14 +158,11 @@ function SuggestionProvider({ children }: Props) {
     suggestionId: string,
     newSuggestion: SuggestionModel,
   ) => {
-    // setSuggestions((old) =>
-    //   old.map((suggestion) => {
-    //     if (suggestion.id === suggestionId) {
-    //       return { ...newSuggestion };
-    //     }
-    //     return suggestion;
-    //   }),
-    // );
+    dispatch({
+      type: "edited_suggestion",
+      suggestionId: suggestionId,
+      newSuggestion: newSuggestion,
+    });
   };
 
   const getCommentsByParentId = (parentId: string): Comment[] => {
@@ -129,33 +170,20 @@ function SuggestionProvider({ children }: Props) {
   };
 
   const addComment = (newComment: Comment) => {
-    setComments((old) => [...old, newComment]);
+    commentsDispatch({ type: "added_comment", newComment: newComment });
   };
 
   const increaseRank = (id: string) => {
-    // setSuggestions((old) =>
-    //   old.map((suggestion) => {
-    //     if (suggestion.id === id) {
-    //       return { ...suggestion, rank: suggestion.rank + 1 };
-    //     }
-    //     return suggestion;
-    //   }),
-    // );
-  };
-
-  const sort = () => {
-    // if (sortBy.value === "rank")
-    //   setSuggestions((old) => old.sort((a, b) => b.rank - a.rank));
-    // if (sortBy.value === "title") setSuggestions((old) => old.sort());
+    dispatch({ type: "rank_increased", suggestionId: id });
   };
 
   useEffect(() => {
+    dispatch({ type: "sorted_suggestions", sortBy: sortBy });
+
     localStorage.setItem(
       LOCAL_STORAGE_SUGGESTION_KEY,
       JSON.stringify(suggestions),
     );
-
-    sort();
   }, [suggestions]);
 
   useEffect(() => {

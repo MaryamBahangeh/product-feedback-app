@@ -1,18 +1,18 @@
 import SuggestionProvider from "./providers/SuggestionProvider.tsx";
 import SearchProvider from "./providers/SearchProvider.tsx";
-import RoutingProvider from "./providers/RoutingProvider.tsx";
 import Routing from "./Routing.tsx";
+import { BrowserRouter } from "react-router";
 
 function App() {
   return (
     <>
-      <RoutingProvider>
+      <BrowserRouter>
         <SuggestionProvider>
           <SearchProvider>
             <Routing></Routing>
           </SearchProvider>
         </SuggestionProvider>
-      </RoutingProvider>
+      </BrowserRouter>
     </>
   );
 }

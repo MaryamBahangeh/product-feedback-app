@@ -1,16 +1,13 @@
 import { useContext } from "react";
-
-import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
-import { RoutingContext } from "@/providers/RoutingProvider.tsx";
-
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
-import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+
+import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 
 import styles from "./Header.module.css";
-import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 const pluralRules = new Intl.PluralRules("en");
 
@@ -22,26 +19,14 @@ function getPluralizedWord(count: number, singular: string, plural: string) {
 
 function Header() {
   const { filteredSuggestions } = useContext(SearchContext);
-  const { setPage, setParams } = useContext(RoutingContext);
+
   const { sortBy, setSortBy } = useContext(SuggestionContext);
 
-  const suggestion = {
-    id: uuidv4(),
-    title: "",
-    description: "",
-    suggestionType: SUGGESTION_OPTIONS[0].value,
-    rank: 0,
-  };
+  const navigate = useNavigate();
 
   const addClickHandler = () => {
-    setPage("edit-suggestion");
-    setParams({ suggestion: suggestion, isEditing: false });
+    navigate("/create");
   };
-
-  const count = filteredSuggestions.length;
-  console.log(
-    `${count} ${getPluralizedWord(filteredSuggestions.length, "Suggestion", "Suggestions")}`,
-  );
 
   return (
     <div className={styles.header}>

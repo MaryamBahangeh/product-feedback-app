@@ -3,7 +3,6 @@ import { ChangeEvent, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-import { RoutingContext } from "@/providers/RoutingProvider.tsx";
 
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -18,25 +17,26 @@ import { Comment } from "@/models/comment.ts";
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionComments.module.css";
+import { useNavigate, useParams } from "react-router";
 
 function SuggestionComments() {
   const { suggestions, getCommentsByParentId, addComment } =
     useContext(SuggestionContext);
-  const { setPage, params, setParams } = useContext(RoutingContext);
 
-  const comments: Comment[] = getCommentsByParentId(
-    params.suggestionId as string,
-  );
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const comments: Comment[] = getCommentsByParentId(id!);
   const [commentText, setCommentText] = useState<string>("");
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
   const suggestion: SuggestionModel = suggestions.filter(
-    (suggestion) => suggestion.id === params.suggestionId,
+    (suggestion) => suggestion.id === id,
   )[0];
 
   const editFeedbackClickHandler = () => {
-    setParams({ suggestion: suggestion, isEditing: true });
-    setPage("edit-suggestion");
+    navigate("/edit/" + id);
   };
 
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,7 +57,7 @@ function SuggestionComments() {
 
   return (
     <div className={styles["suggestion-comments"]}>
-      <PageHeader onGoBack={() => setPage("home")}>
+      <PageHeader onGoBack={() => navigate("/")}>
         <Button
           variant={Variant.PRIMARY}
           color={Color.BLUE}
