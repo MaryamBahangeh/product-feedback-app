@@ -5,7 +5,7 @@ import { SearchContext } from "@/providers/SearchProvider.tsx";
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
-import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
 
 import styles from "./Search.module.css";
 
@@ -22,7 +22,7 @@ function Search() {
         All
       </Button>
 
-      {SUGGESTION_OPTIONS.map((option) => (
+      {SUGGESTION_TYPES.map((option) => (
         <Button
           key={option.value}
           variant={Variant.SECONDARY}
