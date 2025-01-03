@@ -4,23 +4,30 @@ import Board from "@/components/Board/Board.tsx";
 import Search from "@/components/Search/Search.tsx";
 
 import styles from "./Home.module.css";
+import Toolbar from "@/components/Toolbar/Toolbar.tsx";
 
 function Home() {
   return (
-    <div className={styles.content}>
-      <div className={styles.header}>
-        <Header />
-      </div>
+    <>
+      <div className={styles.content}>
+        <div className={styles.toolbar}>
+          <Toolbar />
+        </div>
 
-      <div className={styles.suggestion}>
-        <Suggestions />
-      </div>
+        <div className={styles.header}>
+          <Header />
+        </div>
 
-      <div className={styles["sidebar"]}>
-        <Board />
-        <Search />
+        <div className={styles.suggestion}>
+          <Suggestions />
+        </div>
+
+        <div className={styles["sidebar"]}>
+          <Board />
+          <Search />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

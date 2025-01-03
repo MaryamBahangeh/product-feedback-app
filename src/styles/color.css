@@ -20,4 +20,13 @@
 
   --color-foreground: hsl(239, 22%, 37%);
   --color-background: var(--color-gray-98);
+
+  /*color-scheme: light dark;*/
+
+  &[data-theme="dark"] {
+    --color-foreground: var(--color-gray-97);
+    --color-background: blue;
+
+    /*color-scheme: dark light;*/
+  }
 }

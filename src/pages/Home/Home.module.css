@@ -6,12 +6,17 @@
   align-items: start;
 
   grid-template-areas:
+    "toolbar toolbar"
     "sidebar header"
     "sidebar suggestions";
 
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto 1fr;
 
+  .toolbar {
+    grid-area: toolbar;
+    justify-self: start;
+  }
   .header {
     grid-area: header;
   }
