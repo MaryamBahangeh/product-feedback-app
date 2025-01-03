@@ -1,6 +1,6 @@
 import { SuggestionType } from "@/models/suggestion-type.ts";
 
-export const SUGGESTION_OPTIONS: SuggestionType[] = [
+export const SUGGESTION_TYPES: SuggestionType[] = [
   { value: "UI", name: "UI" },
   { value: "UX", name: "UX" },
   { value: "Enhancement", name: "Enhancement" },

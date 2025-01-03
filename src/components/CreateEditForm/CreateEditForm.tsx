@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { SUGGESTION_OPTIONS } from "@/suggestion-options/suggestion-options.ts";
+import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -30,7 +30,7 @@ function CreateEditForm({
     id: uuidv4(),
     title: "",
     description: "",
-    suggestionType: SUGGESTION_OPTIONS[0].value,
+    suggestionType: SUGGESTION_TYPES[0].value,
     rank: 0,
     ...defaultValues,
   });
@@ -70,7 +70,7 @@ function CreateEditForm({
             handleChange("suggestionType", e.currentTarget.value)
           }
         >
-          {SUGGESTION_OPTIONS.map((option) => (
+          {SUGGESTION_TYPES.map((option) => (
             <option key={option.value} value={option.value}>
               {option.name}
             </option>

@@ -25,7 +25,7 @@
 
   &[data-theme="dark"] {
     --color-foreground: var(--color-gray-97);
-    --color-background: blue;
+    --color-background: var(--color-gray-15);
 
     /*color-scheme: dark light;*/
   }
