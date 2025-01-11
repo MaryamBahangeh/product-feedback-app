@@ -1,4 +1,5 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
@@ -8,7 +9,6 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./EditSuggestion.module.css";
-import { useNavigate, useParams } from "react-router";
 
 function EditSuggestion() {
   const { suggestions, editSuggestion } = useContext(SuggestionContext);
@@ -29,14 +29,21 @@ function EditSuggestion() {
 
     goBackHandler();
   };
+
+  useEffect(() => {
+    if (!id || !suggestion) {
+      navigate("/");
+    }
+  }, []);
+
   if (!id || !suggestion) {
-    navigate("/");
     return <div>Redirecting....</div>;
   }
 
   return (
     <div className={styles.content}>
       <PageHeader onGoBack={goBackHandler} />
+
       {suggestion && (
         <CreateEditForm
           onSubmitClick={SubmitClickHandler}

@@ -14,19 +14,12 @@
 
   --color-blue: hsl(230, 76%, 59%);
   --color-dark-blue: hsl(231, 33%, 34%);
+  --color-sharp-blue: hsl(240, 100%, 50%);
   --color-white: hsl(0, 0%, 100%);
   --color-purple: hsl(282, 83%, 52%);
-  --color-red: hsl(0, 100%, 50%);
+  --color-danger: hsl(0, 68%, 45%);
+  --color-yellow: hsl(60, 100%, 50%);
 
   --color-foreground: hsl(239, 22%, 37%);
   --color-background: var(--color-gray-98);
-
-  /*color-scheme: light dark;*/
-
-  &[data-theme="dark"] {
-    --color-background: hsl(239, 22%, 37%);
-    --color-foreground: var(--color-gray-98);
-
-    /*color-scheme: dark light;*/
-  }
 }

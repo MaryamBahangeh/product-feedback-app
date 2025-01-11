@@ -8,22 +8,21 @@
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  .content {
+  .suggestions {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem;
+
     align-items: center;
     justify-content: center;
+  }
 
-    label {
-      padding-inline-start: 1.5rem;
-    }
-
-    select {
-      padding-inline-start: 0.5rem;
-      background-color: transparent;
-      color: var(--color-gray-97);
-      border: none;
-    }
+  select {
+    padding-inline-start: 0.5rem;
+    background-color: transparent;
+    color: var(--color-gray-97);
+    border: none;
+    outline: none;
   }
 }

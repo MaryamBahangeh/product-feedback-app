@@ -7,6 +7,7 @@ import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+
 import { persons, User } from "@/assets/data/users.ts";
 
 import { Comment } from "@/models/comment.ts";
@@ -30,7 +31,7 @@ function Reply({ parentId, parentUsername, user, text }: Props) {
     const newComment: Comment = {
       id: uuidv4(),
       text: replyText,
-      user: persons[1],
+      user: persons[2],
       parentId: parentId,
     };
 
@@ -51,7 +52,6 @@ function Reply({ parentId, parentUsername, user, text }: Props) {
         <p>
           <span>{parentUsername}</span> {text}
         </p>
-
         {showReplyTextarea && (
           <div className={styles["textarea-container"]}>
             <Textarea
@@ -64,12 +64,11 @@ function Reply({ parentId, parentUsername, user, text }: Props) {
               color={Color.TRANSPARENT}
               onClick={() => replyClickHandler()}
             >
-              <FaArrowUp fontSize="2rem" color="blue" />
+              <FaArrowUp className={styles.arrow} />
             </Button>
           </div>
         )}
       </div>
-
       <Button
         variant={Variant.SECONDARY}
         color={Color.TRANSPARENT}

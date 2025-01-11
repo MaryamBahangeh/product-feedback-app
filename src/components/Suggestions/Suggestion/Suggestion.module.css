@@ -10,9 +10,10 @@
   }
 
   .content {
-    flex: 1;
+    flex: 1 1 0;
     display: grid;
     gap: 1.2rem;
+    text-decoration: none;
 
     .suggestionType {
       justify-self: start;

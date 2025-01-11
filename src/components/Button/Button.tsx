@@ -1,8 +1,14 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import clsx from "clsx";
 
 import styles from "./Button.module.css";
+import { Link } from "react-router";
+
+export enum ButtonType {
+  LINK = "link",
+  BUTTON = "button",
+}
 
 export enum Color {
   GRAY = "gray",
@@ -18,19 +24,46 @@ export enum Variant {
 }
 
 type Props = Omit<ComponentProps<"button">, "className"> & {
+  buttonType?: ButtonType;
+  linkTo?: string;
   variant: Variant;
   color: Color;
   className?: string;
 };
 
-function Button({ variant, color, className, children, ...rest }: Props) {
-  return (
+function Button({
+  buttonType = ButtonType.BUTTON,
+  linkTo,
+  variant,
+  color,
+  className,
+  children,
+  ...rest
+}: Props): ReactElement {
+  return buttonType === ButtonType.BUTTON ? (
     <button
-      className={clsx(styles.button, styles[variant], styles[color], className)}
+      className={clsx(
+        styles.general,
+        styles[variant],
+        styles[color],
+        className,
+      )}
       {...rest}
     >
       {children}
     </button>
+  ) : (
+    <Link
+      to={linkTo!}
+      className={clsx(
+        styles.general,
+        styles[variant],
+        styles[color],
+        className,
+      )}
+    >
+      {children}
+    </Link>
   );
 }
 

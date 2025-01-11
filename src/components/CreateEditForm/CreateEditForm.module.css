@@ -4,7 +4,7 @@
   padding-block-start: 4rem;
   padding-block-end: 4rem;
 
-  border-radius: 0.8rem;
+  border-radius: var(--border-radious);
   background-color: var(--color-white);
   border: none;
 
@@ -43,7 +43,7 @@
     input,
     textarea {
       &:user-invalid {
-        border: 0.1rem solid var(--color-red);
+        border: 0.1rem solid var(--color-danger);
 
         + .error-message {
           display: inline;
@@ -53,6 +53,9 @@
 
     .error-message {
       display: none;
+    }
+    .star {
+      color: var(--color-danger);
     }
   }
 

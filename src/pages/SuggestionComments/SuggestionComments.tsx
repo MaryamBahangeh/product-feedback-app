@@ -1,11 +1,16 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import { v4 as uuidv4 } from "uuid";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
-import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import Button, {
+  ButtonType,
+  Color,
+  Variant,
+} from "@/components/Button/Button.tsx";
 import CommentsInfo from "@/components/CommentsInfo/CommentsInfo.tsx";
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Card from "@/components/Card/Card.tsx";
@@ -17,7 +22,6 @@ import { Comment } from "@/models/comment.ts";
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionComments.module.css";
-import { useNavigate, useParams } from "react-router";
 
 function SuggestionComments() {
   const { suggestions, getCommentsByParentId, addComment } =
@@ -35,10 +39,6 @@ function SuggestionComments() {
     (suggestion) => suggestion.id === id,
   )[0];
 
-  const editFeedbackClickHandler = () => {
-    navigate("/edit/" + id);
-  };
-
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.currentTarget.value);
     setLeftCharacters(255 - e.currentTarget.value.length);
@@ -55,13 +55,24 @@ function SuggestionComments() {
     setCommentText("");
   };
 
+  useEffect(() => {
+    if (!id || !suggestion) {
+      navigate("/");
+    }
+  }, []);
+
+  if (!id || !suggestion) {
+    return <div>Redirecting....</div>;
+  }
+
   return (
     <div className={styles["suggestion-comments"]}>
       <PageHeader onGoBack={() => navigate("/")}>
         <Button
+          buttonType={ButtonType.LINK}
+          linkTo={"/edit/" + id}
           variant={Variant.PRIMARY}
           color={Color.BLUE}
-          onClick={editFeedbackClickHandler}
         >
           Edit Feedback
         </Button>

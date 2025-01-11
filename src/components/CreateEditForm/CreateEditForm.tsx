@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
-import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+
+import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
+import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { ComponentProps, FormEvent, ReactElement, useState } from "react";
@@ -38,10 +39,12 @@ function CreateEditForm({
   const handleChange = (field: string, value: string) => {
     setNewSuggestion({ ...newSuggestion, [field]: value });
   };
+
   const SubmitClickHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmitClick(newSuggestion);
   };
+
   return (
     <form className={styles.form} onSubmit={SubmitClickHandler}>
       {titleIcon}

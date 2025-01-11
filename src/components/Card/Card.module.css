@@ -2,4 +2,9 @@
   border-radius: 1rem;
   background-color: var(--color-white);
   padding: 3rem;
+
+  &.dark-blue {
+    background-color: var(--color-dark-blue);
+    color: var(--color-gray-97);
+  }
 }

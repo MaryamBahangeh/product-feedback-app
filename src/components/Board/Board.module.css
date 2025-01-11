@@ -4,14 +4,8 @@
     #3d3dd8,
     #ac3dac,
     #ea5aa8,
-    yellow
+    var(--color-yellow)
   );
-
-  padding-block-start: 5.5rem;
-  padding-block-end: 2.2rem;
-  padding-inline: 2.5rem;
-
-  border-radius: 0.8rem;
 
   color: var(--color-gray-97);
 
