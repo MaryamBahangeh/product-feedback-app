@@ -1,0 +1,25 @@
+:root {
+  --color-gray-98: hsl(230, 60%, 98%);
+  --color-gray-97: hsl(0deg 0% 97%);
+  --color-gray-90: hsl(0deg 0% 90%);
+  --color-gray-80: hsl(0deg 0% 80%);
+  --color-gray-70: hsl(0deg 0% 70%);
+  --color-gray-40: hsl(0deg 0% 40%);
+  --color-gray-30: hsl(0deg 0% 30%);
+  --color-gray-20: hsl(0deg 0% 20%);
+  --color-gray-15: hsl(0deg 0% 15%);
+  --color-gray-10: hsl(0deg 0% 10%);
+  --color-gray-231: hsl(231, 100%, 97%);
+  --color-gray-230: hsl(230, 60%, 98%);
+
+  --color-blue: hsl(230, 76%, 59%);
+  --color-dark-blue: hsl(231, 33%, 34%);
+  --color-sharp-blue: hsl(240, 100%, 50%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-purple: hsl(282, 83%, 52%);
+  --color-danger: hsl(0, 68%, 45%);
+  --color-yellow: hsl(60, 100%, 50%);
+
+  --color-foreground: hsl(239, 22%, 37%);
+  --color-background: var(--color-gray-98);
+}

@@ -1,0 +1,11 @@
+textarea {
+  padding-inline: 2rem;
+  padding-block: 1.5rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  background-color: var(--color-gray-230);
+
+  resize: vertical;
+}

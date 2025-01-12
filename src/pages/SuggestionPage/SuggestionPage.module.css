@@ -1,0 +1,30 @@
+.suggestion-comments {
+  display: grid;
+  gap: 2rem;
+  padding-inline: 3rem;
+  padding-block: 8rem;
+
+  .comments {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .add-comment {
+    display: grid;
+    gap: 2rem;
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        font-size: var(--fz-500);
+        align-self: center;
+      }
+
+      .add {
+        justify-self: end;
+      }
+    }
+  }
+}

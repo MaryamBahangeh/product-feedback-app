@@ -1,0 +1,24 @@
+.bord {
+  background-image: linear-gradient(
+    to right,
+    #3d3dd8,
+    #ac3dac,
+    #ea5aa8,
+    var(--color-yellow)
+  );
+
+  color: var(--color-gray-97);
+
+  display: grid;
+  gap: 1rem;
+
+  div {
+    font-weight: 700;
+    font-size: var(--fz-400);
+  }
+
+  span {
+    font-weight: 500;
+    font-size: var(--fz-300);
+  }
+}

@@ -1,0 +1,29 @@
+.header {
+  background-color: hsl(230, 31%, 31%);
+  color: var(--color-gray-97);
+
+  border-radius: 1rem;
+  padding-inline: 2rem;
+  padding-block: 1.2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .suggestions {
+    display: flex;
+    gap: 0.5rem;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  select {
+    padding-inline-start: 0.5rem;
+    background-color: hsl(230, 31%, 31%);
+    color: var(--color-gray-97);
+
+    border: none;
+    outline: none;
+  }
+}

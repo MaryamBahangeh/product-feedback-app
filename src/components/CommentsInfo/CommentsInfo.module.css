@@ -1,0 +1,30 @@
+.comments {
+  display: grid;
+  gap: 3rem;
+
+  .comment-info {
+    display: grid;
+    gap: 3.5rem;
+
+    .replies-container {
+      display: flex;
+      gap: 2rem;
+      padding-inline-start: 4rem;
+
+      .line {
+        border: 0.1rem solid var(--color-gray-90);
+      }
+
+      .replies {
+        flex: 1;
+        display: grid;
+        gap: 3.5rem;
+      }
+    }
+
+    &:not(:last-child):after {
+      content: "";
+      border: 0.1rem solid var(--color-gray-90);
+    }
+  }
+}

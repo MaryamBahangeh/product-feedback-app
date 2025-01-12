@@ -1,0 +1,6 @@
+.content {
+  display: grid;
+  gap: 8rem;
+  padding-inline: 3rem;
+  padding-block: 8rem;
+}
