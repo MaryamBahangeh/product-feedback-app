@@ -1,34 +1,81 @@
 .content {
-  margin-block: 6rem;
-
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-
-  grid-template-areas:
-    "toolbar toolbar"
-    "sidebar header"
-    "sidebar suggestions";
-
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto auto 1fr;
-
-  .toolbar {
-    grid-area: toolbar;
-    justify-self: start;
-  }
-  .header {
-    grid-area: header;
+  .suggestions {
+    padding-block-start: 4rem;
   }
 
-  .sidebar {
-    grid-area: sidebar;
+  .search,
+  .road-map {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .content {
+    margin-block: 3rem;
     display: grid;
     gap: 2rem;
-    padding-inline-end: 1rem;
-  }
 
-  .suggestions {
-    grid-area: suggestions;
+    .sidebar {
+      display: flex;
+      gap: 1rem;
+      padding-inline-end: 2rem;
+
+      justify-content: center;
+      align-items: stretch;
+
+      > div {
+        flex: 1 1 0;
+
+        > div {
+          min-height: 100%;
+        }
+      }
+    }
+
+    .suggestions {
+      padding-block-start: 0;
+    }
+
+    .search,
+    .road-map {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .content {
+    margin-block: 6rem;
+
+    display: grid;
+    gap: 2rem;
+
+    grid-template-areas:
+      "sidebar header"
+      "sidebar suggestions";
+
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+
+    .sidebar {
+      grid-area: sidebar;
+      display: grid;
+      gap: 2rem;
+      padding-inline-end: 1rem;
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .suggestions {
+      grid-area: suggestions;
+      padding-block-start: 0;
+    }
+
+    .search,
+    .road-map {
+      display: block;
+    }
   }
 }

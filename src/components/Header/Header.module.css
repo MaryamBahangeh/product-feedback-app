@@ -7,23 +7,40 @@
   padding-block: 1.2rem;
 
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 
-  .suggestions {
+  .container {
     display: flex;
-    gap: 0.5rem;
-
     align-items: center;
-    justify-content: center;
+    gap: 2rem;
+
+    .suggestions {
+      display: none;
+    }
+
+    select {
+      padding-inline-start: 0.5rem;
+      background-color: hsl(230, 31%, 31%);
+      color: var(--color-gray-97);
+
+      border: none;
+      outline: none;
+    }
   }
+}
 
-  select {
-    padding-inline-start: 0.5rem;
-    background-color: hsl(230, 31%, 31%);
-    color: var(--color-gray-97);
+@media (min-width: 640px) {
+  .header {
+    .container {
+      .suggestions {
+        display: flex;
+        gap: 0.5rem;
 
-    border: none;
-    outline: none;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 }
