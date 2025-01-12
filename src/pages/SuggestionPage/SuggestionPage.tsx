@@ -21,9 +21,9 @@ import { Comment } from "@/models/comment.ts";
 
 import { persons } from "@/assets/data/users.ts";
 
-import styles from "./SuggestionComments.module.css";
+import styles from "./SuggestionPage.module.css";
 
-function SuggestionComments() {
+function SuggestionPage() {
   const { suggestions, getCommentsByParentId, addComment } =
     useContext(SuggestionContext);
 
@@ -70,7 +70,7 @@ function SuggestionComments() {
       <PageHeader onGoBack={() => navigate("/")}>
         <Button
           buttonType={ButtonType.LINK}
-          linkTo={"/edit/" + id}
+          linkTo={"/suggestion/" + id + "/edit"}
           variant={Variant.PRIMARY}
           color={Color.BLUE}
         >
@@ -114,4 +114,4 @@ function SuggestionComments() {
   );
 }
 
-export default SuggestionComments;
+export default SuggestionPage;

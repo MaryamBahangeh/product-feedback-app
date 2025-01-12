@@ -10,7 +10,7 @@ function App() {
         <ThemeProvider>
           <SuggestionProvider>
             <SearchProvider>
-              <Routing></Routing>
+              <Routing />
             </SearchProvider>
           </SuggestionProvider>
         </ThemeProvider>

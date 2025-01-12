@@ -8,9 +8,9 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-import styles from "./EditSuggestion.module.css";
+import styles from "./SuggestionEditPage.module.css";
 
-function EditSuggestion() {
+function SuggestionEditPage() {
   const { suggestions, editSuggestion } = useContext(SuggestionContext);
   const { id } = useParams();
 
@@ -21,7 +21,7 @@ function EditSuggestion() {
   const navigate = useNavigate();
 
   const goBackHandler = () => {
-    navigate("/suggestion-comments/" + id);
+    navigate("/suggestion/" + id);
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
@@ -59,4 +59,4 @@ function EditSuggestion() {
   );
 }
 
-export default EditSuggestion;
+export default SuggestionEditPage;

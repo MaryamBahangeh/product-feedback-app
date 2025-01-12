@@ -11,18 +11,6 @@ import Button, {
   Variant,
 } from "@/components/Button/Button.tsx";
 
-const pluralRules = new Intl.PluralRules("en");
-
-function getPluralizedWord(
-  count: number,
-  singular: string,
-  plural: string,
-): string {
-  return (
-    count + " " + (pluralRules.select(count) === "one" ? singular : plural)
-  );
-}
-
 function Header() {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
@@ -32,11 +20,8 @@ function Header() {
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
         <span>
-          {getPluralizedWord(
-            filteredSuggestions.length,
-            "Suggestion",
-            "Suggestions",
-          )}
+          {filteredSuggestions.length.toString() +
+            (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
         </span>
       </div>
       <label>
@@ -54,7 +39,7 @@ function Header() {
       </label>
       <Button
         buttonType={ButtonType.LINK}
-        linkTo={"/create"}
+        linkTo={"/suggestion/create"}
         variant={Variant.PRIMARY}
         color={Color.PURPLE}
       >

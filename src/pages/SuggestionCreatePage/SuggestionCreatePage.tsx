@@ -7,10 +7,10 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-import styles from "./CreateSuggestion.module.css";
+import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
 
-function CreateSuggestion() {
+function SuggestionCreatePage() {
   const { addSuggestion } = useContext(SuggestionContext);
 
   const navigate = useNavigate();
@@ -38,4 +38,4 @@ function CreateSuggestion() {
   );
 }
 
-export default CreateSuggestion;
+export default SuggestionCreatePage;

@@ -32,10 +32,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         {suggestion.rank}
       </Button>
 
-      <Link
-        className={styles.content}
-        to={"/suggestion-comments/" + suggestion.id}
-      >
+      <Link className={styles.content} to={"/suggestion/" + suggestion.id}>
         <h2>{suggestion.title}</h2>
 
         <div>{suggestion.description}</div>

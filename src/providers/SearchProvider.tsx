@@ -36,30 +36,23 @@ function SearchProvider({ children }: PropsWithChildren) {
   const [sortBy, setSortBy] = useState<string>(SORT_OPTIONS[0].value);
 
   const filteredSuggestions = useMemo(() => {
+    const clone = [...suggestions];
+
     if (sortBy === "rank") {
-      suggestions.sort((a, b) => b.rank - a.rank);
+      clone.sort((a, b) => b.rank - a.rank);
     }
     if (sortBy === "title") {
-      suggestions.sort((a, b) => a.title.localeCompare(b.title));
+      clone.sort((a, b) => a.title.localeCompare(b.title));
     }
 
     if (filteredType === "All") {
-      return [...suggestions];
+      return [...clone];
     }
 
     return suggestions.filter(
       (suggestion) => suggestion.suggestionType === filteredType,
     );
   }, [filteredType, suggestions, sortBy]);
-
-  // useEffect(() => {
-  //   if (sortBy === "rank") {
-  //     filteredSuggestions.sort((a, b) => b.rank - a.rank);
-  //   }
-  //   if (sortBy === "title") {
-  //     filteredSuggestions.sort((a, b) => a.title.localeCompare(b.title));
-  //   }
-  // }, [sortBy]);
 
   return (
     <SearchContext.Provider

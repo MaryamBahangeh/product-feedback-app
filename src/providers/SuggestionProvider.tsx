@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useEffect, useReducer } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useReducer,
+} from "react";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { Comment } from "@/models/comment.ts";
@@ -55,7 +61,7 @@ function SuggestionProvider({ children }: Props) {
   );
 
   const addSuggestion = (newSuggestion: SuggestionModel) => {
-    dispatch({ type: "added_suggestion", newSuggestion: newSuggestion });
+    dispatch({ type: "added_suggestion", newSuggestion });
   };
 
   const editSuggestion = (
@@ -64,20 +70,23 @@ function SuggestionProvider({ children }: Props) {
   ) => {
     dispatch({
       type: "edited_suggestion",
-      suggestionId: suggestionId,
-      newSuggestion: newSuggestion,
+      suggestionId,
+      newSuggestion,
     });
   };
 
-  const getCommentsByParentId = (parentId: string): Comment[] => {
-    return comments.filter((comment) => comment.parentId === parentId);
-  };
+  const getCommentsByParentId = useCallback(
+    (parentId: string): Comment[] => {
+      return comments.filter((comment) => comment.parentId === parentId);
+    },
+    [comments],
+  );
 
-  const addComment = (newComment: Comment) => {
+  const addComment = (newComment: Comment): void => {
     commentsDispatch({ type: "added_comment", newComment: newComment });
   };
 
-  const increaseRank = (id: string) => {
+  const increaseRank = (id: string): void => {
     dispatch({ type: "rank_increased", suggestionId: id });
   };
 
