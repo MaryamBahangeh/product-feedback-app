@@ -16,30 +16,28 @@ function Header() {
 
   return (
     <div className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.suggestions}>
-          <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
+      <div className={styles.suggestions}>
+        <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
-          <span>
-            {filteredSuggestions.length.toString() +
-              (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
-          </span>
-        </div>
-
-        <label>
-          Sort by:
-          <select
-            defaultValue={sortBy}
-            onChange={(e) => setSortBy(e.currentTarget.value)}
-          >
-            {SORT_OPTIONS.map((sortOption) => (
-              <option key={sortOption.value} value={sortOption.value}>
-                {sortOption.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <span>
+          {filteredSuggestions.length.toString() +
+            (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
+        </span>
       </div>
+
+      <label>
+        Sort by:
+        <select
+          defaultValue={sortBy}
+          onChange={(e) => setSortBy(e.currentTarget.value)}
+        >
+          {SORT_OPTIONS.map((sortOption) => (
+            <option key={sortOption.value} value={sortOption.value}>
+              {sortOption.name}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <Button
         buttonType={ButtonType.LINK}
