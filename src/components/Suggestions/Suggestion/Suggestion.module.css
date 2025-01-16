@@ -1,16 +1,24 @@
 .suggestion {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "content content"
+    "rank comment";
+
   gap: 3rem;
 
   .rank {
+    grid-area: rank;
+
     align-self: start;
     justify-self: start;
 
-    display: grid;
+    display: flex;
+    gap: 1rem;
   }
 
   .content {
-    flex: 1 1 0;
+    grid-area: content;
+
     display: grid;
     gap: 1.2rem;
     text-decoration: none;
@@ -34,10 +42,28 @@
   }
 
   .comments {
+    grid-area: comment;
+
     display: flex;
     gap: 0.5rem;
-    align-self: center;
+    align-self: flex-end;
+    justify-self: end;
     font-weight: 700;
     font-size: var(--fz-400);
+  }
+}
+
+@media (min-width: 640px) {
+  .suggestion {
+    grid-template-areas: "rank content comment";
+    grid-template-columns: auto 1fr auto;
+
+    .rank {
+      display: grid;
+    }
+
+    .comments {
+      align-self: center;
+    }
   }
 }
