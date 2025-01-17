@@ -60,7 +60,19 @@
   }
 
   .button-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .form {
+    .button-container {
+      grid-template-columns: 1fr auto auto;
+    }
+    .delete {
+      justify-self: start;
+    }
   }
 }

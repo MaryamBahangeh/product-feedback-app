@@ -115,9 +115,14 @@ function CreateEditForm({
       </div>
 
       <div className={styles["button-container"]}>
-        <Button variant={Variant.PRIMARY} color={Color.PURPLE}>
-          Submit
+        <Button
+          variant={Variant.PRIMARY}
+          color={Color.RED}
+          className={styles.delete}
+        >
+          Delete
         </Button>
+
         <Button
           type="button"
           variant={Variant.PRIMARY}
@@ -125,6 +130,10 @@ function CreateEditForm({
           onClick={onCancelClick}
         >
           Cancel
+        </Button>
+
+        <Button variant={Variant.PRIMARY} color={Color.PURPLE}>
+          Save Changes
         </Button>
       </div>
     </form>

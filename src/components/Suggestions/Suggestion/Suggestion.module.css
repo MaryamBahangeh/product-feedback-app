@@ -4,7 +4,7 @@
     "content content"
     "rank comment";
 
-  gap: 3rem;
+  gap: 1rem;
 
   .rank {
     grid-area: rank;
@@ -58,6 +58,7 @@
     grid-template-areas: "rank content comment";
     grid-template-columns: auto 1fr auto;
 
+    gap: 3rem;
     .rank {
       display: grid;
     }

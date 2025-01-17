@@ -39,6 +39,10 @@
     background-color: var(--color-blue);
     color: var(--color-gray-97);
   }
+  &.red {
+    background-color: var(--color-danger);
+    color: var(--color-gray-97);
+  }
 
   &.dark-blue {
     background-color: var(--color-dark-blue);

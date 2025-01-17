@@ -14,6 +14,7 @@ export enum Color {
   GRAY = "gray",
   PURPLE = "purple",
   BLUE = "blue",
+  RED = "red",
   DARKBLUE = "dark-blue",
   TRANSPARENT = "transparent",
 }
