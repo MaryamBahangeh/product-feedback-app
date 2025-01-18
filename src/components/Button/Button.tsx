@@ -24,7 +24,7 @@ export enum Variant {
   SECONDARY = "secondary",
 }
 
-type Props = Omit<ComponentProps<"button">, "className"> & {
+type Props = ComponentProps<"button"> & {
   buttonType?: ButtonType;
   linkTo?: string;
   variant: Variant;

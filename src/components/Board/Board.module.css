@@ -1,11 +1,5 @@
 .bord {
-  background-image: linear-gradient(
-    to right,
-    #3d3dd8,
-    #ac3dac,
-    #ea5aa8,
-    var(--color-yellow)
-  );
+  background-image: linear-gradient(to right, #3d3dd8, #ac3dac, #ea5aa8);
 
   color: var(--color-gray-97);
 

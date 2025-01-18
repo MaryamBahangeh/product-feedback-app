@@ -24,6 +24,7 @@ type ContextTypes = {
     suggestionId: string,
     newSuggestion: SuggestionModel,
   ) => void;
+  deleteSuggestion: (suggestionId: string) => void;
   getCommentsByParentId: (parentId: string) => Comment[];
   addComment: (newComment: Comment) => void;
   increaseRank: (id: string) => void;
@@ -33,9 +34,8 @@ export const SuggestionContext = createContext<ContextTypes>({
   suggestions: [],
   addSuggestion: () => {},
   editSuggestion: () => {},
-  getCommentsByParentId: () => {
-    return [];
-  },
+  deleteSuggestion: () => {},
+  getCommentsByParentId: () => [],
   addComment: () => {},
   increaseRank: () => {},
 });
@@ -75,6 +75,10 @@ function SuggestionProvider({ children }: Props) {
     });
   };
 
+  const deleteSuggestion = (suggestionId: string) => {
+    dispatch({ type: "deleted_suggestion", suggestionId });
+  };
+
   const getCommentsByParentId = useCallback(
     (parentId: string): Comment[] => {
       return comments.filter((comment) => comment.parentId === parentId);
@@ -107,6 +111,7 @@ function SuggestionProvider({ children }: Props) {
         suggestions,
         addSuggestion,
         editSuggestion,
+        deleteSuggestion,
         getCommentsByParentId,
         addComment,
         increaseRank,
