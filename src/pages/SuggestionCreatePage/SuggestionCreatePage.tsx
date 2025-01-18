@@ -32,7 +32,8 @@ function SuggestionCreatePage() {
       <CreateEditForm
         onSubmitClick={SubmitClickHandler}
         pageTitle={"Add a new suggestion"}
-        onCancelClick={goBackHandler}
+        onCancel={goBackHandler}
+        onDelete={goBackHandler}
       ></CreateEditForm>
     </div>
   );

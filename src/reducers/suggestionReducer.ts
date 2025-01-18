@@ -11,6 +11,10 @@ type SuggestionAction =
       suggestionId: string;
     }
   | {
+      type: "deleted_suggestion";
+      suggestionId: string;
+    }
+  | {
       type: "rank_increased";
       suggestionId: string;
     };
@@ -22,6 +26,12 @@ export function suggestionReducer(
   switch (action.type) {
     case "added_suggestion": {
       return [...suggestions, action.newSuggestion];
+    }
+
+    case "deleted_suggestion": {
+      return suggestions.filter(
+        (suggestion) => suggestion.id != action.suggestionId,
+      );
     }
 
     case "edited_suggestion": {
