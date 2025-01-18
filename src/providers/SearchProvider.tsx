@@ -17,7 +17,7 @@ type ContextType = {
   setFilter: Dispatch<SetStateAction<string>>;
   filteredSuggestions: SuggestionModel[];
   sortBy: string;
-  setSortBy: Dispatch<SetStateAction<(typeof SORT_OPTIONS)[number]["value"]>>;
+  setSortBy: Dispatch<SetStateAction<string>>;
 };
 
 export const SearchContext = createContext<ContextType>({
@@ -33,9 +33,7 @@ function SearchProvider({ children }: PropsWithChildren) {
 
   const [filter, setFilter] = useState("All");
 
-  const [sortBy, setSortBy] = useState<(typeof SORT_OPTIONS)[number]["value"]>(
-    SORT_OPTIONS[0].value,
-  );
+  const [sortBy, setSortBy] = useState<string>(SORT_OPTIONS[0].value);
 
   const filteredSuggestions = useMemo(() => {
     const clone = [...suggestions];

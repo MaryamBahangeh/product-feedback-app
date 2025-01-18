@@ -6,6 +6,7 @@
   display: grid;
   gap: 1rem;
 
+  align-content: center;
   div {
     font-weight: 700;
     font-size: var(--fz-400);
