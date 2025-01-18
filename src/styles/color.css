@@ -19,6 +19,7 @@
   --color-purple: hsl(282, 83%, 52%);
   --color-danger: hsl(0, 68%, 45%);
   --color-yellow: hsl(60, 100%, 50%);
+  --color-orange: hsl(16, 79%, 57%);
 
   --color-foreground: hsl(239, 22%, 37%);
   --color-background: var(--color-gray-98);

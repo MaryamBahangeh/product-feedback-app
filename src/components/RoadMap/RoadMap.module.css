@@ -1,0 +1,46 @@
+.road-map {
+  display: grid;
+  gap: 2rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .options {
+    display: grid;
+    gap: 1rem;
+
+    .option {
+      display: flex;
+      justify-content: space-between;
+
+      label {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+
+        div {
+          background-color: hsl(300, 48%, 46%);
+          border-radius: 999rem;
+          width: 0.5rem;
+          height: 0.5rem;
+        }
+        .orange-bullet {
+          background-color: var(--color-orange);
+        }
+        .purple-bullet {
+          background-color: var(--color-purple);
+        }
+        .blue-bullet {
+          background-color: var(--color-blue);
+        }
+      }
+    }
+
+    > span {
+      font-weight: 600;
+    }
+  }
+}

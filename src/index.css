@@ -1,5 +1,5 @@
 :root {
-  --full-width: 90rem;
+  --full-width: 95rem;
   --full-width-padding-inline: calc(max(100% - var(--full-width), 2rem) / 2);
   --border-radious: 0.8rem;
 }

@@ -24,6 +24,7 @@ function Header() {
             (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
         </span>
       </div>
+
       <label>
         Sort by:
         <select
@@ -37,6 +38,7 @@ function Header() {
           ))}
         </select>
       </label>
+
       <Button
         buttonType={ButtonType.LINK}
         linkTo={"/suggestion/create"}

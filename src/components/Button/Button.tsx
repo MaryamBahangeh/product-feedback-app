@@ -14,6 +14,7 @@ export enum Color {
   GRAY = "gray",
   PURPLE = "purple",
   BLUE = "blue",
+  RED = "red",
   DARKBLUE = "dark-blue",
   TRANSPARENT = "transparent",
 }
@@ -23,7 +24,7 @@ export enum Variant {
   SECONDARY = "secondary",
 }
 
-type Props = Omit<ComponentProps<"button">, "className"> & {
+type Props = ComponentProps<"button"> & {
   buttonType?: ButtonType;
   linkTo?: string;
   variant: Variant;

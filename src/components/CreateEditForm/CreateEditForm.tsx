@@ -17,7 +17,8 @@ type Props = {
 
   pageTitle: string;
   defaultValues?: SuggestionModel;
-  onCancelClick: () => void;
+  onCancel: () => void;
+  onDelete: () => void;
 };
 
 function CreateEditForm({
@@ -25,7 +26,8 @@ function CreateEditForm({
   titleIcon,
   pageTitle,
   defaultValues,
-  onCancelClick,
+  onCancel,
+  onDelete,
 }: Props) {
   const [newSuggestion, setNewSuggestion] = useState<SuggestionModel>({
     id: uuidv4(),
@@ -115,16 +117,26 @@ function CreateEditForm({
       </div>
 
       <div className={styles["button-container"]}>
-        <Button variant={Variant.PRIMARY} color={Color.PURPLE}>
-          Submit
+        <Button
+          variant={Variant.PRIMARY}
+          color={Color.RED}
+          className={styles.delete}
+          onClick={onDelete}
+        >
+          Delete
         </Button>
+
         <Button
           type="button"
           variant={Variant.PRIMARY}
           color={Color.DARKBLUE}
-          onClick={onCancelClick}
+          onClick={onCancel}
         >
           Cancel
+        </Button>
+
+        <Button variant={Variant.PRIMARY} color={Color.PURPLE}>
+          Save Changes
         </Button>
       </div>
     </form>

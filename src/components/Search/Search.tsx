@@ -10,14 +10,14 @@ import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
 import styles from "./Search.module.css";
 
 function Search() {
-  const { filteredType, setFilteredType } = useContext(SearchContext);
+  const { filter, setFilter } = useContext(SearchContext);
 
   return (
     <Card className={styles.search}>
       <Button
         variant={Variant.SECONDARY}
-        color={filteredType === "All" ? Color.BLUE : Color.GRAY}
-        onClick={() => setFilteredType("All")}
+        color={filter === "All" ? Color.BLUE : Color.GRAY}
+        onClick={() => setFilter("All")}
       >
         All
       </Button>
@@ -26,8 +26,8 @@ function Search() {
         <Button
           key={option.value}
           variant={Variant.SECONDARY}
-          color={filteredType === option.name ? Color.BLUE : Color.GRAY}
-          onClick={() => setFilteredType(option.value)}
+          color={filter === option.name ? Color.BLUE : Color.GRAY}
+          onClick={() => setFilter(option.value)}
         >
           {option.name}
         </Button>

@@ -1,16 +1,14 @@
 .bord {
-  background-image: linear-gradient(
-    to right,
-    #3d3dd8,
-    #ac3dac,
-    #ea5aa8,
-    var(--color-yellow)
-  );
+  background-image: linear-gradient(to right, #3d3dd8, #ac3dac, #ea5aa8);
 
   color: var(--color-gray-97);
 
+  border-radius: 1rem;
+  padding: 3rem;
+
   display: grid;
   gap: 1rem;
+  align-content: center;
 
   div {
     font-weight: 700;
