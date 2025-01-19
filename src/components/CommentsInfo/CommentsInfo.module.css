@@ -20,6 +20,14 @@
         display: grid;
         gap: 3.5rem;
       }
+
+      .replies-container {
+        padding-inline-start: 0;
+
+        .line {
+          display: none;
+        }
+      }
     }
 
     &:not(:last-child):after {
