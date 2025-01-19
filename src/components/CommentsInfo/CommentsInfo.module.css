@@ -34,5 +34,11 @@
       content: "";
       border: 0.1rem solid var(--color-gray-90);
     }
+
+    .comment-info {
+      &:after {
+        content: none;
+      }
+    }
   }
 }

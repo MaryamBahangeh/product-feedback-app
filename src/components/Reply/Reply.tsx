@@ -13,13 +13,13 @@ import { CommentModel } from "@/models/comment-model.ts";
 import styles from "./Reply.module.css";
 
 type Props = {
-  parentUsername: string;
+  mention?: User;
   user: User;
   text: string;
   onAdd: (comment: CommentModel) => void;
 };
 
-function Reply({ parentUsername, user, text, onAdd }: Props) {
+function Reply({ mention, user, text, onAdd }: Props) {
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
   const [replyText, setReplyText] = useState<string>("");
 
@@ -46,7 +46,7 @@ function Reply({ parentUsername, user, text, onAdd }: Props) {
         </h3>
         <span> {user.userName}</span>
         <p>
-          <span>{parentUsername}</span> {text}
+          {mention && <span>{mention.userName}</span>} {text}
         </p>
         {showReplyTextarea && (
           <div className={styles["textarea-container"]}>

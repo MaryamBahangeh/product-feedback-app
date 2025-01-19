@@ -1,3 +1,5 @@
+import { User } from "@/assets/data/users.ts";
+
 import Reply from "@/components/Reply/Reply.tsx";
 
 import { CommentModel } from "@/models/comment-model.ts";
@@ -5,11 +7,12 @@ import { CommentModel } from "@/models/comment-model.ts";
 import styles from "./CommentsInfo.module.css";
 
 type Props = {
+  mention?: User;
   comments: CommentModel[];
   onAdd: (comments: CommentModel[]) => void;
 };
 
-function CommentsInfo({ comments, onAdd }: Props) {
+function CommentsInfo({ mention, comments, onAdd }: Props) {
   const replyAddHandler = (
     parentComment: CommentModel,
     newComment: CommentModel,
@@ -45,23 +48,26 @@ function CommentsInfo({ comments, onAdd }: Props) {
       {comments.map((comment) => (
         <div key={comment.id} className={styles["comment-info"]}>
           <Reply
-            parentUsername={""}
+            mention={mention}
             user={comment.user}
             text={comment.text}
             onAdd={(newComment) => replyAddHandler(comment, newComment)}
           ></Reply>
 
-          <div className={styles["replies-container"]}>
-            <div className={styles.line}></div>
-            <div className={styles.replies}>
-              <CommentsInfo
-                comments={comment.comments}
-                onAdd={(updatedComments) =>
-                  commentAddHandler(comment, updatedComments)
-                }
-              />
+          {comment.comments.length > 0 && (
+            <div className={styles["replies-container"]}>
+              <div className={styles.line}></div>
+              <div className={styles.replies}>
+                <CommentsInfo
+                  mention={comment.user}
+                  comments={comment.comments}
+                  onAdd={(updatedComments) =>
+                    commentAddHandler(comment, updatedComments)
+                  }
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       ))}
     </div>
