@@ -11,7 +11,7 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./Suggestion.module.css";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank, getCommentsByParentId } = useContext(SuggestionContext);
+  const { increaseRank } = useContext(SuggestionContext);
 
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
@@ -42,7 +42,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
 
       <div className={styles.comments}>
         <img src="/images/icones/shared/icon-comments.svg" alt="" />
-        {getCommentsByParentId(suggestion.id).length}
+        {suggestion.comments.length}
       </div>
     </Card>
   );

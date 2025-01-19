@@ -1,8 +1,8 @@
 import { User } from "@/assets/data/users.ts";
 
-export type Comment = {
+export type CommentModel = {
   id: string;
   text: string;
   user: User;
-  parentId: string;
+  comments: CommentModel[];
 };

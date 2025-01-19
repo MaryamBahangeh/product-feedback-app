@@ -35,6 +35,7 @@ function CreateEditForm({
     description: "",
     suggestionType: SUGGESTION_TYPES[0].value,
     rank: 0,
+    comments: [],
     ...defaultValues,
   });
 

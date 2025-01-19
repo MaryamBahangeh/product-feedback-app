@@ -17,21 +17,19 @@ import Card from "@/components/Card/Card.tsx";
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { Comment } from "@/models/comment.ts";
+import { CommentModel } from "@/models/comment-model.ts";
 
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionPage.module.css";
 
 function SuggestionPage() {
-  const { suggestions, getCommentsByParentId, addComment } =
-    useContext(SuggestionContext);
+  const { suggestions, editSuggestion } = useContext(SuggestionContext);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
-  const comments: Comment[] = getCommentsByParentId(id!);
   const [commentText, setCommentText] = useState<string>("");
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
@@ -45,21 +43,30 @@ function SuggestionPage() {
   };
 
   const addCommentClickHandler = () => {
-    const newComment = {
+    const newComment: CommentModel = {
       id: uuidv4(),
       text: commentText,
       user: persons[0],
-      parentId: suggestion.id,
+      comments: [],
     };
-    addComment(newComment);
+
+    editSuggestion(suggestion.id, {
+      ...suggestion,
+      comments: [...suggestion.comments, newComment],
+    });
+
     setCommentText("");
+  };
+
+  const addHandler = (comments: CommentModel[]): void => {
+    editSuggestion(suggestion.id, { ...suggestion, comments });
   };
 
   useEffect(() => {
     if (!id || !suggestion) {
       navigate("/");
     }
-  }, []);
+  }, [id, navigate, suggestion]);
 
   if (!id || !suggestion) {
     return <div>Redirecting....</div>;
@@ -82,11 +89,15 @@ function SuggestionPage() {
 
       <Card className={styles.comments}>
         <h2>
-          {comments.length + (comments.length > 1 ? " Comments" : " Comment")}
+          {suggestion.comments.length +
+            (suggestion.comments.length > 1 ? " Comments" : " Comment")}
         </h2>
 
-        {comments.length > 0 && (
-          <CommentsInfo comments={comments}></CommentsInfo>
+        {suggestion.comments.length > 0 && (
+          <CommentsInfo
+            comments={suggestion.comments}
+            onAdd={addHandler}
+          ></CommentsInfo>
         )}
       </Card>
 
