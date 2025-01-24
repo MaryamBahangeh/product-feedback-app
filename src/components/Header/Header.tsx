@@ -42,8 +42,8 @@ function Header() {
       <Button
         buttonType={ButtonType.LINK}
         linkTo={"/suggestion/create"}
-        variant={Variant.PRIMARY}
-        color={Color.PURPLE}
+        variant={Variant.SOLID}
+        color={Color.PRIMARY}
       >
         <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" /> Add
         Feedback

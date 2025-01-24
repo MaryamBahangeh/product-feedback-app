@@ -15,9 +15,8 @@ function Search() {
   return (
     <Card className={styles.search}>
       <Button
-        variant={Variant.SECONDARY}
-        color={filter === "All" ? Color.BLUE : Color.GRAY}
-        onClick={() => setFilter("All")}
+        variant={Variant.TONAL}
+        color={filter === "All" ? Color.SECONDARY : Color.IDLE}
       >
         All
       </Button>
@@ -25,8 +24,8 @@ function Search() {
       {SUGGESTION_TYPES.map((option) => (
         <Button
           key={option.value}
-          variant={Variant.SECONDARY}
-          color={filter === option.name ? Color.BLUE : Color.GRAY}
+          variant={Variant.TONAL}
+          color={filter === option.name ? Color.SECONDARY : Color.IDLE}
           onClick={() => setFilter(option.value)}
         >
           {option.name}

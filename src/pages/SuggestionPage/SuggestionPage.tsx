@@ -78,8 +78,8 @@ function SuggestionPage() {
         <Button
           buttonType={ButtonType.LINK}
           linkTo={"/suggestion/" + id + "/edit"}
-          variant={Variant.PRIMARY}
-          color={Color.BLUE}
+          variant={Variant.SOLID}
+          color={Color.SECONDARY}
         >
           Edit Feedback
         </Button>
@@ -112,8 +112,8 @@ function SuggestionPage() {
         <div className={styles["button-container"]}>
           <span>{leftCharacters} characters left</span>
           <Button
-            variant={Variant.PRIMARY}
-            color={Color.PURPLE}
+            variant={Variant.SOLID}
+            color={Color.PRIMARY}
             className={styles.add}
             onClick={addCommentClickHandler}
           >

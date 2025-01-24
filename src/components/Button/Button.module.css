@@ -4,7 +4,6 @@
 
   font-size: var(--fz-500);
   font-weight: 600;
-  color: inherit;
   text-decoration: none;
 
   display: flex;
@@ -12,45 +11,42 @@
   justify-content: center;
   align-items: center;
 
-  &.primary {
+  &.solid {
     padding-inline: 2rem;
     padding-block: 1.2rem;
   }
 
-  &.secondary {
-    padding: 1rem;
-
-    &:hover {
-      cursor: pointer;
-    }
+  &.tonal {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
   }
 
-  &.gray {
-    background-color: var(--color-gray-231);
-    color: var(--color-blue);
+  &.text {
+    background-color: transparent;
+    font-size: var(--fz-600);
   }
 
-  &.purple {
+  &.primary {
     background-color: var(--color-purple);
     color: var(--color-gray-97);
   }
 
-  &.blue {
+  &.secondary {
     background-color: var(--color-blue);
     color: var(--color-gray-97);
   }
-  &.red {
+
+  &.danger {
     background-color: var(--color-danger);
     color: var(--color-gray-97);
   }
 
-  &.dark-blue {
-    background-color: var(--color-dark-blue);
-    color: var(--color-gray-97);
+  &.idle {
+    background-color: var(--color-gray-231);
+    color: var(--color-blue);
   }
 
-  &.transparent {
-    background-color: transparent;
-    font-size: var(--fz-600);
+  &:hover {
+    cursor: pointer;
   }
 }

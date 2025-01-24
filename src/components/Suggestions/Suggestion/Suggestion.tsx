@@ -20,8 +20,8 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   return (
     <Card className={styles.suggestion}>
       <Button
-        variant={Variant.SECONDARY}
-        color={Color.GRAY}
+        variant={Variant.TONAL}
+        color={Color.IDLE}
         className={styles.rank}
         onClick={() => addRankClickHandler(suggestion.id)}
       >

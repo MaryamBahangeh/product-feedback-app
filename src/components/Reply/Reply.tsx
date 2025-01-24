@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FaArrowUp } from "react-icons/fa6";
 
 import Textarea from "@/components/Textarea/Textarea.tsx";
-import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import Button, { Variant } from "@/components/Button/Button.tsx";
 
 import { persons, User } from "@/assets/data/users.ts";
 
@@ -55,19 +55,14 @@ function Reply({ mention, user, text, onAdd }: Props) {
               onChange={(e) => setReplyText(e.currentTarget.value)}
             ></Textarea>
 
-            <Button
-              variant={Variant.SECONDARY}
-              color={Color.TRANSPARENT}
-              onClick={() => replyClickHandler()}
-            >
+            <Button variant={Variant.TEXT} onClick={() => replyClickHandler()}>
               <FaArrowUp className={styles.arrow} />
             </Button>
           </div>
         )}
       </div>
       <Button
-        variant={Variant.SECONDARY}
-        color={Color.TRANSPARENT}
+        variant={Variant.TEXT}
         className={styles["reply-button"]}
         onClick={() => {
           setShowReplyTextarea((old) => !old);

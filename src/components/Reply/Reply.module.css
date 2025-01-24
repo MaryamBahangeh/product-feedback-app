@@ -30,6 +30,7 @@
 
     .textarea-container {
       display: flex;
+      gap: 0.5rem;
 
       textarea {
         flex: 1 1 0;
