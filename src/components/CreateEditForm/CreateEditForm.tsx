@@ -18,7 +18,7 @@ type Props = {
   pageTitle: string;
   defaultValues?: SuggestionModel;
   onCancel: () => void;
-  onDelete: () => void;
+  onRemove: () => void;
 };
 
 function CreateEditForm({
@@ -27,7 +27,7 @@ function CreateEditForm({
   pageTitle,
   defaultValues,
   onCancel,
-  onDelete,
+  onRemove,
 }: Props) {
   const [newSuggestion, setNewSuggestion] = useState<SuggestionModel>({
     id: uuidv4(),
@@ -122,7 +122,7 @@ function CreateEditForm({
           variant={Variant.SOLID}
           color={Color.DANGER}
           className={styles.delete}
-          onClick={onDelete}
+          onClick={onRemove}
         >
           Delete
         </Button>

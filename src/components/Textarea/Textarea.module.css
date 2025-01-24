@@ -5,7 +5,7 @@ textarea {
   border: none;
   border-radius: 0.5rem;
 
-  background-color: var(--color-gray-230);
+  background-color: var(--color-idle);
 
   resize: vertical;
 }

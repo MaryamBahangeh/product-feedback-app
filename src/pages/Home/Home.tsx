@@ -10,9 +10,7 @@ function Home() {
   return (
     <div className={styles.content}>
       <div className={styles["sidebar"]}>
-        <div>
-          <Board />
-        </div>
+        <Board />
 
         <div className={styles["search"]}>
           <Search />

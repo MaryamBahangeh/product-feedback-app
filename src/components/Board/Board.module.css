@@ -1,7 +1,7 @@
 .bord {
   background-image: linear-gradient(to right, #3d3dd8, #ac3dac, #ea5aa8);
 
-  color: var(--color-gray-97);
+  color: var(--color-background);
 
   border-radius: 1rem;
   padding: 3rem;

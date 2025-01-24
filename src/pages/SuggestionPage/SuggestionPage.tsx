@@ -24,7 +24,7 @@ import { persons } from "@/assets/data/users.ts";
 import styles from "./SuggestionPage.module.css";
 
 function SuggestionPage() {
-  const { suggestions, editSuggestion } = useContext(SuggestionContext);
+  const { suggestions, dispatch } = useContext(SuggestionContext);
 
   const navigate = useNavigate();
 
@@ -50,16 +50,24 @@ function SuggestionPage() {
       comments: [],
     };
 
-    editSuggestion(suggestion.id, {
-      ...suggestion,
-      comments: [...suggestion.comments, newComment],
+    dispatch({
+      type: "edited_suggestion",
+      suggestionId: suggestion.id,
+      newSuggestion: {
+        ...suggestion,
+        comments: [...suggestion.comments, newComment],
+      },
     });
 
     setCommentText("");
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    editSuggestion(suggestion.id, { ...suggestion, comments });
+    dispatch({
+      type: "edited_suggestion",
+      suggestionId: suggestion.id,
+      newSuggestion: { ...suggestion, comments },
+    });
   };
 
   useEffect(() => {

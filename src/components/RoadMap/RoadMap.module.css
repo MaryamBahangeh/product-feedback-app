@@ -1,4 +1,4 @@
-.road-map {
+.roadmap {
   display: grid;
   gap: 2rem;
 
@@ -14,33 +14,32 @@
     .option {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: var(--fz-500);
 
-      label {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        align-items: center;
+      .bullet {
+        border-radius: 999rem;
+        inline-size: 0.5rem;
+        block-size: 0.5rem;
 
-        div {
-          background-color: hsl(300, 48%, 46%);
-          border-radius: 999rem;
-          width: 0.5rem;
-          height: 0.5rem;
+        &.orange {
+          background-color: var(--color-warning);
         }
-        .orange-bullet {
-          background-color: var(--color-orange);
+
+        &.blue {
+          background-color: var(--color-secondary);
         }
-        .purple-bullet {
-          background-color: var(--color-purple);
-        }
-        .blue-bullet {
-          background-color: var(--color-blue);
+
+        &.purple {
+          background-color: var(--color-primary);
         }
       }
-    }
 
-    > span {
-      font-weight: 600;
+      .value {
+        margin-inline-start: auto;
+        font-weight: 600;
+      }
     }
   }
 }

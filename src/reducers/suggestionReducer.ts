@@ -1,6 +1,6 @@
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-type SuggestionAction =
+export type SuggestionAction =
   | {
       type: "added_suggestion";
       newSuggestion: SuggestionModel;
@@ -11,7 +11,7 @@ type SuggestionAction =
       suggestionId: string;
     }
   | {
-      type: "deleted_suggestion";
+      type: "removed_suggestion";
       suggestionId: string;
     }
   | {
@@ -28,9 +28,9 @@ export function suggestionReducer(
       return [...suggestions, action.newSuggestion];
     }
 
-    case "deleted_suggestion": {
+    case "removed_suggestion": {
       return suggestions.filter(
-        (suggestion) => suggestion.id != action.suggestionId,
+        (suggestion) => suggestion.id !== action.suggestionId,
       );
     }
 

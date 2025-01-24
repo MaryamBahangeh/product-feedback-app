@@ -1,6 +1,6 @@
 .header {
-  background-color: hsl(230, 31%, 31%);
-  color: var(--color-gray-97);
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background);
 
   border-radius: 1rem;
   padding-inline: 2rem;
@@ -19,8 +19,8 @@
 
     select {
       padding-inline-start: 0.5rem;
-      background-color: hsl(230, 31%, 31%);
-      color: var(--color-gray-97);
+      background-color: var(--color-secondary-dark);
+      color: var(--color-background);
 
       border: none;
       outline: none;

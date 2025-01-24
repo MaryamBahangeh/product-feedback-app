@@ -8,7 +8,7 @@ type Props = PropsWithChildren & {
 };
 
 function Card({ className, children }: Props) {
-  return <div className={clsx(styles.div, className)}>{children}</div>;
+  return <div className={clsx(styles.card, className)}>{children}</div>;
 }
 
 export default Card;
