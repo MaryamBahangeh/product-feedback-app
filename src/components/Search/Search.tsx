@@ -17,6 +17,7 @@ function Search() {
       <Button
         variant={Variant.TONAL}
         color={filter === "All" ? Color.SECONDARY : Color.IDLE}
+        onClick={() => setFilter("All")}
       >
         All
       </Button>
