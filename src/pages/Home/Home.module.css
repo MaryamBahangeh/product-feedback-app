@@ -3,7 +3,7 @@
   grid-template-areas:
     "sidebar toolbar"
     "sidebar suggestions";
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: auto 1fr;
   gap: 2rem;
 

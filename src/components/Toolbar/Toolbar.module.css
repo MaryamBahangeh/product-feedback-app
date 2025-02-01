@@ -11,7 +11,11 @@
   align-items: center;
 
   .suggestions {
-    display: none;
+    display: flex;
+    gap: 0.5rem;
+
+    align-items: center;
+    justify-content: center;
   }
 
   label {
@@ -28,14 +32,12 @@
   }
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
   .toolbar {
-    .suggestions {
-      display: flex;
-      gap: 0.5rem;
+    border-radius: 0;
 
-      align-items: center;
-      justify-content: center;
+    .suggestions {
+      display: none;
     }
   }
 }

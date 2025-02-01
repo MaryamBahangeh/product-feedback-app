@@ -33,7 +33,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
 
-  inline-size: min(95rem, 100%);
+  inline-size: min(100rem, 100%);
 
   margin-inline: auto;
 
