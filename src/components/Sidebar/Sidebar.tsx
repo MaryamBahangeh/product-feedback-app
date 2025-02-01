@@ -18,6 +18,10 @@ export default function Sidebar({ className }: Props): ReactElement {
 
   return (
     <div className={clsx(styles.sidebar, className)}>
+      <Board />
+      <Search className={styles.search} />
+      <RoadMap className={styles.roadmap} />
+
       <button
         className={styles.menu}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -29,10 +33,6 @@ export default function Sidebar({ className }: Props): ReactElement {
         />
       </button>
       {isMenuOpen && <Menu onApply={() => setIsMenuOpen(false)} />}
-
-      <Board />
-      <Search className={styles.search} />
-      <RoadMap className={styles["road-map"]} />
     </div>
   );
 }

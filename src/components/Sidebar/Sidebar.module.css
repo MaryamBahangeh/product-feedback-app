@@ -12,7 +12,7 @@
 @media (max-width: 639px) {
   .sidebar {
     .search,
-    .road-map {
+    .roadmap {
       display: none;
     }
   }
