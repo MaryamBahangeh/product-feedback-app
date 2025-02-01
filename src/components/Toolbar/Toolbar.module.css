@@ -1,4 +1,4 @@
-.header {
+.toolbar {
   background-color: var(--color-secondary-dark);
   color: var(--color-background);
 
@@ -29,7 +29,7 @@
 }
 
 @media (min-width: 640px) {
-  .header {
+  .toolbar {
     .suggestions {
       display: flex;
       gap: 0.5rem;

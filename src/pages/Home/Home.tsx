@@ -8,14 +8,8 @@ function Home() {
   return (
     <div className={styles.content}>
       <Sidebar className={styles.sidebar} />
-
-      <div className={styles.header}>
-        <Toolbar />
-      </div>
-
-      <div className={styles.suggestions}>
-        <Suggestions />
-      </div>
+      <Toolbar className={styles.header} />
+      <Suggestions className={styles.suggestions} />
     </div>
   );
 }

@@ -9,6 +9,15 @@
   }
 }
 
+@media (max-width: 639px) {
+  .sidebar {
+    .search,
+    .road-map {
+      display: none;
+    }
+  }
+}
+
 @media (min-width: 640px) {
   .sidebar {
     display: grid;

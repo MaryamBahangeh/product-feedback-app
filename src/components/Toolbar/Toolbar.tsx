@@ -1,21 +1,28 @@
 import { useContext } from "react";
 
+import clsx from "clsx";
+
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 
-import styles from "./Toolbar.module.css";
 import Button, {
   ButtonType,
   Color,
   Variant,
 } from "@/components/Button/Button.tsx";
 
-function Toolbar() {
+import styles from "./Toolbar.module.css";
+
+type Props = {
+  className?: string;
+};
+
+function Toolbar({ className }: Props) {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   return (
-    <div className={styles.header}>
+    <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 

@@ -31,7 +31,7 @@ export default function Sidebar({ className }: Props): ReactElement {
       {isMenuOpen && <Menu onApply={() => setIsMenuOpen(false)} />}
 
       <Board />
-      <Search className={styles["search"]} />
+      <Search className={styles.search} />
       <RoadMap className={styles["road-map"]} />
     </div>
   );
