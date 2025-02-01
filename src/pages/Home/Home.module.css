@@ -2,15 +2,6 @@
   .suggestions {
     padding-block-start: 4rem;
   }
-
-  .menu {
-    position: fixed;
-    inset-inline-end: 3rem;
-    inset-block-start: 3rem;
-    border: none;
-    background-color: transparent;
-    appearance: none;
-  }
 }
 
 @media (max-width: 639px) {
@@ -26,19 +17,8 @@
     gap: 2rem;
     margin-block: 3rem;
 
-    .sidebar {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-auto-rows: max-content;
-      gap: 1rem;
-    }
-
     .suggestions {
       padding-block-start: 0;
-    }
-
-    .menu {
-      display: none;
     }
   }
 }
@@ -56,9 +36,6 @@
 
     .sidebar {
       grid-area: sidebar;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding-inline-end: 1rem;
     }
 
     .header {
