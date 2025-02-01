@@ -6,9 +6,9 @@ import styles from "./Home.module.css";
 
 function Home() {
   return (
-    <div className={styles.content}>
+    <div className={styles.home}>
       <Sidebar className={styles.sidebar} />
-      <Toolbar className={styles.header} />
+      <Toolbar className={styles.toolbar} />
       <Suggestions className={styles.suggestions} />
     </div>
   );
