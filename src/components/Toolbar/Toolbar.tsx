@@ -4,14 +4,14 @@ import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 
-import styles from "./Header.module.css";
+import styles from "./Toolbar.module.css";
 import Button, {
   ButtonType,
   Color,
   Variant,
 } from "@/components/Button/Button.tsx";
 
-function Header() {
+function Toolbar() {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   return (
@@ -52,4 +52,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Toolbar;

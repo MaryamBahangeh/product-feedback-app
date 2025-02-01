@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Header.tsx";
+import Toolbar from "@/components/Toolbar/Toolbar.tsx";
 import Suggestions from "@/components/Suggestions/Suggestions.tsx";
 import Board from "@/components/Board/Board.tsx";
 import Search from "@/components/Search/Search.tsx";
@@ -31,7 +31,7 @@ function Home() {
       </div>
 
       <div className={styles.header}>
-        <Header />
+        <Toolbar />
       </div>
 
       <div className={styles.suggestions}>
