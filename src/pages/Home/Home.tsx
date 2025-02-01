@@ -26,14 +26,8 @@ function Home() {
 
       <div className={styles["sidebar"]}>
         <Board />
-
-        <div className={styles["search"]}>
-          <Search />
-        </div>
-
-        <div className={styles["road-map"]}>
-          <RoadMap />
-        </div>
+        <Search className={styles["search"]} />
+        <RoadMap className={styles["road-map"]} />
       </div>
 
       <div className={styles.header}>

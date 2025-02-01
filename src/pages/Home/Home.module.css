@@ -3,11 +3,6 @@
     padding-block-start: 4rem;
   }
 
-  .search,
-  .road-map {
-    display: none;
-  }
-
   .menu {
     position: fixed;
     inset-inline-end: 3rem;
@@ -15,6 +10,13 @@
     border: none;
     background-color: transparent;
     appearance: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .search,
+  .road-map {
+    display: none;
   }
 }
 
@@ -33,11 +35,6 @@
 
     .suggestions {
       padding-block-start: 0;
-    }
-
-    .search,
-    .road-map {
-      display: block;
     }
 
     .menu {

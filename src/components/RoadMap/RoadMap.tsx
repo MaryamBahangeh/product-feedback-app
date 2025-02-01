@@ -1,11 +1,18 @@
-import styles from "./RoadMap.module.css";
-import Card from "@/components/Card/Card.tsx";
 import { Link } from "react-router";
+
 import clsx from "clsx";
 
-function RoadMap() {
+import Card from "@/components/Card/Card.tsx";
+
+import styles from "./RoadMap.module.css";
+
+type Props = {
+  className?: string;
+};
+
+function RoadMap({ className }: Props) {
   return (
-    <Card className={styles["roadmap"]}>
+    <Card className={clsx(styles["roadmap"], className)}>
       <div className={styles.title}>
         <h4>Raodmap</h4>
         <Link to="./">view</Link>
