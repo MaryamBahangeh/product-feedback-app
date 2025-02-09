@@ -11,7 +11,7 @@ import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
 
 function SuggestionCreatePage() {
-  const { addSuggestion } = useContext(SuggestionContext);
+  const { dispatch } = useContext(SuggestionContext);
 
   const navigate = useNavigate();
 
@@ -20,8 +20,7 @@ function SuggestionCreatePage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    addSuggestion(newSuggestion);
-
+    dispatch({ type: "added_suggestion", newSuggestion });
     goBackHandler();
   };
 
@@ -32,7 +31,8 @@ function SuggestionCreatePage() {
       <CreateEditForm
         onSubmitClick={SubmitClickHandler}
         pageTitle={"Add a new suggestion"}
-        onCancelClick={goBackHandler}
+        onCancel={goBackHandler}
+        onRemove={goBackHandler}
       ></CreateEditForm>
     </div>
   );

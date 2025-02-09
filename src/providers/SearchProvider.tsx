@@ -13,16 +13,16 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
 
 type ContextType = {
-  filteredType: string;
-  setFilteredType: Dispatch<SetStateAction<string>>;
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
   filteredSuggestions: SuggestionModel[];
   sortBy: string;
   setSortBy: Dispatch<SetStateAction<string>>;
 };
 
 export const SearchContext = createContext<ContextType>({
-  filteredType: "",
-  setFilteredType: () => {},
+  filter: "",
+  setFilter: () => {},
   filteredSuggestions: [],
   sortBy: "",
   setSortBy: () => {},
@@ -31,7 +31,7 @@ export const SearchContext = createContext<ContextType>({
 function SearchProvider({ children }: PropsWithChildren) {
   const { suggestions } = useContext(SuggestionContext);
 
-  const [filteredType, setFilteredType] = useState("All");
+  const [filter, setFilter] = useState("All");
 
   const [sortBy, setSortBy] = useState<string>(SORT_OPTIONS[0].value);
 
@@ -45,20 +45,20 @@ function SearchProvider({ children }: PropsWithChildren) {
       clone.sort((a, b) => a.title.localeCompare(b.title));
     }
 
-    if (filteredType === "All") {
+    if (filter === "All") {
       return [...clone];
     }
 
     return suggestions.filter(
-      (suggestion) => suggestion.suggestionType === filteredType,
+      (suggestion) => suggestion.suggestionType === filter,
     );
-  }, [filteredType, suggestions, sortBy]);
+  }, [filter, suggestions, sortBy]);
 
   return (
     <SearchContext.Provider
       value={{
-        filteredType,
-        setFilteredType,
+        filter,
+        setFilter,
         filteredSuggestions,
         sortBy,
         setSortBy,

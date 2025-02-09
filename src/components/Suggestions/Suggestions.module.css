@@ -1,9 +1,12 @@
 .suggestions {
+  list-style: none;
+
   display: grid;
   gap: 2rem;
-  list-style-type: none;
+}
 
-  > li {
-    text-decoration: none;
+@media (max-width: 640px) {
+  .suggestions {
+    padding: 2rem;
   }
 }

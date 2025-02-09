@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import Button, { Variant } from "@/components/Button/Button.tsx";
 
 import styles from "./PageHeader.module.css";
 
@@ -11,11 +11,7 @@ type Props = PropsWithChildren & {
 function PageHeader({ onGoBack, children }: Props) {
   return (
     <div className={styles["page-header"]}>
-      <Button
-        variant={Variant.SECONDARY}
-        color={Color.TRANSPARENT}
-        onClick={onGoBack}
-      >
+      <Button variant={Variant.TEXT} onClick={onGoBack}>
         <img src="/images/icones/shared/icon-arrow-left.svg" alt="back" />
         Go Back
       </Button>

@@ -1,16 +1,25 @@
 .suggestion {
-  display: flex;
-  gap: 3rem;
+  display: grid;
+  grid-template-areas:
+    "content content"
+    "rank comment";
+
+  gap: 2rem;
 
   .rank {
+    grid-area: rank;
+
     align-self: start;
     justify-self: start;
 
-    display: grid;
+    display: flex;
+    gap: 1rem;
+    padding-block: 1rem;
   }
 
   .content {
-    flex: 1 1 0;
+    grid-area: content;
+
     display: grid;
     gap: 1.2rem;
     text-decoration: none;
@@ -18,8 +27,8 @@
     .suggestionType {
       justify-self: start;
 
-      background-color: var(--color-gray-231);
-      color: var(--color-blue);
+      background-color: var(--color-idle);
+      color: var(--color-secondary);
 
       padding: 1rem;
       border-radius: 0.8rem;
@@ -34,10 +43,29 @@
   }
 
   .comments {
+    grid-area: comment;
+
     display: flex;
     gap: 0.5rem;
-    align-self: center;
+    align-self: flex-end;
+    justify-self: end;
     font-weight: 700;
     font-size: var(--fz-400);
+  }
+}
+
+@media (min-width: 640px) {
+  .suggestion {
+    grid-template-areas: "rank content comment";
+    grid-template-columns: auto 1fr auto;
+    gap: 3rem;
+
+    .rank {
+      display: grid;
+    }
+
+    .comments {
+      align-self: center;
+    }
   }
 }

@@ -24,12 +24,13 @@
       text-align: justify;
       padding-block-start: 1rem;
       span {
-        color: var(--color-purple);
+        color: var(--color-primary);
       }
     }
 
     .textarea-container {
       display: flex;
+      gap: 0.5rem;
 
       textarea {
         flex: 1 1 0;
@@ -40,7 +41,7 @@
 
         .arrow {
           font-size: 2rem;
-          color: var(--color-sharp-blue);
+          color: var(--color-secondary);
         }
       }
     }
@@ -48,7 +49,7 @@
 
   .reply-button {
     align-self: start;
-    color: var(--color-sharp-blue);
+    color: var(--color-secondary);
     font-size: var(--fz-500);
   }
 }

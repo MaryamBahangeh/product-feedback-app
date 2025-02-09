@@ -1,15 +1,43 @@
 .toolbar {
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background);
+
+  border-radius: 1rem;
+  padding-inline: 2rem;
+  padding-block: 1.2rem;
+
   display: flex;
+  gap: 2rem;
+  align-items: center;
 
-  button {
-    appearance: none;
-    border: none;
-    background: none;
-    outline: none;
-    display: none;
+  .suggestions {
+    display: flex;
+    gap: 0.5rem;
 
-    &:hover {
-      cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label {
+    flex: 1 1 0;
+
+    select {
+      padding-inline-start: 0.5rem;
+      background-color: var(--color-secondary-dark);
+      color: var(--color-background);
+
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .toolbar {
+    border-radius: 0;
+
+    .suggestions {
+      display: none;
     }
   }
 }

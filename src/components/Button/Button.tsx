@@ -11,24 +11,23 @@ export enum ButtonType {
 }
 
 export enum Color {
-  GRAY = "gray",
-  PURPLE = "purple",
-  BLUE = "blue",
-  DARKBLUE = "dark-blue",
-  TRANSPARENT = "transparent",
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  DANGER = "danger",
+  IDLE = "idle",
 }
 
 export enum Variant {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
+  SOLID = "solid",
+  TONAL = "tonal",
+  TEXT = "text",
 }
 
-type Props = Omit<ComponentProps<"button">, "className"> & {
+type Props = ComponentProps<"button"> & {
   buttonType?: ButtonType;
   linkTo?: string;
   variant: Variant;
-  color: Color;
-  className?: string;
+  color?: Color;
 };
 
 function Button({
@@ -45,7 +44,7 @@ function Button({
       className={clsx(
         styles.general,
         styles[variant],
-        styles[color],
+        color && styles[color],
         className,
       )}
       {...rest}
@@ -58,7 +57,7 @@ function Button({
       className={clsx(
         styles.general,
         styles[variant],
-        styles[color],
+        color && styles[color],
         className,
       )}
     >

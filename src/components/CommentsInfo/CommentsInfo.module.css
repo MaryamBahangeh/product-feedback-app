@@ -20,11 +20,25 @@
         display: grid;
         gap: 3.5rem;
       }
+
+      .replies-container {
+        padding-inline-start: 0;
+
+        .line {
+          display: none;
+        }
+      }
     }
 
     &:not(:last-child):after {
       content: "";
       border: 0.1rem solid var(--color-gray-90);
+    }
+
+    .comment-info {
+      &:after {
+        content: none;
+      }
     }
   }
 }

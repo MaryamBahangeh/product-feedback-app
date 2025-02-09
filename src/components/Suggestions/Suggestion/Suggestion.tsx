@@ -11,7 +11,7 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./Suggestion.module.css";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank, getCommentsByParentId } = useContext(SuggestionContext);
+  const { increaseRank } = useContext(SuggestionContext);
 
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
@@ -20,8 +20,8 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   return (
     <Card className={styles.suggestion}>
       <Button
-        variant={Variant.SECONDARY}
-        color={Color.GRAY}
+        variant={Variant.TONAL}
+        color={Color.IDLE}
         className={styles.rank}
         onClick={() => addRankClickHandler(suggestion.id)}
       >
@@ -42,7 +42,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
 
       <div className={styles.comments}>
         <img src="/images/icones/shared/icon-comments.svg" alt="" />
-        {getCommentsByParentId(suggestion.id).length}
+        {suggestion.comments.length}
       </div>
     </Card>
   );

@@ -1,16 +1,13 @@
-.bord {
-  background-image: linear-gradient(
-    to right,
-    #3d3dd8,
-    #ac3dac,
-    #ea5aa8,
-    var(--color-yellow)
-  );
+.board {
+  background-image: linear-gradient(to right, #3d3dd8, #ac3dac, #ea5aa8);
 
-  color: var(--color-gray-97);
+  color: var(--color-background);
+
+  padding: 3rem;
 
   display: grid;
   gap: 1rem;
+  align-content: center;
 
   div {
     font-weight: 700;
@@ -20,5 +17,11 @@
   span {
     font-weight: 500;
     font-size: var(--fz-300);
+  }
+}
+
+@media (min-width: 640px) {
+  .board {
+    border-radius: 1rem;
   }
 }

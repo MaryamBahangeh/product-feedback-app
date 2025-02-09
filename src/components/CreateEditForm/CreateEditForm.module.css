@@ -5,7 +5,7 @@
   padding-block-end: 4rem;
 
   border-radius: var(--border-radious);
-  background-color: var(--color-white);
+  background-color: var(--color-background);
   border: none;
 
   display: grid;
@@ -33,7 +33,7 @@
 
     input,
     select {
-      background-color: var(--color-gray-230);
+      background-color: var(--color-idle);
       padding-inline: 2rem;
       padding-block: 1.5rem;
       border: none;
@@ -54,13 +54,27 @@
     .error-message {
       display: none;
     }
+
     .star {
       color: var(--color-danger);
     }
   }
 
   .button-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .form {
+    .button-container {
+      grid-template-columns: 1fr auto auto;
+    }
+
+    .delete {
+      justify-self: start;
+    }
   }
 }

@@ -6,11 +6,17 @@ import Suggestion from "./Suggestion/Suggestion.tsx";
 
 import styles from "./Suggestions.module.css";
 
-function Suggestions() {
+import clsx from "clsx";
+
+type Props = {
+  className?: string;
+};
+
+function Suggestions({ className }: Props) {
   const { filteredSuggestions } = useContext(SearchContext);
 
   return (
-    <ul className={styles.suggestions}>
+    <ul className={clsx(styles.suggestions, className)}>
       {filteredSuggestions.map((suggestion) => (
         <li key={suggestion.id}>
           <Suggestion suggestion={suggestion} />

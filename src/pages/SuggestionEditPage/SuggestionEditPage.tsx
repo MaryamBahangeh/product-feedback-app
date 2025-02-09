@@ -11,7 +11,7 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./SuggestionEditPage.module.css";
 
 function SuggestionEditPage() {
-  const { suggestions, editSuggestion } = useContext(SuggestionContext);
+  const { suggestions, dispatch } = useContext(SuggestionContext);
   const { id } = useParams();
 
   const suggestion = useMemo(() => {
@@ -24,10 +24,19 @@ function SuggestionEditPage() {
     navigate("/suggestion/" + id);
   };
 
-  const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    editSuggestion(id!, newSuggestion);
+  const SubmitClickHandler = (newSuggestion: SuggestionModel): void => {
+    dispatch({
+      type: "edited_suggestion",
+      suggestionId: id!,
+      newSuggestion,
+    });
 
     goBackHandler();
+  };
+
+  const removeClickHandler = (): void => {
+    dispatch({ type: "removed_suggestion", suggestionId: id! });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -52,7 +61,8 @@ function SuggestionEditPage() {
           }
           pageTitle={`Editing '${suggestion.title}'`}
           defaultValues={suggestion}
-          onCancelClick={goBackHandler}
+          onCancel={goBackHandler}
+          onRemove={removeClickHandler}
         ></CreateEditForm>
       )}
     </div>

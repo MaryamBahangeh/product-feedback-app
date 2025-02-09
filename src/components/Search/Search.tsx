@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import clsx from "clsx";
+
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import Card from "@/components/Card/Card.tsx";
@@ -9,15 +11,19 @@ import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
 
 import styles from "./Search.module.css";
 
-function Search() {
-  const { filteredType, setFilteredType } = useContext(SearchContext);
+type Props = {
+  className?: string;
+};
+
+function Search({ className }: Props) {
+  const { filter, setFilter } = useContext(SearchContext);
 
   return (
-    <Card className={styles.search}>
+    <Card className={clsx(styles.search, className)}>
       <Button
-        variant={Variant.SECONDARY}
-        color={filteredType === "All" ? Color.BLUE : Color.GRAY}
-        onClick={() => setFilteredType("All")}
+        variant={Variant.TONAL}
+        color={filter === "All" ? Color.SECONDARY : Color.IDLE}
+        onClick={() => setFilter("All")}
       >
         All
       </Button>
@@ -25,9 +31,9 @@ function Search() {
       {SUGGESTION_TYPES.map((option) => (
         <Button
           key={option.value}
-          variant={Variant.SECONDARY}
-          color={filteredType === option.name ? Color.BLUE : Color.GRAY}
-          onClick={() => setFilteredType(option.value)}
+          variant={Variant.TONAL}
+          color={filter === option.name ? Color.SECONDARY : Color.IDLE}
+          onClick={() => setFilter(option.value)}
         >
           {option.name}
         </Button>

@@ -1,41 +1,37 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowUp } from "react-icons/fa6";
 
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-
 import Textarea from "@/components/Textarea/Textarea.tsx";
-import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import Button, { Variant } from "@/components/Button/Button.tsx";
 
 import { persons, User } from "@/assets/data/users.ts";
 
-import { Comment } from "@/models/comment.ts";
+import { CommentModel } from "@/models/comment-model.ts";
 
 import styles from "./Reply.module.css";
 
 type Props = {
-  parentId: string;
-  parentUsername: string;
+  mention?: User;
   user: User;
   text: string;
+  onAdd: (comment: CommentModel) => void;
 };
 
-function Reply({ parentId, parentUsername, user, text }: Props) {
-  const { addComment } = useContext(SuggestionContext);
-
+function Reply({ mention, user, text, onAdd }: Props) {
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
   const [replyText, setReplyText] = useState<string>("");
 
   const replyClickHandler = () => {
-    const newComment: Comment = {
+    const newComment: CommentModel = {
       id: uuidv4(),
       text: replyText,
       user: persons[2],
-      parentId: parentId,
+      comments: [],
     };
 
-    addComment(newComment);
+    onAdd(newComment);
     setReplyText("");
     setShowReplyTextarea(false);
   };
@@ -50,7 +46,7 @@ function Reply({ parentId, parentUsername, user, text }: Props) {
         </h3>
         <span> {user.userName}</span>
         <p>
-          <span>{parentUsername}</span> {text}
+          {mention && <span>{mention.userName}</span>} {text}
         </p>
         {showReplyTextarea && (
           <div className={styles["textarea-container"]}>
@@ -59,19 +55,14 @@ function Reply({ parentId, parentUsername, user, text }: Props) {
               onChange={(e) => setReplyText(e.currentTarget.value)}
             ></Textarea>
 
-            <Button
-              variant={Variant.SECONDARY}
-              color={Color.TRANSPARENT}
-              onClick={() => replyClickHandler()}
-            >
+            <Button variant={Variant.TEXT} onClick={() => replyClickHandler()}>
               <FaArrowUp className={styles.arrow} />
             </Button>
           </div>
         )}
       </div>
       <Button
-        variant={Variant.SECONDARY}
-        color={Color.TRANSPARENT}
+        variant={Variant.TEXT}
         className={styles["reply-button"]}
         onClick={() => {
           setShowReplyTextarea((old) => !old);

@@ -1,0 +1,41 @@
+.sidebar {
+  .menu {
+    position: fixed;
+    inset-inline-end: 3rem;
+    inset-block-start: 3rem;
+    border: none;
+    background-color: transparent;
+    appearance: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .sidebar {
+    .search,
+    .roadmap {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  .sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: max-content;
+    gap: 1rem;
+
+    .menu {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .sidebar {
+    grid-area: sidebar;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-inline-end: 1rem;
+  }
+}

@@ -1,45 +1,73 @@
-import { useContext } from "react";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+import { User } from "@/assets/data/users.ts";
 
 import Reply from "@/components/Reply/Reply.tsx";
 
-import { Comment } from "@/models/comment.ts";
+import { CommentModel } from "@/models/comment-model.ts";
 
 import styles from "./CommentsInfo.module.css";
 
 type Props = {
-  comments: Comment[];
+  mention?: User;
+  comments: CommentModel[];
+  onAdd: (comments: CommentModel[]) => void;
 };
 
-function CommentsInfo({ comments }: Props) {
-  const { getCommentsByParentId } = useContext(SuggestionContext);
+function CommentsInfo({ mention, comments, onAdd }: Props) {
+  const replyAddHandler = (
+    parentComment: CommentModel,
+    newComment: CommentModel,
+  ): void => {
+    const result = comments.map((x) => {
+      if (x.id === parentComment.id) {
+        return { ...x, comments: [...x.comments, newComment] };
+      }
+
+      return x;
+    });
+
+    onAdd(result);
+  };
+
+  const commentAddHandler = (
+    parentComment: CommentModel,
+    updatedComments: CommentModel[],
+  ): void => {
+    const result = comments.map((x) => {
+      if (x.id === parentComment.id) {
+        return { ...x, comments: updatedComments };
+      }
+
+      return x;
+    });
+
+    onAdd(result);
+  };
 
   return (
     <div className={styles.comments}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles["comment-info"]}>
           <Reply
-            parentId={comment.id}
-            parentUsername={""}
+            mention={mention}
             user={comment.user}
             text={comment.text}
+            onAdd={(newComment) => replyAddHandler(comment, newComment)}
           ></Reply>
 
-          <div className={styles["replies-container"]}>
-            <div className={styles.line}></div>
-            <div className={styles.replies}>
-              {getCommentsByParentId(comment.id).map((reply) => (
-                <Reply
-                  key={reply.id}
-                  parentId={comment.id}
-                  parentUsername={comment.user.userName}
-                  user={reply.user}
-                  text={reply.text}
-                ></Reply>
-              ))}
+          {comment.comments.length > 0 && (
+            <div className={styles["replies-container"]}>
+              <div className={styles.line}></div>
+              <div className={styles.replies}>
+                <CommentsInfo
+                  mention={comment.user}
+                  comments={comment.comments}
+                  onAdd={(updatedComments) =>
+                    commentAddHandler(comment, updatedComments)
+                  }
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       ))}
     </div>
