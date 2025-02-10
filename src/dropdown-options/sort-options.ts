@@ -1,6 +1,11 @@
-export const SORT_OPTIONS = [
-  { value: "rank", name: "Most Upvotes" },
-  { value: "title", name: "Title" },
-  { value: "comments", name: "Comments" },
-  { value: "suggestionType", name: "Category" },
+import { DropdownOption } from "@/models/dropdown-type.ts";
+
+export const SORT_OPTIONS: DropdownOption[] = [
+  { value: "rank", translationKey: "toolbar.sortOptions.mostUpVotes" },
+  { value: "title", translationKey: "toolbar.sortOptions.title" },
+  { value: "comments", translationKey: "toolbar.sortOptions.comments" },
+  {
+    value: "suggestionType",
+    translationKey: "toolbar.sortOptions.suggestionType",
+  },
 ] as const;

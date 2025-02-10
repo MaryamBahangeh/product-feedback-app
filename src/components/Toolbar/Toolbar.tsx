@@ -55,20 +55,21 @@ function Toolbar({ className }: Props) {
       </div>
 
       <label>
-        Sort by:
+        {t("toolbar.sortBy")}:
         <select
           defaultValue={sortBy}
           onChange={(e) => setSortBy(e.currentTarget.value)}
         >
           {SORT_OPTIONS.map((sortOption) => (
             <option key={sortOption.value} value={sortOption.value}>
-              {sortOption.name}
+              {t(sortOption.translationKey)}
             </option>
           ))}
         </select>
       </label>
+
       <select
-        defaultValue={"en"}
+        defaultValue={i18next.language}
         onChange={(e) => languageChangeHandler(e.currentTarget.value)}
       >
         {LANGUAGE_DROPDOWN_OPTIONS.map((option) => (
@@ -83,8 +84,8 @@ function Toolbar({ className }: Props) {
         variant={Variant.SOLID}
         color={Color.PRIMARY}
       >
-        <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" /> Add
-        Feedback
+        <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" />
+        {t("toolbar.AddFeedback")}
       </Button>
     </div>
   );

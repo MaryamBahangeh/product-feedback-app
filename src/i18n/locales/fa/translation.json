@@ -11,11 +11,11 @@
       "suggestionType": "دسته بندی"
     },
 
-    "filters": {
-      "languages": {
-        "en": "English",
-        "fa": "فارسی"
-      }
-    }
+    "languages": {
+      "en": "English",
+      "fa": "فارسی"
+    },
+
+    "AddFeedback": "افزودن پیشنهاد"
   }
 }

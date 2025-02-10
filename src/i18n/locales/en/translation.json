@@ -11,11 +11,11 @@
       "suggestionType": "Category"
     },
 
-    "filters": {
-      "languages": {
-        "en": "English",
-        "fa": "فارسی"
-      }
-    }
+    "languages": {
+      "en": "English",
+      "fa": "فارسی"
+    },
+
+    "AddFeedback": "Add Feedback"
   }
 }
