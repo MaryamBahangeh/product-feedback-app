@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
-import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
+import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
 
 import Button, {
   ButtonType,
@@ -13,6 +13,10 @@ import Button, {
 } from "@/components/Button/Button.tsx";
 
 import styles from "./Toolbar.module.css";
+import i18next from "i18next";
+import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
+import { useTranslation } from "react-i18next";
+import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 
 type Props = {
   className?: string;
@@ -21,6 +25,21 @@ type Props = {
 function Toolbar({ className }: Props) {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
+  const { t } = useTranslation();
+
+  const languageChangeHandler = async (language: string): Promise<void> => {
+    try {
+      await i18next.changeLanguage(language);
+
+      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, language);
+
+      document.documentElement.lang = i18next.language;
+      document.documentElement.dir = i18next.dir();
+    } catch (err) {
+      console.log("Something went wrong loading", err);
+    }
+  };
+
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
@@ -28,7 +47,10 @@ function Toolbar({ className }: Props) {
 
         <span>
           {filteredSuggestions.length.toString() +
-            (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
+            " " +
+            (filteredSuggestions.length > 1
+              ? t("toolbar.suggestions")
+              : t("toolbar.suggestion"))}
         </span>
       </div>
 
@@ -45,7 +67,16 @@ function Toolbar({ className }: Props) {
           ))}
         </select>
       </label>
-
+      <select
+        defaultValue={"en"}
+        onChange={(e) => languageChangeHandler(e.currentTarget.value)}
+      >
+        {LANGUAGE_DROPDOWN_OPTIONS.map((option) => (
+          <option key={option.value} value={option.value}>
+            {t(option.translationKey)}
+          </option>
+        ))}
+      </select>
       <Button
         buttonType={ButtonType.LINK}
         linkTo={"/suggestion/create"}

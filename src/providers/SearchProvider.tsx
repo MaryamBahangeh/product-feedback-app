@@ -10,7 +10,7 @@ import {
 
 import { SuggestionContext } from "./SuggestionProvider.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
+import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
 
 type ContextType = {
   filter: string;
