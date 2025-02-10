@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import { LANGUAGE_KEY } from "../constants/localstorage.constants.ts";
+import { LOCAL_STORAGE_LANGUAGE_KEY } from "../constants/localstorage.constants.ts";
 
 import enTranslation from "./locales/en/translation.json";
 import faTranslation from "./locales/fa/translation.json";
@@ -18,7 +18,7 @@ export const resources = {
 } as const;
 
 function getLanguage(): string {
-  const item = localStorage.getItem(LANGUAGE_KEY);
+  const item = localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY);
 
   if (!item || !["en", "fa"].includes(item)) {
     return "en";
