@@ -1,12 +1,21 @@
 {
   "toolbar": {
     "suggestion": "Suggestion",
+    "suggestions": "Suggestions",
     "sortBy": "Sort by",
+
     "sortOptions": {
       "mostUpVotes": "Most Upvotes",
       "title": "Title",
       "comments": "Comments",
       "suggestionType": "Category"
+    },
+
+    "filters": {
+      "languages": {
+        "en": "English",
+        "fa": "فارسی"
+      }
     }
   }
 }

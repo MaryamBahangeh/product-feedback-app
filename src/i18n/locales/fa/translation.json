@@ -1,12 +1,21 @@
 {
   "toolbar": {
     "suggestion": "پیشنهاد",
+    "suggestions": "پیشنهاد",
     "sortBy": "مرتب سازی",
+
     "sortOptions": {
       "mostUpVotes": "بیشترین رای",
       "title": "عنوان",
       "comments": "نظرات",
       "suggestionType": "دسته بندی"
+    },
+
+    "filters": {
+      "languages": {
+        "en": "English",
+        "fa": "فارسی"
+      }
     }
   }
 }
