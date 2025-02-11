@@ -54,5 +54,11 @@
 
   "pageHeader": {
     "goBack": "GO Back"
+  },
+
+  "reply": {
+    "buttons": {
+      "reply": "Reply"
+    }
   }
 }
