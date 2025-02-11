@@ -71,5 +71,9 @@
     "planned": "Planned",
     "inProgressed": "In-Progressed",
     "live": "Live"
+  },
+
+  "notFound": {
+    "notFound": "Not Found"
   }
 }
