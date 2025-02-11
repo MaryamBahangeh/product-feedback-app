@@ -44,6 +44,14 @@ function Toolbar({ className }: Props) {
     }
   };
 
+  const languageDefaultValue = (): string => {
+    console.log(
+      "language=" +
+        (localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY) ?? i18next.language),
+    );
+    return localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY) ?? i18next.language;
+  };
+
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
@@ -68,7 +76,7 @@ function Toolbar({ className }: Props) {
       </label>
 
       <Select
-        defaultValue={i18next.language}
+        defaultValue={languageDefaultValue()}
         onChange={languageChangeHandler}
         options={LANGUAGE_DROPDOWN_OPTIONS}
       ></Select>

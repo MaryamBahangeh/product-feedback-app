@@ -2,8 +2,6 @@ import { ComponentProps, ReactElement } from "react";
 
 import { useTranslation } from "react-i18next";
 
-import clsx from "clsx";
-
 import styles from "./Select.module.css";
 import { DropdownOption } from "@/models/dropdown-type.ts";
 
