@@ -83,5 +83,13 @@
 
   "suggestionEditing": {
     "editing": "Editing"
+  },
+
+  "suggestionPage": {
+    "editFeedback": " Edit Feedback",
+    "addComment": "Add Comment",
+    "typeYourCommentHere": "Type your comment here",
+    "charactersLeft": "characters left",
+    "postComment": "Post Comment"
   }
 }

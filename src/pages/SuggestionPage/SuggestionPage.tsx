@@ -22,9 +22,12 @@ import { CommentModel } from "@/models/comment-model.ts";
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionPage.module.css";
+import { useTranslation } from "react-i18next";
 
 function SuggestionPage() {
   const { suggestions, dispatch } = useContext(SuggestionContext);
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -77,7 +80,7 @@ function SuggestionPage() {
   }, [id, navigate, suggestion]);
 
   if (!id || !suggestion) {
-    return <div>Redirecting....</div>;
+    return <div>{t("common.redirecting")}</div>;
   }
 
   return (
@@ -89,7 +92,7 @@ function SuggestionPage() {
           variant={Variant.SOLID}
           color={Color.SECONDARY}
         >
-          Edit Feedback
+          {t("suggestionPage.editFeedback")}
         </Button>
       </PageHeader>
 
@@ -110,22 +113,24 @@ function SuggestionPage() {
       </Card>
 
       <Card className={styles["add-comment"]}>
-        <h2>Add Comment</h2>
+        <h2>{t("suggestionPage.addComment")}</h2>
         <Textarea
           value={commentText}
           onChange={textAreaChangeHandler}
-          placeholder={"Type your comment here"}
+          placeholder={t("suggestionPage.typeYourCommentHere")}
         ></Textarea>
 
         <div className={styles["button-container"]}>
-          <span>{leftCharacters} characters left</span>
+          <span>
+            {leftCharacters + " " + t("suggestionPage.charactersLeft")}
+          </span>
           <Button
             variant={Variant.SOLID}
             color={Color.PRIMARY}
             className={styles.add}
             onClick={addCommentClickHandler}
           >
-            Post Comment
+            {t("suggestionPage.postComment")}
           </Button>
         </div>
       </Card>
