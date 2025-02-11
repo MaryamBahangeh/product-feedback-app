@@ -17,5 +17,35 @@
     },
 
     "AddFeedback": "Add Feedback"
+  },
+  "createEditForm": {
+    "feedbackTitle": "Feedback Title",
+    "titleDescription": "Add a short, descriptive headline",
+
+    "category": "Category",
+    "categoryDescription": "Choose a category for your feedback",
+    "categoryOptions": {
+      "UI": "UI",
+      "UX": "UX",
+      "enhancement": "Enhancement",
+      "feature": "Feature",
+      "bug": "Bug"
+    },
+
+    "updateStatus": "Update Status",
+    "statusDescription": "Change feature state",
+    "statusOptions": {
+      "suggestion": "Suggestion",
+      "planned": "Planned"
+    },
+
+    "feedbackDetail": "Feedback Detail",
+    "feedbackDescription": "Include any specific comments on what should be improved, added, etc",
+
+    "buttons": {
+      "saveChanges": "Save Changes",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    }
   }
 }
