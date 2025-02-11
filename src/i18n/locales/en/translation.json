@@ -60,5 +60,9 @@
     "buttons": {
       "reply": "Reply"
     }
+  },
+
+  "menu": {
+    "apply": "Apply"
   }
 }
