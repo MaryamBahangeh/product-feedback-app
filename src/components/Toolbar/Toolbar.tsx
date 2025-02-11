@@ -17,6 +17,8 @@ import i18next from "i18next";
 import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
 import { useTranslation } from "react-i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
+import Select from "@/components/Select/Select.tsx";
+import { DropdownOption } from "@/models/dropdown-type.ts";
 
 type Props = {
   className?: string;
@@ -27,11 +29,13 @@ function Toolbar({ className }: Props) {
 
   const { t } = useTranslation();
 
-  const languageChangeHandler = async (language: string): Promise<void> => {
+  const languageChangeHandler = async (
+    language: DropdownOption,
+  ): Promise<void> => {
     try {
-      await i18next.changeLanguage(language);
+      await i18next.changeLanguage(language.value);
 
-      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, language);
+      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, language.value);
 
       document.documentElement.lang = i18next.language;
       document.documentElement.dir = i18next.dir();
@@ -56,28 +60,19 @@ function Toolbar({ className }: Props) {
 
       <label>
         {t("toolbar.sortBy")}:
-        <select
+        <Select
           defaultValue={sortBy}
-          onChange={(e) => setSortBy(e.currentTarget.value)}
-        >
-          {SORT_OPTIONS.map((sortOption) => (
-            <option key={sortOption.value} value={sortOption.value}>
-              {t(sortOption.translationKey)}
-            </option>
-          ))}
-        </select>
+          onChange={(option) => setSortBy(option.value)}
+          options={SORT_OPTIONS}
+        ></Select>
       </label>
 
-      <select
+      <Select
         defaultValue={i18next.language}
-        onChange={(e) => languageChangeHandler(e.currentTarget.value)}
-      >
-        {LANGUAGE_DROPDOWN_OPTIONS.map((option) => (
-          <option key={option.value} value={option.value}>
-            {t(option.translationKey)}
-          </option>
-        ))}
-      </select>
+        onChange={languageChangeHandler}
+        options={LANGUAGE_DROPDOWN_OPTIONS}
+      ></Select>
+
       <Button
         buttonType={ButtonType.LINK}
         linkTo={"/suggestion/create"}
