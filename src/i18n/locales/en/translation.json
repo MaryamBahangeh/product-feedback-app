@@ -72,6 +72,7 @@
 
   "roadMap": {
     "roadMap": "Raodmap",
+    "view": "View",
     "planned": "Planned",
     "inProgressed": "In-Progressed",
     "live": "Live"
