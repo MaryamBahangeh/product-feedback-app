@@ -64,5 +64,12 @@
 
   "menu": {
     "apply": "Apply"
+  },
+
+  "roadMap": {
+    "roadMap": "Raodmap",
+    "planned": "Planned",
+    "inProgressed": "In-Progressed",
+    "live": "Live"
   }
 }
