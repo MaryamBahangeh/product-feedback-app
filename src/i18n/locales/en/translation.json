@@ -54,5 +54,7 @@
 
   "pageHeader": {
     "goBack": "GO Back"
-  }
+  },
+
+  "reply": "Reply"
 }

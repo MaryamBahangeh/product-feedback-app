@@ -11,6 +11,7 @@ import { persons, User } from "@/assets/data/users.ts";
 import { CommentModel } from "@/models/comment-model.ts";
 
 import styles from "./Reply.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   mention?: User;
@@ -20,6 +21,8 @@ type Props = {
 };
 
 function Reply({ mention, user, text, onAdd }: Props) {
+  const { t } = useTranslation();
+
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
   const [replyText, setReplyText] = useState<string>("");
 
@@ -68,7 +71,7 @@ function Reply({ mention, user, text, onAdd }: Props) {
           setShowReplyTextarea((old) => !old);
         }}
       >
-        Reply
+        {t("reply")}
       </Button>
     </div>
   );
