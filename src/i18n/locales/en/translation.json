@@ -21,6 +21,7 @@
   "createEditForm": {
     "feedbackTitle": "Feedback Title",
     "titleDescription": "Add a short, descriptive headline",
+    "titleIsRequired": "Title is required.",
 
     "category": "Category",
     "categoryDescription": "Choose a category for your feedback",
@@ -40,7 +41,8 @@
     },
 
     "feedbackDetail": "Feedback Detail",
-    "feedbackDescription": "Include any specific comments on what should be improved, added, etc",
+    "feedbackDetailDescription": "Include any specific comments on what should be improved, added, etc",
+    "descriptionIsRequired.": "Description is required.",
 
     "buttons": {
       "saveChanges": "Save Changes",

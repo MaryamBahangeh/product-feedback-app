@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import { useTranslation } from "react-i18next";
 
@@ -7,38 +7,25 @@ import clsx from "clsx";
 import styles from "./Select.module.css";
 import { DropdownOption } from "@/models/dropdown-type.ts";
 
-type Props = {
+type Props = ComponentProps<"select"> & {
   options: DropdownOption[];
-  defaultValue: string;
   onChange: (option: DropdownOption) => void;
-  className?: string;
 };
 
-export default function Select({
-  options,
-  defaultValue,
-  onChange,
-  className,
-}: Props): ReactElement {
+export default function Select({ options, onChange }: Props): ReactElement {
   const { t } = useTranslation();
-
   return (
     <select
-      className={clsx(styles.select, className)}
+      className={styles.select}
       onChange={(e) =>
         onChange({
           translationKey: e.target.name,
           value: e.currentTarget.value,
         })
       }
-      defaultValue={defaultValue}
     >
       {options.map((option) => (
-        <option
-          className={styles.option}
-          key={option.value}
-          value={option.value}
-        >
+        <option key={option.value} value={option.value}>
           {t(option.translationKey)}
         </option>
       ))}
