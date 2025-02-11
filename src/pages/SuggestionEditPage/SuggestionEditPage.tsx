@@ -9,9 +9,13 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
+import { useTranslation } from "react-i18next";
 
 function SuggestionEditPage() {
   const { suggestions, dispatch } = useContext(SuggestionContext);
+
+  const { t } = useTranslation();
+
   const { id } = useParams();
 
   const suggestion = useMemo(() => {
@@ -46,7 +50,7 @@ function SuggestionEditPage() {
   }, []);
 
   if (!id || !suggestion) {
-    return <div>Redirecting....</div>;
+    return <div>{t("common.redirecting")}</div>;
   }
 
   return (
@@ -59,7 +63,7 @@ function SuggestionEditPage() {
           titleIcon={
             <img src="/images/icones/shared/icon-edit-feedback.svg" alt="" />
           }
-          pageTitle={`Editing '${suggestion.title}'`}
+          pageTitle={t("suggestionEditing.editing") + " " + suggestion.title}
           defaultValues={suggestion}
           onCancel={goBackHandler}
           onRemove={removeClickHandler}
