@@ -12,6 +12,7 @@ import { ComponentProps, FormEvent, ReactElement, useState } from "react";
 import styles from "./CreateEditForm.module.css";
 import Select from "@/components/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
+import { DropdownOption } from "@/models/dropdown-type.ts";
 
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
@@ -84,7 +85,9 @@ function CreateEditForm({
           name="suggestionType"
           options={SUGGESTION_TYPES}
           value={newSuggestion.suggestionType}
-          onChange={(option) => handleChange("suggestionType", option.value)}
+          onDropdownChange={(option: DropdownOption) =>
+            handleChange("suggestionType", option.value)
+          }
         ></Select>
         {/*<select*/}
         {/*  name="suggestionType"*/}
@@ -110,7 +113,9 @@ function CreateEditForm({
           name="suggestionStatus"
           options={SUGGESTION_STATUS}
           defaultValue={SUGGESTION_STATUS[0].value}
-          onChange={(option) => handleChange("suggestionStatus", option.value)}
+          onDropdownChange={(option: DropdownOption) =>
+            handleChange("suggestionStatus", option.value)
+          }
         ></Select>
       </div>
 

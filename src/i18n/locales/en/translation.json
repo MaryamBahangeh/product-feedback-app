@@ -12,11 +12,12 @@
       "mostUpVotes": "Most Upvotes",
       "title": "Title",
       "comments": "Comments",
-      "suggestionType": "Category"
+      "category": "Category"
     },
 
     "languages": {
       "en": "English",
+      "nl": "Nederlands",
       "fa": "فارسی"
     },
 
@@ -71,7 +72,7 @@
   },
 
   "roadMap": {
-    "roadMap": "Raodmap",
+    "roadMap": "Roadmap",
     "view": "View",
     "planned": "Planned",
     "inProgressed": "In-Progressed",
@@ -87,7 +88,7 @@
   },
 
   "suggestionPage": {
-    "editFeedback": " Edit Feedback",
+    "editFeedback": "Edit Feedback",
     "addComment": "Add Comment",
     "typeYourCommentHere": "Type your comment here",
     "charactersLeft": "characters left",

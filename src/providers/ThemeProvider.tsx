@@ -24,7 +24,6 @@ const defaultIsDarkMode = (): boolean => {
       "true"
     );
   }
-  console.log(window.matchMedia("(prefers-color-scheme: dark)").matches);
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
 

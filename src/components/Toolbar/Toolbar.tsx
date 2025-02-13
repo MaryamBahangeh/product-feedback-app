@@ -44,14 +44,6 @@ function Toolbar({ className }: Props) {
     }
   };
 
-  const languageDefaultValue = (): string => {
-    console.log(
-      "language=" +
-        (localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY) ?? i18next.language),
-    );
-    return localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY) ?? i18next.language;
-  };
-
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
@@ -70,14 +62,14 @@ function Toolbar({ className }: Props) {
         {t("toolbar.sortBy")}:
         <Select
           defaultValue={sortBy}
-          onChange={(option) => setSortBy(option.value)}
+          onDropdownChange={(option) => setSortBy(option.value)}
           options={SORT_OPTIONS}
         ></Select>
       </label>
 
       <Select
-        defaultValue={languageDefaultValue()}
-        onChange={languageChangeHandler}
+        defaultValue={i18next.language}
+        onDropdownChange={languageChangeHandler}
         options={LANGUAGE_DROPDOWN_OPTIONS}
       ></Select>
 

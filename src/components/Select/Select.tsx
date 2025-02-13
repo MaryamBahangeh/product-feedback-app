@@ -7,16 +7,19 @@ import { DropdownOption } from "@/models/dropdown-type.ts";
 
 type Props = ComponentProps<"select"> & {
   options: DropdownOption[];
-  onChange: (option: DropdownOption) => void;
+  onDropdownChange: (option: DropdownOption) => void;
 };
 
-export default function Select({ options, onChange }: Props): ReactElement {
+export default function Select({
+  options,
+  onDropdownChange,
+}: Props): ReactElement {
   const { t } = useTranslation();
   return (
     <select
       className={styles.select}
       onChange={(e) =>
-        onChange({
+        onDropdownChange({
           translationKey: e.target.name,
           value: e.currentTarget.value,
         })

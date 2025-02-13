@@ -8,11 +8,12 @@
       "mostUpVotes": "بیشترین رای",
       "title": "عنوان",
       "comments": "نظرات",
-      "suggestionType": "دسته بندی"
+      "category": "دسته بندی"
     },
 
     "languages": {
       "en": "English",
+      "nl": "Nederlands",
       "fa": "فارسی"
     },
 

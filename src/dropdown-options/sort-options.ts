@@ -6,6 +6,6 @@ export const SORT_OPTIONS: DropdownOption[] = [
   { value: "comments", translationKey: "toolbar.sortOptions.comments" },
   {
     value: "suggestionType",
-    translationKey: "toolbar.sortOptions.suggestionType",
+    translationKey: "toolbar.sortOptions.category",
   },
 ] as const;

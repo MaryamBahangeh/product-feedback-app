@@ -5,6 +5,7 @@ import { LOCAL_STORAGE_LANGUAGE_KEY } from "../constants/localstorage.constants.
 
 import enTranslation from "./locales/en/translation.json";
 import faTranslation from "./locales/fa/translation.json";
+import nlTranslation from "./locales/nl/translation.json";
 
 export const defaultNS = "translation";
 
@@ -15,12 +16,16 @@ export const resources = {
   fa: {
     translation: faTranslation,
   },
+
+  nl: {
+    translation: nlTranslation,
+  },
 } as const;
 
 function getLanguage(): string {
   const item = localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY);
 
-  if (!item || !["en", "fa"].includes(item)) {
+  if (!item || !["en", "fa", "nl"].includes(item)) {
     return "en";
   }
 
