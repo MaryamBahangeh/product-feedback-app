@@ -23,7 +23,7 @@
       "fa": "فارسی"
     },
 
-    "AddFeedback": "Feedback toevoegen"
+    "addFeedback": "Feedback toevoegen"
   },
 
   "createEditForm": {
@@ -34,8 +34,8 @@
     "category": "categorie",
     "categoryDescription": "Kies een categorie voor uw feedback",
     "categoryOptions": {
-      "UI": "UI",
-      "UX": "UX",
+      "ui": "UI",
+      "ux": "UX",
       "enhancement": "Verbetering",
       "feature": "Functie",
       "bug": "Beestje"

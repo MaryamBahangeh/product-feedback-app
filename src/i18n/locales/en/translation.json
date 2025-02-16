@@ -21,7 +21,7 @@
       "fa": "فارسی"
     },
 
-    "AddFeedback": "Add Feedback"
+    "addFeedback": "Add Feedback"
   },
 
   "createEditForm": {
@@ -32,8 +32,8 @@
     "category": "Category",
     "categoryDescription": "Choose a category for your feedback",
     "categoryOptions": {
-      "UI": "UI",
-      "UX": "UX",
+      "ui": "UI",
+      "ux": "UX",
       "enhancement": "Enhancement",
       "feature": "Feature",
       "bug": "Bug"

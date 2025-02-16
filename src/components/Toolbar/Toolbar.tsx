@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { ChangeEvent, useContext } from "react";
 
 import clsx from "clsx";
 
@@ -18,7 +18,6 @@ import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.t
 import { useTranslation } from "react-i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 import Select from "@/components/Select/Select.tsx";
-import { DropdownOption } from "@/models/dropdown-type.ts";
 
 type Props = {
   className?: string;
@@ -30,12 +29,12 @@ function Toolbar({ className }: Props) {
   const { t } = useTranslation();
 
   const languageChangeHandler = async (
-    language: DropdownOption,
+    e: ChangeEvent<HTMLSelectElement>,
   ): Promise<void> => {
     try {
-      await i18next.changeLanguage(language.value);
+      await i18next.changeLanguage(e.target.value);
 
-      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, language.value);
+      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, e.target.value);
 
       document.documentElement.lang = i18next.language;
       document.documentElement.dir = i18next.dir();
@@ -62,14 +61,14 @@ function Toolbar({ className }: Props) {
         {t("toolbar.sortBy")}:
         <Select
           defaultValue={sortBy}
-          onDropdownChange={(option) => setSortBy(option.value)}
+          onChange={(e) => setSortBy(e.currentTarget.value)}
           options={SORT_OPTIONS}
         ></Select>
       </label>
 
       <Select
         defaultValue={i18next.language}
-        onDropdownChange={languageChangeHandler}
+        onChange={languageChangeHandler}
         options={LANGUAGE_DROPDOWN_OPTIONS}
       ></Select>
 
@@ -80,7 +79,7 @@ function Toolbar({ className }: Props) {
         color={Color.PRIMARY}
       >
         <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" />
-        {t("toolbar.AddFeedback")}
+        {t("toolbar.addFeedback")}
       </Button>
     </div>
   );
