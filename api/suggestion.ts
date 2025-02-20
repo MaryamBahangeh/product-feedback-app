@@ -17,6 +17,13 @@ export const fetchSuggestions = async (
   return await response.json();
 };
 
+export const fetchSuggestionById = async (
+  suggestionId: string,
+): Promise<SuggestionModel> => {
+  const response = await fetch(BASE_URL + "?id=" + suggestionId).then();
+  return await response.json();
+};
+
 export const addSuggestion = async (suggestion: SuggestionModel) => {
   await fetch(BASE_URL, { method: "POST", body: JSON.stringify(suggestion) });
 };
@@ -29,4 +36,8 @@ export const updateSuggestion = async (
     method: "PATCH",
     body: JSON.stringify(partialSuggestion),
   });
+};
+
+export const removeSuggestion = async (id: string) => {
+  await fetch(BASE_URL + "/" + id, { method: "DELETE" });
 };

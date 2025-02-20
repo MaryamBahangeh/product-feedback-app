@@ -37,14 +37,8 @@ function defaultLocalstorage<T>(key: string, defaultValue: T): T {
 type Props = PropsWithChildren;
 
 function SuggestionProvider({ children }: Props) {
-  const [suggestions, dispatch] = useReducer(
-    suggestionReducer,
-    defaultLocalstorage<SuggestionModel[]>(LOCAL_STORAGE_SUGGESTION_KEY, []),
-  );
 
-  const increaseRank = (id: string): void => {
-    dispatch({ type: "rank_increased", suggestionId: id });
-  };
+
 
   useEffect(() => {
     localStorage.setItem(
@@ -56,9 +50,6 @@ function SuggestionProvider({ children }: Props) {
   return (
     <SuggestionContext.Provider
       value={{
-        suggestions,
-        dispatch,
-        increaseRank,
       }}
     >
       {children}
