@@ -20,3 +20,13 @@ export const fetchSuggestions = async (
 export const addSuggestion = async (suggestion: SuggestionModel) => {
   await fetch(BASE_URL, { method: "POST", body: JSON.stringify(suggestion) });
 };
+
+export const updateSuggestion = async (
+  id: SuggestionModel["id"],
+  partialSuggestion: Partial<SuggestionModel>,
+) => {
+  await fetch(BASE_URL + "/" + id, {
+    method: "PATCH",
+    body: JSON.stringify(partialSuggestion),
+  });
+};

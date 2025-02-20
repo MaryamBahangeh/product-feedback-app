@@ -10,6 +10,7 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
 import { useTranslation } from "react-i18next";
+import { updateSuggestion } from "../../../api/suggestion.ts";
 
 function SuggestionEditPage() {
   const { suggestions, dispatch } = useContext(SuggestionContext);
@@ -35,6 +36,7 @@ function SuggestionEditPage() {
       newSuggestion,
     });
 
+    updateSuggestion(id!, newSuggestion).then();
     goBackHandler();
   };
 
