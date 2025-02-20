@@ -9,6 +9,7 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
+import { addSuggestion } from "../../../api/suggestion.ts";
 
 function SuggestionCreatePage() {
   const { dispatch } = useContext(SuggestionContext);
@@ -21,6 +22,7 @@ function SuggestionCreatePage() {
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
     dispatch({ type: "added_suggestion", newSuggestion });
+    addSuggestion(newSuggestion).then();
     goBackHandler();
   };
 

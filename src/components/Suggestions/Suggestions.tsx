@@ -15,12 +15,12 @@ type Props = {
 };
 
 function Suggestions({ className }: Props) {
-  const { filter } = useContext(SearchContext);
+  const { filter, sortBy } = useContext(SearchContext);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<
     SuggestionModel[]
   >([]);
-  fetchSuggestions(filter).then((x) => setFilteredSuggestions(x));
+  fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
 
   return (
     <ul className={clsx(styles.suggestions, className)}>
