@@ -9,12 +9,14 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
+import { updateSuggestion } from "../../../../api/suggestion.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { increaseRank } = useContext(SuggestionContext);
 
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
+    updateSuggestion(suggestionId, { rank: suggestion.rank + 1 }).then();
   };
 
   return (
