@@ -33,7 +33,7 @@ function Reply({ mention, user, text, onAdd }: Props) {
       user: persons[2],
       comments: [],
     };
-
+    console.log(newComment);
     onAdd(newComment);
     setReplyText("");
     setShowReplyTextarea(false);

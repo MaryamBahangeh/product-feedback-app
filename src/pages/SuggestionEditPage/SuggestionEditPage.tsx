@@ -10,10 +10,10 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
 import { useTranslation } from "react-i18next";
-import { updateSuggestion } from "../../../api/suggestion.ts";
+import { removeSuggestion, updateSuggestion } from "../../../api/suggestion.ts";
 
 function SuggestionEditPage() {
-  const { suggestions, dispatch } = useContext(SuggestionContext);
+  const { suggestions } = useContext(SuggestionContext);
 
   const { t } = useTranslation();
 
@@ -30,18 +30,12 @@ function SuggestionEditPage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel): void => {
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: id!,
-      newSuggestion,
-    });
-
     updateSuggestion(id!, newSuggestion).then();
     goBackHandler();
   };
 
   const removeClickHandler = (): void => {
-    dispatch({ type: "removed_suggestion", suggestionId: id! });
+    removeSuggestion(id!).then();
     navigate("/");
   };
 
