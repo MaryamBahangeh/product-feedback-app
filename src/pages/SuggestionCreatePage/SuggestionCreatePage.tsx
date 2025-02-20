@@ -1,7 +1,3 @@
-import { useContext } from "react";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 
@@ -12,8 +8,6 @@ import { useNavigate } from "react-router";
 import { addSuggestion } from "../../../api/suggestion.ts";
 
 function SuggestionCreatePage() {
-  const { dispatch } = useContext(SuggestionContext);
-
   const navigate = useNavigate();
 
   const goBackHandler = () => {
@@ -21,7 +15,6 @@ function SuggestionCreatePage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    dispatch({ type: "added_suggestion", newSuggestion });
     addSuggestion(newSuggestion).then();
     goBackHandler();
   };

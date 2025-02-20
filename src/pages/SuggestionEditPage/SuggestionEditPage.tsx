@@ -1,7 +1,5 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
@@ -10,18 +8,19 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
 import { useTranslation } from "react-i18next";
-import { removeSuggestion, updateSuggestion } from "../../../api/suggestion.ts";
+import {
+  fetchSuggestionById,
+  removeSuggestion,
+  updateSuggestion,
+} from "../../../api/suggestion.ts";
 
 function SuggestionEditPage() {
-  const { suggestions } = useContext(SuggestionContext);
-
   const { t } = useTranslation();
 
   const { id } = useParams();
 
-  const suggestion = useMemo(() => {
-    return suggestions.find((x) => x.id === id);
-  }, [id, suggestions]);
+  const [suggestion, setSuggestion] = useState<SuggestionModel>();
+  fetchSuggestionById(id!).then((x) => setSuggestion(x));
 
   const navigate = useNavigate();
 
@@ -40,10 +39,10 @@ function SuggestionEditPage() {
   };
 
   useEffect(() => {
-    if (!id || !suggestion) {
+    if (!id) {
       navigate("/");
     }
-  }, []);
+  }, [id, navigate]);
 
   if (!id || !suggestion) {
     return <div>{t("common.redirecting")}</div>;

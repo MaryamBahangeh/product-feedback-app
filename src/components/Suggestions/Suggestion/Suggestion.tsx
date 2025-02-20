@@ -1,7 +1,4 @@
-import { useContext } from "react";
 import { Link } from "react-router";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -12,10 +9,7 @@ import styles from "./Suggestion.module.css";
 import { updateSuggestion } from "../../../../api/suggestion.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank } = useContext(SuggestionContext);
-
   const addRankClickHandler = (suggestionId: string) => {
-    increaseRank(suggestionId);
     updateSuggestion(suggestionId, { rank: suggestion.rank + 1 }).then();
   };
 

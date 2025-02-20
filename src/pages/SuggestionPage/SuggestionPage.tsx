@@ -59,15 +59,15 @@ function SuggestionPage() {
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    console.log(comments);
     updateSuggestion(suggestion!.id, { ...suggestion, comments }).then();
   };
 
+  //!!!!!!!!!!!!!
   useEffect(() => {
-    if (!id || !suggestion) {
+    if (!id) {
       navigate("/");
     }
-  }, [id, navigate, suggestion]);
+  }, [id, navigate]);
 
   if (!id || !suggestion) {
     return <div>{t("common.redirecting")}</div>;

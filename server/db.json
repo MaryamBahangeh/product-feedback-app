@@ -1,39 +1,13 @@
 {
   "suggestions": [
     {
-      "id": "cd7bbf88-1777-4f7a-9cd5-752962c447f5",
-      "title": "suggestion1",
-      "description": "suggestion1 description",
-      "suggestionType": "Enhancement",
-      "rank": 0,
-      "comments": [
-        {
-          "id": "b21358b8-3753-4099-bab8-7dac1f5a3985",
-          "text": "comment1",
-          "user": {
-            "id": "1",
-            "firstName": "Ali",
-            "lastName": "Taheri",
-            "userName": "@Alitaher23",
-            "imageUrl": "/images/users/person1.jpg"
-          },
-          "comments": [
-            {
-              "id": "d1292cfa-9b00-400f-b3ed-408e8b467f62",
-              "text": "reply1",
-              "user": {
-                "id": "3",
-                "firstName": "Maral",
-                "lastName": "Mohamadi",
-                "userName": "@Maralmohamadi",
-                "imageUrl": "/images/users/person3.jpg"
-              },
-              "comments": []
-            }
-          ]
-        }
-      ],
-      "suggestionStatus": "Planned"
+      "id": "5b9fa833-6c61-4011-8a2d-1fedbfcbef7b",
+      "title": "suggestion2",
+      "description": "Description2",
+      "suggestionType": "Feature",
+      "rank": 10,
+      "comments": [],
+      "suggestionStatus": "Suggestion"
     }
   ]
 }

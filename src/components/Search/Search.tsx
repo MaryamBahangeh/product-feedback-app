@@ -38,7 +38,7 @@ function Search({ className }: Props) {
           color={filter === option.value ? Color.SECONDARY : Color.IDLE}
           onClick={() => setFilter(option.value)}
         >
-          {t(option.translationKey)}
+          {t(option.translationKey as never)}
         </Button>
       ))}
     </Card>

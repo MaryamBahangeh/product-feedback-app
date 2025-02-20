@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 
 import clsx from "clsx";
 
@@ -18,13 +18,20 @@ import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.t
 import { useTranslation } from "react-i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 import Select from "@/components/Select/Select.tsx";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
+import { fetchSuggestions } from "../../../api/suggestion.ts";
 
 type Props = {
   className?: string;
 };
 
 function Toolbar({ className }: Props) {
-  const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
+  const { filter, sortBy, setSortBy } = useContext(SearchContext);
+
+  const [filteredSuggestions, setFilteredSuggestions] = useState<
+    SuggestionModel[]
+  >([]);
+  fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
 
   const { t } = useTranslation();
 

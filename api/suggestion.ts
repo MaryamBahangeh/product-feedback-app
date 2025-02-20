@@ -20,7 +20,7 @@ export const fetchSuggestions = async (
 export const fetchSuggestionById = async (
   suggestionId: string,
 ): Promise<SuggestionModel> => {
-  const response = await fetch(BASE_URL + "?id=" + suggestionId).then();
+  const response = await fetch(BASE_URL + "/" + suggestionId).then();
   return await response.json();
 };
 
