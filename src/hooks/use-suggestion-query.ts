@@ -3,12 +3,12 @@ import { useContext } from "react";
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 import { fetchSuggestions } from "@/api/suggestion.ts";
 
-function useSuggestionQuery(data: { suggestionType: string; sortBy: string }) {
-  const { filter } = useContext(SearchContext);
+function useSuggestionQuery() {
+  const { filter, sortBy } = useContext(SearchContext);
 
   return useQuery({
-    queryKey: ["suggestions", filter, data],
-    queryFn: () => fetchSuggestions(data),
+    queryKey: ["suggestions", filter, sortBy],
+    queryFn: () => fetchSuggestions({ suggestionType: filter, sortBy }),
     initialData: [],
   });
 }
