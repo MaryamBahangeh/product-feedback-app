@@ -14,19 +14,19 @@ import Textarea from "@/components/Textarea/Textarea.tsx";
 import Card from "@/components/Card/Card.tsx";
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
-import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { CommentModel } from "@/models/comment-model.ts";
 
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionPage.module.css";
 import { useTranslation } from "react-i18next";
-import {
-  fetchSuggestionById,
-  updateSuggestion,
-} from "../../../api/suggestion.ts";
+
+import useSuggestionQueryById from "@/hooks/use-suggestion-query-by-id.ts";
+import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
 
 function SuggestionPage() {
+  const mutation = useSuggestionUpdateMutation();
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -36,9 +36,8 @@ function SuggestionPage() {
   const [commentText, setCommentText] = useState<string>("");
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
-  const [suggestion, setSuggestion] = useState<SuggestionModel>();
-  fetchSuggestionById(id!).then((x) => setSuggestion(x));
-
+  const { data: suggestion } = useSuggestionQueryById(id!);
+  console.log("suggestion" + suggestion);
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.currentTarget.value);
     setLeftCharacters(255 - e.currentTarget.value.length);
@@ -52,14 +51,20 @@ function SuggestionPage() {
       comments: [],
     };
 
-    updateSuggestion(suggestion!.id, {
-      comments: [...suggestion!.comments, newComment],
-    }).then();
+    mutation.mutate({
+      id: suggestion!.id,
+      partialSuggestion: {
+        comments: [...suggestion!.comments, newComment],
+      },
+    });
     setCommentText("");
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    updateSuggestion(suggestion!.id, { ...suggestion, comments }).then();
+    mutation.mutate({
+      id: suggestion!.id,
+      partialSuggestion: { ...suggestion, comments },
+    });
   };
 
   //!!!!!!!!!!!!!

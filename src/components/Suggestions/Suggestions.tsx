@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
+
+import clsx from "clsx";
+
+import { SearchContext } from "@/providers/SearchProvider.tsx";
+
+import useSuggestionQuery from "@/hooks/use-suggestion-query.ts";
 
 import Suggestion from "./Suggestion/Suggestion.tsx";
 
 import styles from "./Suggestions.module.css";
-
-import clsx from "clsx";
-import { fetchSuggestions } from "../../../api/suggestion.ts";
-import { SuggestionModel } from "@/models/suggestion-model.ts";
-
-import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 type Props = {
   className?: string;
@@ -17,10 +17,14 @@ type Props = {
 function Suggestions({ className }: Props) {
   const { filter, sortBy } = useContext(SearchContext);
 
-  const [filteredSuggestions, setFilteredSuggestions] = useState<
-    SuggestionModel[]
-  >([]);
-  fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
+  // const [filteredSuggestions, setFilteredSuggestions] = useState<
+  //   SuggestionModel[]
+  // >([]);
+  // fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
+  const { data: filteredSuggestions } = useSuggestionQuery({
+    suggestionType: filter,
+    sortBy,
+  });
 
   return (
     <ul className={clsx(styles.suggestions, className)}>

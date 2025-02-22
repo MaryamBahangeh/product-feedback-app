@@ -10,7 +10,10 @@ import { updateSuggestion } from "../../../../api/suggestion.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const addRankClickHandler = (suggestionId: string) => {
-    updateSuggestion(suggestionId, { rank: suggestion.rank + 1 }).then();
+    updateSuggestion({
+      id: suggestionId,
+      partialSuggestion: { rank: suggestion.rank + 1 },
+    }).then();
   };
 
   return (

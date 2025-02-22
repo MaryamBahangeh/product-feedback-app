@@ -5,9 +5,12 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
-import { addSuggestion } from "../../../api/suggestion.ts";
+
+import useSuggestionInsertMutation from "@/hooks/use-suggestion-insert-mutation.ts";
 
 function SuggestionCreatePage() {
+  const mutation = useSuggestionInsertMutation();
+
   const navigate = useNavigate();
 
   const goBackHandler = () => {
@@ -15,7 +18,7 @@ function SuggestionCreatePage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    addSuggestion(newSuggestion).then();
+    mutation.mutate(newSuggestion);
     goBackHandler();
   };
 
