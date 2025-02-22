@@ -5,7 +5,6 @@ import { fetchSuggestionById } from "../../api/suggestion.ts";
 
 function useSuggestionQueryById(id: string) {
   const { filter } = useContext(SearchContext);
-  console.log("id " + id);
   return useQuery({
     queryKey: ["suggestions", filter, id],
     queryFn: () => fetchSuggestionById(id),

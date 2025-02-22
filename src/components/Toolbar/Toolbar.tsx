@@ -31,7 +31,9 @@ function Toolbar({ className }: Props) {
   const [filteredSuggestions, setFilteredSuggestions] = useState<
     SuggestionModel[]
   >([]);
-  fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
+  fetchSuggestions({ suggestionType: filter, sortBy }).then((x) =>
+    setFilteredSuggestions(x),
+  );
 
   const { t } = useTranslation();
 

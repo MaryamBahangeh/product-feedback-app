@@ -37,7 +37,6 @@ function SuggestionPage() {
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
   const { data: suggestion } = useSuggestionQueryById(id!);
-  console.log("suggestion" + suggestion);
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.currentTarget.value);
     setLeftCharacters(255 - e.currentTarget.value.length);
