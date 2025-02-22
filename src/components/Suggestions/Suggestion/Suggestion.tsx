@@ -1,19 +1,22 @@
 import { Link } from "react-router";
 
+import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
+
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
-import { updateSuggestion } from "@/api/suggestion.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
+  const mutation = useSuggestionUpdateMutation();
+
   const addRankClickHandler = (suggestionId: string) => {
-    updateSuggestion({
+    mutation.mutate({
       id: suggestionId,
       partialSuggestion: { rank: suggestion.rank + 1 },
-    }).then();
+    });
   };
 
   return (

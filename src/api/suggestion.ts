@@ -10,7 +10,7 @@ export const fetchSuggestions = async (data: {
 
   let url = BASE_URL + "?_sort=" + data.sortBy + "&_order=desc";
   if (data.suggestionType !== "All") {
-    url = BASE_URL + "&" + params;
+    url = url + "&" + params;
   }
 
   const response = await fetch(url);
