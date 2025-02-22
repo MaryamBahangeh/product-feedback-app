@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowUp } from "react-icons/fa6";
@@ -11,7 +12,6 @@ import { persons, User } from "@/assets/data/users.ts";
 import { CommentModel } from "@/models/comment-model.ts";
 
 import styles from "./Reply.module.css";
-import { useTranslation } from "react-i18next";
 
 type Props = {
   mention?: User;

@@ -1,5 +1,5 @@
 import { QueryClient, useMutation } from "@tanstack/react-query";
-import { updateSuggestion } from "../../api/suggestion.ts";
+import { updateSuggestion } from "@/api/suggestion.ts";
 
 const queryClient = new QueryClient();
 

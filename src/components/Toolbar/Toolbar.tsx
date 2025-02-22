@@ -1,11 +1,22 @@
 import { ChangeEvent, useContext, useState } from "react";
 
+import { useTranslation } from "react-i18next";
+
 import clsx from "clsx";
+
+import i18next from "i18next";
+
+import { fetchSuggestions } from "@/api/suggestion.ts";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
+import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
+import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 
+import { SuggestionModel } from "@/models/suggestion-model.ts";
+
+import Select from "@/components/Select/Select.tsx";
 import Button, {
   ButtonType,
   Color,
@@ -13,13 +24,6 @@ import Button, {
 } from "@/components/Button/Button.tsx";
 
 import styles from "./Toolbar.module.css";
-import i18next from "i18next";
-import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
-import { useTranslation } from "react-i18next";
-import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
-import Select from "@/components/Select/Select.tsx";
-import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { fetchSuggestions } from "../../../api/suggestion.ts";
 
 type Props = {
   className?: string;

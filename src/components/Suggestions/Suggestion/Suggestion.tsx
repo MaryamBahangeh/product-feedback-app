@@ -6,7 +6,7 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
-import { updateSuggestion } from "../../../../api/suggestion.ts";
+import { updateSuggestion } from "@/api/suggestion.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const addRankClickHandler = (suggestionId: string) => {
