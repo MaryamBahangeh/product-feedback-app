@@ -1,6 +1,6 @@
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-const BASE_URL = "http://localhost:3000/suggestions";
+const BASE_URL = "https://json-server-nine-beta.vercel.app/suggestions";
 
 export const fetchSuggestions = async (data: {
   suggestionType: string;
@@ -25,7 +25,7 @@ export const fetchSuggestionById = async (
 };
 
 export const addSuggestion = async (suggestion: SuggestionModel) => {
-  await fetch(BASE_URL, { method: "POST", body: JSON.stringify(suggestion) });
+  await fetch(BASE_URL, { method: "POST", body: JSON.stringify(suggestion), headers: { "Content-Type": "application/json" } });
 };
 
 export const updateSuggestion = async (data: {
@@ -34,6 +34,7 @@ export const updateSuggestion = async (data: {
 }) => {
   await fetch(BASE_URL + "/" + data.id, {
     method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data.partialSuggestion),
   });
 };
