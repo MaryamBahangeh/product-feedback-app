@@ -1,0 +1,99 @@
+{
+  "common": {
+    "redirecting": "Omleiden....",
+    "suggestion": "Suggestie",
+    "category": "Categorie"
+  },
+
+  "toolbar": {
+    "suggestion": "Suggestie",
+    "suggestions": "Suggesties",
+    "sortBy": "Sorteren op",
+
+    "sortOptions": {
+      "mostUpVotes": "Hoogste stemmen",
+      "title": "Titel",
+      "comments": "Reacties",
+      "category": "Categorie"
+    },
+
+    "languages": {
+      "en": "English",
+      "nl": "Nederlands",
+      "fa": "فارسی"
+    },
+
+    "addFeedback": "Feedback toevoegen"
+  },
+
+  "createEditForm": {
+    "feedbackTitle": "Feedback Title",
+    "titleDescription": "Voeg een korte, beschrijvende kop toe",
+    "titleIsRequired": "Titel is vereist.",
+
+    "category": "categorie",
+    "categoryDescription": "Kies een categorie voor uw feedback",
+    "categoryOptions": {
+      "ui": "UI",
+      "ux": "UX",
+      "enhancement": "Verbetering",
+      "feature": "Functie",
+      "bug": "Beestje"
+    },
+
+    "updateStatus": "Status bijwerken",
+    "statusDescription": "Functiestatus wijzigen",
+    "statusOptions": {
+      "suggestion": "Suggestie",
+      "planned": "Gepland"
+    },
+
+    "feedbackDetail": "Feedbackdetails",
+    "feedbackDetailDescription": "Geef eventuele specifieke opmerkingen over wat er verbeterd, toegevoegd, etc. moet worden",
+    "descriptionIsRequired.": "Beschrijving is verplicht.",
+
+    "buttons": {
+      "saveChanges": "Wijzigingen opslaan",
+      "delete": "Verwijderen",
+      "cancel": "Annuleren"
+    }
+  },
+
+  "pageHeader": {
+    "goBack": "Terug"
+  },
+
+  "reply": {
+    "buttons": {
+      "reply": "Antwoord"
+    }
+  },
+
+  "menu": {
+    "apply": "Toepassen"
+  },
+
+  "roadMap": {
+    "roadMap": "Routekaart",
+    "view": "Weergave",
+    "planned": "Gepland",
+    "inProgressed": "In-Uitvoering",
+    "live": "Live"
+  },
+
+  "notFound": {
+    "notFound": "Niet gevonden"
+  },
+
+  "suggestionEditing": {
+    "editing": "Bewerken"
+  },
+
+  "suggestionPage": {
+    "editFeedback": "Bewerken Feedback",
+    "addComment": "Voeg commentaar toe",
+    "typeYourCommentHere": "Typ hier uw reactie",
+    "charactersLeft": "tekens over",
+    "postComment": "Plaats een reactie"
+  }
+}

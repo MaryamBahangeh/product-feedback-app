@@ -1,22 +1,27 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router";
 
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+import { removeSuggestion } from "@/api/suggestion.ts";
 
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
+
+import useSuggestionQueryById from "@/hooks/use-suggestion-query-by-id.ts";
+import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
 
 function SuggestionEditPage() {
-  const { suggestions, dispatch } = useContext(SuggestionContext);
+  const mutation = useSuggestionUpdateMutation();
+
+  const { t } = useTranslation();
+
   const { id } = useParams();
 
-  const suggestion = useMemo(() => {
-    return suggestions.find((x) => x.id === id);
-  }, [id, suggestions]);
+  const { data: suggestion } = useSuggestionQueryById(id!);
 
   const navigate = useNavigate();
 
@@ -25,28 +30,23 @@ function SuggestionEditPage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel): void => {
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: id!,
-      newSuggestion,
-    });
-
+    mutation.mutate({ id: id!, partialSuggestion: newSuggestion });
     goBackHandler();
   };
 
   const removeClickHandler = (): void => {
-    dispatch({ type: "removed_suggestion", suggestionId: id! });
+    removeSuggestion(id!).then();
     navigate("/");
   };
 
   useEffect(() => {
-    if (!id || !suggestion) {
+    if (!id) {
       navigate("/");
     }
-  }, []);
+  }, [id, navigate]);
 
   if (!id || !suggestion) {
-    return <div>Redirecting....</div>;
+    return <div>{t("common.redirecting")}</div>;
   }
 
   return (
@@ -59,7 +59,7 @@ function SuggestionEditPage() {
           titleIcon={
             <img src="/images/icones/shared/icon-edit-feedback.svg" alt="" />
           }
-          pageTitle={`Editing '${suggestion.title}'`}
+          pageTitle={t("suggestionEditing.editing") + " " + suggestion.title}
           defaultValues={suggestion}
           onCancel={goBackHandler}
           onRemove={removeClickHandler}

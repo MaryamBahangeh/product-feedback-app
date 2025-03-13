@@ -1,0 +1,22 @@
+{
+  "toolbar": {
+    "suggestion": "پیشنهاد",
+    "suggestions": "پیشنهاد",
+    "sortBy": "مرتب سازی",
+
+    "sortOptions": {
+      "mostUpVotes": "بیشترین رای",
+      "title": "عنوان",
+      "comments": "نظرات",
+      "category": "دسته بندی"
+    },
+
+    "languages": {
+      "en": "English",
+      "nl": "Nederlands",
+      "fa": "فارسی"
+    },
+
+    "AddFeedback": "افزودن پیشنهاد"
+  }
+}

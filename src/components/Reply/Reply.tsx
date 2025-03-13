@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowUp } from "react-icons/fa6";
@@ -20,6 +21,8 @@ type Props = {
 };
 
 function Reply({ mention, user, text, onAdd }: Props) {
+  const { t } = useTranslation();
+
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
   const [replyText, setReplyText] = useState<string>("");
 
@@ -68,7 +71,7 @@ function Reply({ mention, user, text, onAdd }: Props) {
           setShowReplyTextarea((old) => !old);
         }}
       >
-        Reply
+        {t("reply.buttons.reply")}
       </Button>
     </div>
   );

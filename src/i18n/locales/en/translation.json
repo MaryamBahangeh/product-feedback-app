@@ -1,0 +1,97 @@
+{
+  "common": {
+    "redirecting": "Redirecting...."
+  },
+
+  "toolbar": {
+    "suggestion": "Suggestion",
+    "suggestions": "Suggestions",
+    "sortBy": "Sort by",
+
+    "sortOptions": {
+      "mostUpVotes": "Most Upvotes",
+      "title": "Title",
+      "comments": "Comments",
+      "category": "Category"
+    },
+
+    "languages": {
+      "en": "English",
+      "nl": "Nederlands",
+      "fa": "فارسی"
+    },
+
+    "addFeedback": "Add Feedback"
+  },
+
+  "createEditForm": {
+    "feedbackTitle": "Feedback Title",
+    "titleDescription": "Add a short, descriptive headline",
+    "titleIsRequired": "Title is required.",
+
+    "category": "Category",
+    "categoryDescription": "Choose a category for your feedback",
+    "categoryOptions": {
+      "ui": "UI",
+      "ux": "UX",
+      "enhancement": "Enhancement",
+      "feature": "Feature",
+      "bug": "Bug"
+    },
+
+    "updateStatus": "Update Status",
+    "statusDescription": "Change feature state",
+    "statusOptions": {
+      "suggestion": "Suggestion",
+      "planned": "Planned"
+    },
+
+    "feedbackDetail": "Feedback Detail",
+    "feedbackDetailDescription": "Include any specific comments on what should be improved, added, etc",
+    "descriptionIsRequired.": "Description is required.",
+
+    "buttons": {
+      "saveChanges": "Save Changes",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+
+  "pageHeader": {
+    "goBack": "GO Back"
+  },
+
+  "reply": {
+    "buttons": {
+      "reply": "Reply"
+    }
+  },
+
+  "menu": {
+    "apply": "Apply"
+  },
+
+  "roadMap": {
+    "roadMap": "Roadmap",
+    "view": "View",
+    "planned": "Planned",
+    "inProgressed": "In-Progressed",
+    "live": "Live"
+  },
+
+  "notFound": {
+    "notFound": "Not Found"
+  },
+
+  "suggestionEditing": {
+    "editing": "Editing"
+  },
+
+  "suggestionPage": {
+    "editFeedback": "Edit Feedback",
+    "addComment": "Add Comment",
+    "typeYourCommentHere": "Type your comment here",
+    "charactersLeft": "characters left",
+    "postComment": "Post Comment"
+  }
+}

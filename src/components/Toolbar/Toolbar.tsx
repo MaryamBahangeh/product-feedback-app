@@ -1,11 +1,20 @@
-import { useContext } from "react";
+import { ChangeEvent, useContext } from "react";
+
+import { useTranslation } from "react-i18next";
 
 import clsx from "clsx";
 
+import i18next from "i18next";
+
+import useSuggestionQuery from "@/hooks/use-suggestion-query.ts";
+
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
-import { SORT_OPTIONS } from "@/sort-options/sort-options.ts";
+import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
+import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
+import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 
+import Select from "@/components/Select/Select.tsx";
 import Button, {
   ButtonType,
   Color,
@@ -19,7 +28,26 @@ type Props = {
 };
 
 function Toolbar({ className }: Props) {
-  const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
+  const { sortBy, setSortBy } = useContext(SearchContext);
+
+  const { data: filteredSuggestions } = useSuggestionQuery();
+
+  const { t } = useTranslation();
+
+  const languageChangeHandler = async (
+    e: ChangeEvent<HTMLSelectElement>,
+  ): Promise<void> => {
+    try {
+      await i18next.changeLanguage(e.target.value);
+
+      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, e.target.value);
+
+      document.documentElement.lang = i18next.language;
+      document.documentElement.dir = i18next.dir();
+    } catch (err) {
+      console.log("Something went wrong loading", err);
+    }
+  };
 
   return (
     <div className={clsx(styles.toolbar, className)}>
@@ -28,23 +56,27 @@ function Toolbar({ className }: Props) {
 
         <span>
           {filteredSuggestions.length.toString() +
-            (filteredSuggestions.length > 1 ? " Suggestions" : " Suggestion")}
+            " " +
+            (filteredSuggestions.length > 1
+              ? t("toolbar.suggestions")
+              : t("toolbar.suggestion"))}
         </span>
       </div>
 
       <label>
-        Sort by:
-        <select
+        {t("toolbar.sortBy")}:
+        <Select
           defaultValue={sortBy}
           onChange={(e) => setSortBy(e.currentTarget.value)}
-        >
-          {SORT_OPTIONS.map((sortOption) => (
-            <option key={sortOption.value} value={sortOption.value}>
-              {sortOption.name}
-            </option>
-          ))}
-        </select>
+          options={SORT_OPTIONS}
+        ></Select>
       </label>
+
+      <Select
+        defaultValue={i18next.language}
+        onChange={languageChangeHandler}
+        options={LANGUAGE_DROPDOWN_OPTIONS}
+      ></Select>
 
       <Button
         buttonType={ButtonType.LINK}
@@ -52,8 +84,8 @@ function Toolbar({ className }: Props) {
         variant={Variant.SOLID}
         color={Color.PRIMARY}
       >
-        <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" /> Add
-        Feedback
+        <img src="/images/icones/shared/icon-plus.svg" alt="add feedback" />
+        {t("toolbar.addFeedback")}
       </Button>
     </div>
   );

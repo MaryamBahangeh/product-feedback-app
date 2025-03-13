@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 import clsx from "clsx";
 
@@ -7,7 +8,7 @@ import { SearchContext } from "@/providers/SearchProvider.tsx";
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
-import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
+import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-options.ts";
 
 import styles from "./Search.module.css";
 
@@ -17,6 +18,8 @@ type Props = {
 
 function Search({ className }: Props) {
   const { filter, setFilter } = useContext(SearchContext);
+
+  const { t } = useTranslation();
 
   return (
     <Card className={clsx(styles.search, className)}>
@@ -32,10 +35,10 @@ function Search({ className }: Props) {
         <Button
           key={option.value}
           variant={Variant.TONAL}
-          color={filter === option.name ? Color.SECONDARY : Color.IDLE}
+          color={filter === option.value ? Color.SECONDARY : Color.IDLE}
           onClick={() => setFilter(option.value)}
         >
-          {option.name}
+          {t(option.translationKey as never)}
         </Button>
       ))}
     </Card>

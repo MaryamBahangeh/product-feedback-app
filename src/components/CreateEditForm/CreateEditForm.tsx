@@ -1,13 +1,15 @@
+import { ComponentProps, FormEvent, ReactElement, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
+import Select from "@/components/Select/Select.tsx";
 
-import { SUGGESTION_TYPES } from "@/suggestion-options/suggestion-options.ts";
-import { SUGGESTION_STATUS } from "@/suggestion-status/suggestion-status.ts";
+import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-options.ts";
+import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { ComponentProps, FormEvent, ReactElement, useState } from "react";
 
 import styles from "./CreateEditForm.module.css";
 
@@ -48,6 +50,8 @@ function CreateEditForm({
     onSubmitClick(newSuggestion);
   };
 
+  const { t } = useTranslation();
+
   return (
     <form className={styles.form} onSubmit={SubmitClickHandler}>
       {titleIcon}
@@ -55,54 +59,60 @@ function CreateEditForm({
 
       <div>
         <h3>
-          Feedback Title <span className={styles.star}> *</span>
+          {t("createEditForm.feedbackTitle")}{" "}
+          <span className={styles.star}> *</span>
         </h3>
-        <span className={"subtitle"}>Add a short, descriptive headline</span>
+        <span className={"subtitle"}>
+          {t("createEditForm.titleDescription")}
+        </span>
         <input
           value={newSuggestion.title}
           onChange={(e) => handleChange("title", e.currentTarget.value)}
           required
         />
-        <span className={styles["error-message"]}>Title is required.</span>
+        <span className={styles["error-message"]}>
+          {t("createEditForm.titleIsRequired")}
+        </span>
       </div>
 
       <div>
-        <h3>Category</h3>
-        <span className={"subtitle"}>Choose a category for your feedback</span>
-        <select
+        <h3>{t("createEditForm.category")}</h3>
+        <span className={"subtitle"}>
+          {t("createEditForm.categoryDescription")}
+        </span>
+        <Select
           name="suggestionType"
+          options={SUGGESTION_TYPES}
           value={newSuggestion.suggestionType}
           onChange={(e) =>
             handleChange("suggestionType", e.currentTarget.value)
           }
-        >
-          {SUGGESTION_TYPES.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </select>
+        ></Select>
       </div>
 
       <div>
-        <h3>Update Status</h3>
-        <span className={"subtitle"}>Change feature state</span>
-        <select name="suggestionStatus">
-          {SUGGESTION_STATUS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </select>
+        <h3>{t("createEditForm.updateStatus")}</h3>
+        <span className={"subtitle"}>
+          {t("createEditForm.statusDescription")}
+        </span>
+        <Select
+          name="suggestionStatus"
+          options={SUGGESTION_STATUS}
+          defaultValue={SUGGESTION_STATUS[0].value}
+          onChange={(e) =>
+            handleChange("suggestionStatus", e.currentTarget.value)
+          }
+        ></Select>
       </div>
 
       <div>
         <h3>
-          Feedback Detail <span className={styles.star}>*</span>
+          {t("createEditForm.feedbackDetail")}{" "}
+          <span className={styles.star}>*</span>
         </h3>
 
         <span className={"subtitle"}>
-          Include any specific comments on what should be improved, added, etc.
+          {t("createEditForm.feedbackDetailDescription")}
         </span>
         <Textarea
           value={newSuggestion.description}
@@ -113,7 +123,7 @@ function CreateEditForm({
           required
         ></Textarea>
         <span className={styles["error-message"]}>
-          Description is required.
+          {t("createEditForm.descriptionIsRequired.")}
         </span>
       </div>
 
@@ -124,7 +134,7 @@ function CreateEditForm({
           className={styles.delete}
           onClick={onRemove}
         >
-          Delete
+          {t("createEditForm.buttons.delete")}
         </Button>
 
         <Button
@@ -133,11 +143,11 @@ function CreateEditForm({
           color={Color.SECONDARY}
           onClick={onCancel}
         >
-          Cancel
+          {t("createEditForm.buttons.cancel")}
         </Button>
 
         <Button variant={Variant.SOLID} color={Color.PRIMARY}>
-          Save Changes
+          {t("createEditForm.buttons.saveChanges")}
         </Button>
       </div>
     </form>

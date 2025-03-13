@@ -1,9 +1,11 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+import useSuggestionQueryById from "@/hooks/use-suggestion-query-by-id.ts";
+import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
 
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import Button, {
@@ -16,7 +18,6 @@ import Textarea from "@/components/Textarea/Textarea.tsx";
 import Card from "@/components/Card/Card.tsx";
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
-import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { CommentModel } from "@/models/comment-model.ts";
 
 import { persons } from "@/assets/data/users.ts";
@@ -24,18 +25,19 @@ import { persons } from "@/assets/data/users.ts";
 import styles from "./SuggestionPage.module.css";
 
 function SuggestionPage() {
-  const { suggestions, dispatch } = useContext(SuggestionContext);
+  const mutation = useSuggestionUpdateMutation();
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   const [commentText, setCommentText] = useState<string>("");
+
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
-  const suggestion: SuggestionModel = suggestions.filter(
-    (suggestion) => suggestion.id === id,
-  )[0];
+  const { data: suggestion } = useSuggestionQueryById(id!);
 
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.currentTarget.value);
@@ -50,34 +52,31 @@ function SuggestionPage() {
       comments: [],
     };
 
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: suggestion.id,
-      newSuggestion: {
-        ...suggestion,
-        comments: [...suggestion.comments, newComment],
+    mutation.mutate({
+      id: suggestion!.id,
+      partialSuggestion: {
+        comments: [...suggestion!.comments, newComment],
       },
     });
-
     setCommentText("");
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: suggestion.id,
-      newSuggestion: { ...suggestion, comments },
+    mutation.mutate({
+      id: suggestion!.id,
+      partialSuggestion: { ...suggestion, comments },
     });
   };
 
+  //!!!!!!!!!!!!!
   useEffect(() => {
-    if (!id || !suggestion) {
+    if (!id) {
       navigate("/");
     }
-  }, [id, navigate, suggestion]);
+  }, [id, navigate]);
 
   if (!id || !suggestion) {
-    return <div>Redirecting....</div>;
+    return <div>{t("common.redirecting")}</div>;
   }
 
   return (
@@ -89,7 +88,7 @@ function SuggestionPage() {
           variant={Variant.SOLID}
           color={Color.SECONDARY}
         >
-          Edit Feedback
+          {t("suggestionPage.editFeedback")}
         </Button>
       </PageHeader>
 
@@ -110,22 +109,24 @@ function SuggestionPage() {
       </Card>
 
       <Card className={styles["add-comment"]}>
-        <h2>Add Comment</h2>
+        <h2>{t("suggestionPage.addComment")}</h2>
         <Textarea
           value={commentText}
           onChange={textAreaChangeHandler}
-          placeholder={"Type your comment here"}
+          placeholder={t("suggestionPage.typeYourCommentHere")}
         ></Textarea>
 
         <div className={styles["button-container"]}>
-          <span>{leftCharacters} characters left</span>
+          <span>
+            {leftCharacters + " " + t("suggestionPage.charactersLeft")}
+          </span>
           <Button
             variant={Variant.SOLID}
             color={Color.PRIMARY}
             className={styles.add}
             onClick={addCommentClickHandler}
           >
-            Post Comment
+            {t("suggestionPage.postComment")}
           </Button>
         </div>
       </Card>

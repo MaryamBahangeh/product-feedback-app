@@ -1,20 +1,21 @@
-import SuggestionProvider from "./providers/SuggestionProvider.tsx";
 import SearchProvider from "./providers/SearchProvider.tsx";
 import Routing from "./Routing.tsx";
 import { BrowserRouter } from "react-router";
 import ThemeProvider from "@/providers/ThemeProvider.tsx";
+import QueryProvider from "@/providers/QueryProvider.tsx";
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <ThemeProvider>
-          <SuggestionProvider>
+      <QueryProvider>
+        <BrowserRouter>
+          <ThemeProvider>
             <SearchProvider>
               <Routing />
             </SearchProvider>
-          </SuggestionProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryProvider>
     </>
   );
 }
