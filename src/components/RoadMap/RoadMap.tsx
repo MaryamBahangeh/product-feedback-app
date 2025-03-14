@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+// import { Link } from "react-router";
 
 import clsx from "clsx";
 
@@ -18,7 +18,7 @@ function RoadMap({ className }: Props) {
     <Card className={clsx(styles["roadmap"], className)}>
       <div className={styles.title}>
         <h4>{t("roadMap.roadMap")}</h4>
-        <Link to="./">{t("roadMap.view")}</Link>
+        {/*<Link to="./">{t("roadMap.view")}</Link>*/}
       </div>
 
       <div className={styles.options}>
