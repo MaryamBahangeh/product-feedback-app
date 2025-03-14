@@ -1,9 +1,9 @@
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateSuggestion } from "@/api/suggestion.ts";
 
-const queryClient = new QueryClient();
-
 function useSuggestionInsertMutation() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: updateSuggestion,
     onSuccess: async () => {
