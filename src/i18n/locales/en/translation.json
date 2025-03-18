@@ -4,8 +4,10 @@
   },
 
   "toolbar": {
-    "suggestion": "Suggestion",
-    "suggestions": "Suggestions",
+    "suggestion_zero": "{{count}} Suggestion",
+    "suggestion_one": "{{count}} Suggestion",
+    "suggestion_other": "{{count}} Suggestions",
+
     "sortBy": "Sort by",
 
     "sortOptions": {

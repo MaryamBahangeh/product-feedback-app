@@ -55,11 +55,7 @@ function Toolbar({ className }: Props) {
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
         <span>
-          {filteredSuggestions.length.toString() +
-            " " +
-            (filteredSuggestions.length > 1
-              ? t("toolbar.suggestions")
-              : t("toolbar.suggestion"))}
+            {t("toolbar.suggestion", { count: filteredSuggestions.length })}
         </span>
       </div>
 
