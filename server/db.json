@@ -1,0 +1,21 @@
+{
+  "suggestions": [
+    {
+      "id": "5b9fa833-6c61-4011-8a2d-1fedbfcbef7b",
+      "title": "suggestion2",
+      "description": "Description2",
+      "suggestionType": "Feature",
+      "rank": 10,
+      "comments": [],
+      "suggestionStatus": "Suggestion"
+    },
+    {
+      "id": "897c1568-3430-4ba5-9dee-50afd8ce8573",
+      "title": "4488",
+      "description": "5588",
+      "suggestionType": "Enhancement",
+      "rank": 0,
+      "comments": []
+    }
+  ]
+}

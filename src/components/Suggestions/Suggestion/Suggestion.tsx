@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Link } from "react-router";
 
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
+import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
 
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -11,10 +10,13 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./Suggestion.module.css";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank } = useContext(SuggestionContext);
+  const mutation = useSuggestionUpdateMutation();
 
   const addRankClickHandler = (suggestionId: string) => {
-    increaseRank(suggestionId);
+    mutation.mutate({
+      id: suggestionId,
+      partialSuggestion: { rank: suggestion.rank + 1 },
+    });
   };
 
   return (
