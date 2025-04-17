@@ -54,7 +54,7 @@
   }
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
   .suggestion {
     grid-template-areas: "rank content comment";
     grid-template-columns: auto 1fr auto;

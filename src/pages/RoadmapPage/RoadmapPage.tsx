@@ -1,16 +1,14 @@
 import styles from "./RoadmapPage.module.css";
-import Toolbar from "@/components/Toolbar/Toolbar.tsx";
-import PageHeader from "@/components/PageHeader/PageHeader.tsx";
-import { useNavigate } from "react-router";
+
 import { useContext, useEffect, useState } from "react";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import RoadMap from "@/components/RoadMap/RoadMap.tsx";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import RoadmapHeader from "@/components/RoadMap/RoadmapHeader/RoadmapHeader.tsx";
 
 function RoadmapPage() {
-  const navigate = useNavigate();
   const { suggestions } = useContext(SuggestionContext);
   const { t } = useTranslation();
 
@@ -44,9 +42,7 @@ function RoadmapPage() {
 
   return (
     <div className={styles.roadmap}>
-      <PageHeader onGoBack={() => navigate("/")} />
-
-      <Toolbar />
+      <RoadmapHeader />
 
       <div className={styles.tabs}>
         <button
