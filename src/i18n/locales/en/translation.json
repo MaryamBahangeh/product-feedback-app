@@ -45,7 +45,9 @@
     "statusDescription": "Change feature state",
     "statusOptions": {
       "suggestion": "Suggestion",
-      "planned": "Planned"
+      "planned": "Planned",
+      "In-Progress" : "In-Progress",
+      "Live":"Live"
     },
 
     "feedbackDetail": "Feedback Detail",

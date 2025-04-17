@@ -5,7 +5,8 @@ import clsx from "clsx";
 import Menu from "@/components/Menu/Menu.tsx";
 import Board from "@/components/Board/Board.tsx";
 import Search from "@/components/Search/Search.tsx";
-import RoadMap from "@/components/RoadMap/RoadMap.tsx";
+import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.tsx";
+
 
 import styles from "./Sidebar.module.css";
 
@@ -20,7 +21,7 @@ export default function Sidebar({ className }: Props): ReactElement {
     <div className={clsx(styles.sidebar, className)}>
       <Board />
       <Search className={styles.search} />
-      <RoadMap className={styles.roadmap} />
+        <RoadmapSummary className={styles.roadmap} />
 
       <button
         className={styles.menu}

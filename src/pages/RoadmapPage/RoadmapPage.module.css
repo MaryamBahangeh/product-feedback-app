@@ -1,0 +1,10 @@
+.roadmap{
+    display: grid;
+    gap: 2rem;
+    padding-inline: 3rem;
+    padding-block: 3rem;
+
+    .content{
+        display: flex;
+    }
+}

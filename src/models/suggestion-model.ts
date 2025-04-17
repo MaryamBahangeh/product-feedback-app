@@ -5,6 +5,7 @@ export type SuggestionModel = {
   title: string;
   description: string;
   suggestionType: string;
+  suggestionStatus: string;
   rank: number;
   comments: CommentModel[];
 };

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
-import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-options.ts";
+import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
@@ -36,6 +36,7 @@ function CreateEditForm({
     title: "",
     description: "",
     suggestionType: SUGGESTION_TYPES[0].value,
+    suggestionStatus:SUGGESTION_STATUS[0].value,
     rank: 0,
     comments: [],
     ...defaultValues,
