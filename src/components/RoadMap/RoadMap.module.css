@@ -1,0 +1,18 @@
+.roadmap {
+    .line {
+        height:0.5rem;
+        border-radius:  1rem 1rem 0 0;
+
+        &.Planned {
+            background-color: var(--color-danger)
+        }
+
+        &.In-Progress {
+            background-color: var(--color-primary)
+        }
+
+        &.Live {
+            background-color: var(--color-secondary)
+        }
+    }
+}

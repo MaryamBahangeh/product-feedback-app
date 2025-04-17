@@ -13,6 +13,7 @@ import styles from "./CreateEditForm.module.css";
 import Select from "@/components/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
 
+
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
   titleIcon?: ReactElement<ComponentProps<"img">>;
@@ -99,7 +100,7 @@ function CreateEditForm({
         <Select
           name="suggestionStatus"
           options={SUGGESTION_STATUS}
-          defaultValue={SUGGESTION_STATUS[0].value}
+          value={newSuggestion.suggestionStatus}
           onChange={(e) =>
             handleChange("suggestionStatus", e.currentTarget.value)
           }
