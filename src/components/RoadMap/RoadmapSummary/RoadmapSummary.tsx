@@ -7,6 +7,9 @@ import Card from "@/components/Card/Card.tsx";
 import styles from "./RoadmapSummary.module.css";
 import { useTranslation } from "react-i18next";
 import {Link} from "react-router";
+import {useContext} from "react";
+import {SuggestionContext} from "@/providers/SuggestionProvider.tsx";
+import {SUGGESTION_STATUS} from "@/dropdown-options/suggestion-status.ts";
 
 type Props = {
   className?: string;
@@ -14,7 +17,10 @@ type Props = {
 
 function RoadmapSummary({ className }: Props) {
   const { t } = useTranslation();
-
+    const {suggestions} = useContext(SuggestionContext);
+    const planned = suggestions.filter((s)=>s.suggestionStatus === SUGGESTION_STATUS[1].value ).length
+    const inProgress = suggestions.filter((s)=>s.suggestionStatus === SUGGESTION_STATUS[2].value ).length
+    const live = suggestions.filter((s)=>s.suggestionStatus === SUGGESTION_STATUS[3].value ).length
   return (
     <Card className={clsx(styles["roadmap"], className)}>
       <div className={styles.title}>
@@ -25,17 +31,17 @@ function RoadmapSummary({ className }: Props) {
       <div className={styles.options}>
         <div className={styles.option}>
           <span className={clsx(styles["bullet"], styles["orange"])}></span>
-          {t("roadMap.planned")} <span className={styles.value}>2</span>
+          {t("roadMap.planned")} <span className={styles.value}>{planned}</span>
         </div>
 
         <div className={styles.option}>
           <span className={clsx(styles["bullet"], styles["purple"])}></span>
-          {t("roadMap.inProgressed")} <span className={styles.value}>3</span>
+          {t("roadMap.inProgressed")} <span className={styles.value}>{inProgress}</span>
         </div>
 
         <div className={styles.option}>
           <span className={clsx(styles["bullet"], styles["blue"])}></span>
-          {t("roadMap.live")} <span className={styles.value}>7</span>
+          {t("roadMap.live")} <span className={styles.value}>{live}</span>
         </div>
       </div>
     </Card>

@@ -1,12 +1,67 @@
-.roadmap{
-    display: grid;
-    gap: 2rem;
-    padding-inline: 3rem;
-    padding-block: 3rem;
+.roadmap {
+  display: grid;
 
-    .content{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 2rem;
+  padding-inline: 3rem;
+  padding-block: 3rem;
+
+  .tabs {
+    display: none;
+  }
+
+  .content {
+    padding-block-start: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap {
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        border: none;
+        width: 100%;
+        padding: 1.5rem;
+        background: none;
+
+        &.selected-Planned {
+          border-bottom: 5px solid var(--color-danger);
+        }
+
+        &.selected-in-progress {
+          border-bottom: 5px solid var(--color-primary);
+        }
+
+        &.selected-live {
+          border-bottom: 5px solid var(--color-secondary);
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .column {
+        display: block;
+      }
     }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      .column {
+        grid-column: 1 / -1;
+        display: block;
+      }
+
+      .not-visible {
+        display: none;
+      }
+    }
+  }
 }
