@@ -1,21 +1,19 @@
-import clsx from "clsx";
+import { useContext } from "react";
 
-import useSuggestionQuery from "@/hooks/use-suggestion-query.ts";
+import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import Suggestion from "./Suggestion/Suggestion.tsx";
 
 import styles from "./Suggestions.module.css";
+
+import clsx from "clsx";
 
 type Props = {
   className?: string;
 };
 
 function Suggestions({ className }: Props) {
-  // const [filteredSuggestions, setFilteredSuggestions] = useState<
-  //   SuggestionModel[]
-  // >([]);
-  // fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
-  const { data: filteredSuggestions } = useSuggestionQuery();
+  const { filteredSuggestions } = useContext(SearchContext);
 
   return (
     <ul className={clsx(styles.suggestions, className)}>

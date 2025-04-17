@@ -1,17 +1,17 @@
-import { ComponentProps, FormEvent, ReactElement, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 
 import Textarea from "@/components/Textarea/Textarea.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
-import Select from "@/components/Select/Select.tsx";
 
 import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-options.ts";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
+import { ComponentProps, FormEvent, ReactElement, useState } from "react";
 
 import styles from "./CreateEditForm.module.css";
+import Select from "@/components/Select/Select.tsx";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
@@ -49,7 +49,6 @@ function CreateEditForm({
     e.preventDefault();
     onSubmitClick(newSuggestion);
   };
-
   const { t } = useTranslation();
 
   return (
@@ -78,6 +77,7 @@ function CreateEditForm({
       <div>
         <h3>{t("createEditForm.category")}</h3>
         <span className={"subtitle"}>
+          {" "}
           {t("createEditForm.categoryDescription")}
         </span>
         <Select

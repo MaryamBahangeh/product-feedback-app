@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useTranslation } from "react-i18next";
 
 import clsx from "clsx";
 
@@ -11,6 +10,7 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-options.ts";
 
 import styles from "./Search.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   className?: string;
