@@ -27,6 +27,7 @@
   },
 
   "createEditForm": {
+    "addANewSuggestion": "Add a new suggestion",
     "feedbackTitle": "Feedback Title",
     "titleDescription": "Add a short, descriptive headline",
     "titleIsRequired": "Title is required.",

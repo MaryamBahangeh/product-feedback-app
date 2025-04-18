@@ -9,8 +9,11 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 function SuggestionCreatePage() {
+  const { t } = useTranslation();
+
   const { dispatch } = useContext(SuggestionContext);
 
   const navigate = useNavigate();
@@ -30,7 +33,7 @@ function SuggestionCreatePage() {
 
       <CreateEditForm
         onSubmitClick={SubmitClickHandler}
-        pageTitle={"Add a new suggestion"}
+        pageTitle={t("createEditForm.addANewSuggestion")}
         onCancel={goBackHandler}
         onRemove={goBackHandler}
       ></CreateEditForm>

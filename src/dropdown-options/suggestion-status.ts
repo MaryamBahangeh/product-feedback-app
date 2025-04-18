@@ -1,8 +1,14 @@
 import { DropdownOption } from "@/models/dropdown-type.ts";
 
 export const SUGGESTION_STATUS: DropdownOption[] = [
-  { value: "Suggestion", translationKey: "Suggestion" },
-  { value: "Planned", translationKey: "Planned" },
-  { value: "In-Progress", translationKey: "In-Progress" },
-  { value: "Live", translationKey: "Live" },
+  {
+    value: "Suggestion",
+    translationKey: "createEditForm.statusOptions.suggestion",
+  },
+  { value: "Planned", translationKey: "createEditForm.statusOptions.planned" },
+  {
+    value: "In-Progress",
+    translationKey: "createEditForm.statusOptions.inProgressed",
+  },
+  { value: "Live", translationKey: "createEditForm.statusOptions.live" },
 ];

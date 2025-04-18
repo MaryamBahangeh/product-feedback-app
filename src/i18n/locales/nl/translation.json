@@ -29,11 +29,12 @@
   },
 
   "createEditForm": {
+    "addANewSuggestion": "Voeg een nieuwe suggestie toe",
     "feedbackTitle": "Feedback Title",
     "titleDescription": "Voeg een korte, beschrijvende kop toe",
     "titleIsRequired": "Titel is vereist.",
 
-    "category": "categorie",
+    "category": "Categorie",
     "categoryDescription": "Kies een categorie voor uw feedback",
     "categoryOptions": {
       "ui": "UI",
