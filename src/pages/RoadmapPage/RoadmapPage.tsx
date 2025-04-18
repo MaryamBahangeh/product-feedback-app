@@ -1,5 +1,3 @@
-import styles from "./RoadmapPage.module.css";
-
 import { useContext, useEffect, useState } from "react";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import RoadMap from "@/components/RoadMap/RoadMap.tsx";
@@ -7,6 +5,8 @@ import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import RoadmapHeader from "@/components/RoadMap/RoadmapHeader/RoadmapHeader.tsx";
+
+import styles from "./RoadmapPage.module.css";
 
 function RoadmapPage() {
   const { suggestions } = useContext(SuggestionContext);
@@ -84,7 +84,8 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type={t(SUGGESTION_STATUS[1].translationKey as never)}
+            type="planned"
+            description={t("roadMap.ideasPrioritizedFoResearch")}
             suggestions={planned}
           />
         </div>
@@ -96,7 +97,8 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type={t(SUGGESTION_STATUS[2].translationKey as never)}
+            type="inProgressed"
+            description={t("roadMap.currentlyBeingDeveloped")}
             suggestions={inProgress}
           />
         </div>
@@ -108,7 +110,8 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type={t(SUGGESTION_STATUS[3].translationKey as never)}
+            type="live"
+            description={t("roadMap.releasedFeatures")}
             suggestions={live}
           />
         </div>

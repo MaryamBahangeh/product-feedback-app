@@ -46,8 +46,8 @@
     "statusOptions": {
       "suggestion": "Suggestion",
       "planned": "Planned",
-      "In-Progress" : "In-Progress",
-      "Live":"Live"
+      "inProgressed": "In-Progress",
+      "live": "Live"
     },
 
     "feedbackDetail": "Feedback Detail",
@@ -78,9 +78,9 @@
   "roadMap": {
     "roadMap": "Roadmap",
     "view": "View",
-    "planned": "Planned",
-    "inProgressed": "In-Progressed",
-    "live": "Live"
+    "ideasPrioritizedFoResearch": "Ideas prioritized for research",
+    "currentlyBeingDeveloped": "Currently being developed",
+    "releasedFeatures": "Released features"
   },
 
   "notFound": {

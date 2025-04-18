@@ -23,15 +23,15 @@
         inline-size: 0.5rem;
         block-size: 0.5rem;
 
-        &.orange {
+        &.planned {
           background-color: var(--color-warning);
         }
 
-        &.blue {
+        &.inProgressed {
           background-color: var(--color-secondary);
         }
 
-        &.purple {
+        &.live {
           background-color: var(--color-primary);
         }
       }

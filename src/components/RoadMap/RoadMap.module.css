@@ -1,18 +1,42 @@
 .roadmap {
-    .line {
-        height:0.5rem;
-        border-radius:  1rem 1rem 0 0;
+  display: grid;
+  gap: 3rem;
 
-        &.Planned {
-            background-color: var(--color-danger)
-        }
+  .header {
+    display: grid;
+    gap: 1rem;
 
-        &.In-Progress {
-            background-color: var(--color-primary)
-        }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
 
-        &.Live {
-            background-color: var(--color-secondary)
-        }
+      .bullet {
+        border-radius: 999rem;
+        inline-size: 1rem;
+        block-size: 1rem;
+      }
     }
+
+    .description {
+      font-size: var(--fz-400);
+    }
+  }
+
+  .line {
+    height: 0.5rem;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .planned {
+    background-color: var(--color-danger);
+  }
+
+  .inProgressed {
+    background-color: var(--color-primary);
+  }
+
+  .live {
+    background-color: var(--color-secondary);
+  }
 }

@@ -47,7 +47,9 @@
     "statusDescription": "Functiestatus wijzigen",
     "statusOptions": {
       "suggestion": "Suggestie",
-      "planned": "Gepland"
+      "planned": "Gepland",
+      "inProgressed": "In-Uitvoering",
+      "live": "Live"
     },
 
     "feedbackDetail": "Feedbackdetails",
@@ -78,9 +80,9 @@
   "roadMap": {
     "roadMap": "Routekaart",
     "view": "Weergave",
-    "planned": "Gepland",
-    "inProgressed": "In-Uitvoering",
-    "live": "Live"
+    "ideasPrioritizedFoResearch": "Ideeën geprioriteerd voor onderzoek",
+    "currentlyBeingDeveloped": "Momenteel in ontwikkeling",
+    "releasedFeatures": "Uitgebrachte functies"
   },
 
   "notFound": {

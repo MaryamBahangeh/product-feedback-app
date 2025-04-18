@@ -21,7 +21,7 @@ function RoadmapHeader() {
           />
           {t("pageHeader.goBack")}
         </Button>
-        <div>Roadmap</div>
+        <div>{t("roadMap.roadMap")}</div>
       </div>
 
       <Button
