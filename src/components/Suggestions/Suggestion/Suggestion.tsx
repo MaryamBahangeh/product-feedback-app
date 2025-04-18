@@ -9,9 +9,18 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./Suggestion.module.css";
+import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
+import { useTranslation } from "react-i18next";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { increaseRank } = useContext(SuggestionContext);
+
+  const { t } = useTranslation();
+
+  const suggestionType = t(
+    SUGGESTION_TYPES.filter((x) => x.value === suggestion.suggestionType)[0]
+      .translationKey as never,
+  );
 
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
@@ -37,7 +46,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
 
         <div>{suggestion.description}</div>
 
-        <div className={styles.suggestionType}>{suggestion.suggestionType}</div>
+        <div className={styles.suggestionType}>{suggestionType}</div>
       </Link>
 
       <div className={styles.comments}>
