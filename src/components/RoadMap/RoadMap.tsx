@@ -29,7 +29,7 @@ function Roadmap({ type, description, suggestions }: Props) {
       {suggestions.map((s) => (
         <div>
           <div className={clsx(styles.line, styles[type])}></div>
-          <Suggestion suggestion={s} />
+          <Suggestion key={s.id} suggestion={s} />
         </div>
       ))}
     </div>

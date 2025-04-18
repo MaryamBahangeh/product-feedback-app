@@ -18,6 +18,29 @@
   }
 
   .content {
+    .roadmap {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: var(--fz-300);
+      .bullet {
+        border-radius: 999rem;
+        inline-size: 0.5rem;
+        block-size: 0.5rem;
+
+        &.Planned {
+          background-color: var(--color-warning);
+        }
+
+        &.In-Progress {
+          background-color: var(--color-secondary);
+        }
+
+        &.Live {
+          background-color: var(--color-primary);
+        }
+      }
+    }
     grid-area: content;
 
     display: grid;

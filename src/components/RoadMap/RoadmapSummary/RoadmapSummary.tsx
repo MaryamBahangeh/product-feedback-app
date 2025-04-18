@@ -17,16 +17,21 @@ type Props = {
 
 function RoadmapSummary({ className }: Props) {
   const { t } = useTranslation();
+
   const { suggestions } = useContext(SuggestionContext);
+
   const planned = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[1].value,
   ).length;
+
   const inProgress = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[2].value,
   ).length;
+
   const live = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[3].value,
   ).length;
+
   return (
     <Card className={clsx(styles["roadmap"], className)}>
       <div className={styles.title}>

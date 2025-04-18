@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,6 +30,8 @@ function SuggestionPage() {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const { id } = useParams();
 
@@ -85,7 +87,7 @@ function SuggestionPage() {
 
   return (
     <div className={styles["suggestion-comments"]}>
-      <PageHeader onGoBack={() => navigate("/")}>
+      <PageHeader onGoBack={() => navigate(location.state?.from || "/")}>
         <Button
           buttonType={ButtonType.LINK}
           linkTo={"/suggestion/" + id + "/edit"}
