@@ -45,9 +45,9 @@
         }
       }
 
-      .column {
-        display: block;
-      }
+      /*.column {*/
+      /*  display: block;*/
+      /*}*/
     }
 
     .content {
