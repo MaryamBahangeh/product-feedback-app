@@ -11,8 +11,10 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./Suggestion.module.css";
 import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
-import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
+
+import RoadmapBullet, {
+  BulletSize,
+} from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { increaseRank } = useContext(SuggestionContext);
@@ -29,11 +31,6 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const addRankClickHandler = (suggestionId: string) => {
     increaseRank(suggestionId);
   };
-
-  const suggestionStatus = t(
-    SUGGESTION_STATUS.filter((x) => x.value === suggestion.suggestionStatus)[0]
-      .translationKey as never,
-  );
 
   return (
     <Card className={styles.suggestion}>
@@ -55,15 +52,10 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         state={{ from: location.pathname }}
       >
         {location.pathname === "/roadmap" && (
-          <div className={styles.roadmap}>
-            <span
-              className={clsx(
-                styles["bullet"],
-                styles[suggestion.suggestionStatus],
-              )}
-            ></span>
-            {suggestionStatus}{" "}
-          </div>
+          <RoadmapBullet
+            suggestionStatus={suggestion.suggestionStatus}
+            size={BulletSize.SMALL}
+          />
         )}
 
         <h2>{suggestion.title}</h2>

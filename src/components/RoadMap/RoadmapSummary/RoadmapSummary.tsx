@@ -10,6 +10,9 @@ import { Link } from "react-router";
 import { useContext } from "react";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
+import RoadmapBullet, {
+  BulletSize,
+} from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 
 type Props = {
   className?: string;
@@ -41,22 +44,26 @@ function RoadmapSummary({ className }: Props) {
 
       <div className={styles.options}>
         <div className={styles.option}>
-          <span className={clsx(styles["bullet"], styles["planned"])}></span>
-          {t("createEditForm.statusOptions.planned")}{" "}
+          <RoadmapBullet
+            suggestionStatus={SUGGESTION_STATUS[1].value}
+            size={BulletSize.MEDIUM}
+          />
           <span className={styles.value}>{planned}</span>
         </div>
 
         <div className={styles.option}>
-          <span
-            className={clsx(styles["bullet"], styles["inProgressed"])}
-          ></span>
-          {t("createEditForm.statusOptions.inProgressed")}{" "}
+          <RoadmapBullet
+            suggestionStatus={SUGGESTION_STATUS[2].value}
+            size={BulletSize.MEDIUM}
+          />
           <span className={styles.value}>{inProgress}</span>
         </div>
 
         <div className={styles.option}>
-          <span className={clsx(styles["bullet"], styles["live"])}></span>
-          {t("createEditForm.statusOptions.live")}{" "}
+          <RoadmapBullet
+            suggestionStatus={SUGGESTION_STATUS[3].value}
+            size={BulletSize.MEDIUM}
+          />
           <span className={styles.value}>{live}</span>
         </div>
       </div>

@@ -84,7 +84,7 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type="planned"
+            type="Planned"
             description={t("roadMap.ideasPrioritizedFoResearch")}
             suggestions={planned}
           />
@@ -97,7 +97,7 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type="inProgressed"
+            type="In-Progress"
             description={t("roadMap.currentlyBeingDeveloped")}
             suggestions={inProgress}
           />
@@ -110,7 +110,7 @@ function RoadmapPage() {
           )}
         >
           <RoadMap
-            type="live"
+            type="Live"
             description={t("roadMap.releasedFeatures")}
             suggestions={live}
           />

@@ -2,7 +2,9 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./RoadMap.module.css";
 import clsx from "clsx";
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
-import { useTranslation } from "react-i18next";
+import RoadmapBullet, {
+  BulletSize,
+} from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 
 type Props = {
   type: string;
@@ -11,25 +13,20 @@ type Props = {
 };
 
 function Roadmap({ type, description, suggestions }: Props) {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.roadmap}>
       <div className={styles.header}>
         <div className={styles.title}>
-          <span className={clsx(styles["bullet"], styles[type])}></span>
-          {t(("createEditForm.statusOptions." + type) as never) +
-            "(" +
-            suggestions.length +
-            ")"}
+          <RoadmapBullet suggestionStatus={type} size={BulletSize.LARGE} />
+          <span> ({suggestions.length})</span>
         </div>
         <div className={styles.description}>{description}</div>
       </div>
 
       {suggestions.map((s) => (
-        <div>
+        <div key={s.id}>
           <div className={clsx(styles.line, styles[type])}></div>
-          <Suggestion key={s.id} suggestion={s} />
+          <Suggestion suggestion={s} />
         </div>
       ))}
     </div>
