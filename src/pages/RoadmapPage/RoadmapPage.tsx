@@ -7,6 +7,7 @@ import clsx from "clsx";
 import RoadmapHeader from "@/components/RoadMap/RoadmapHeader/RoadmapHeader.tsx";
 
 import styles from "./RoadmapPage.module.css";
+import RoadmapTabs from "@/components/RoadMap/RoadmapTabs/RoadmapTabs.tsx";
 
 function RoadmapPage() {
   const { suggestions } = useContext(SuggestionContext);
@@ -23,13 +24,15 @@ function RoadmapPage() {
   );
 
   const [activeCol, setActiveCol] = useState<number>(0);
-  const activateColumn = (colNumber: number) => {
-    setActiveCol(colNumber);
+
+  const activateColumn = (activeCol: number) => {
+    setActiveCol(activeCol);
   };
 
   const handleResize = () => {
     if (window.innerWidth < 640) setActiveCol(1);
   };
+
   useEffect(() => {
     handleResize();
 
@@ -40,40 +43,31 @@ function RoadmapPage() {
     };
   }, []);
 
+  const plannedText =
+    t(SUGGESTION_STATUS[1].translationKey as never) +
+    " (" +
+    planned.length +
+    ")";
+
+  const inProgressText =
+    t(SUGGESTION_STATUS[2].translationKey as never) +
+    " (" +
+    inProgress.length +
+    ")";
+
+  const liveText =
+    t(SUGGESTION_STATUS[3].translationKey as never) + " (" + live.length + ")";
+
   return (
     <div className={styles.roadmap}>
       <RoadmapHeader />
 
       <div className={styles.tabs}>
-        <button
-          className={activeCol === 1 ? styles["selected-Planned"] : ""}
-          onClick={() => activateColumn(1)}
-        >
-          {t(SUGGESTION_STATUS[1].translationKey as never) +
-            " (" +
-            planned.length +
-            ")"}
-        </button>
-
-        <button
-          className={activeCol === 2 ? styles["selected-in-progress"] : ""}
-          onClick={() => activateColumn(2)}
-        >
-          {t(SUGGESTION_STATUS[2].translationKey as never) +
-            " (" +
-            inProgress.length +
-            ")"}
-        </button>
-
-        <button
-          className={activeCol === 3 ? styles["selected-live"] : ""}
-          onClick={() => activateColumn(3)}
-        >
-          {t(SUGGESTION_STATUS[3].translationKey as never) +
-            " (" +
-            live.length +
-            ")"}
-        </button>
+        <RoadmapTabs
+          activateColumn={activateColumn}
+          activeCol={activeCol}
+          tabsTitle={[plannedText, inProgressText, liveText]}
+        />
       </div>
 
       <div className={styles.content}>

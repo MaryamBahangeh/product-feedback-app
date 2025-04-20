@@ -1,0 +1,22 @@
+.roadmap-tab-button {
+  border: none;
+  width: 100%;
+  padding: 1.5rem;
+  background: none;
+
+  &.selected-Planned {
+    border-bottom: 5px solid var(--color-danger);
+  }
+
+  &.selected-in-progress {
+    border-bottom: 5px solid var(--color-primary);
+  }
+
+  &.selected-live {
+    border-bottom: 5px solid var(--color-secondary);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
