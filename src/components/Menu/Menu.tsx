@@ -3,6 +3,7 @@ import Search from "@/components/Search/Search.tsx";
 import RoadMap from "@/components/RoadMap/RoadMap.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { useTranslation } from "react-i18next";
+import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.tsx";
 
 type Props = {
   onApply: () => void;
@@ -14,7 +15,7 @@ function Menu({ onApply }: Props) {
   return (
     <div className={styles.menu}>
       <Search />
-      <RoadMap />
+      <RoadmapSummary />
       <Button variant={Variant.SOLID} color={Color.PRIMARY} onClick={onApply}>
         {t("menu.apply")}
       </Button>
