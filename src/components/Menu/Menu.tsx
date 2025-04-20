@@ -1,6 +1,5 @@
 import styles from "./Menu.module.css";
 import Search from "@/components/Search/Search.tsx";
-import RoadMap from "@/components/RoadMap/RoadMap.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 import { useTranslation } from "react-i18next";
 import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.tsx";
