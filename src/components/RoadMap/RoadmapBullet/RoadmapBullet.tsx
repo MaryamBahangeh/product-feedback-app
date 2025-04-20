@@ -1,7 +1,7 @@
-import styles from "./RoadmapBullet.module.css";
-import clsx from "clsx";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
+import styles from "./RoadmapBullet.module.css";
 
 export enum BulletSize {
   SMALL = "small",

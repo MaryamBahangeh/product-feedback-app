@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
@@ -8,9 +9,9 @@ import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-import styles from "./Suggestion.module.css";
 import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
-import { useTranslation } from "react-i18next";
+
+import styles from "./Suggestion.module.css";
 
 import RoadmapBullet, {
   BulletSize,

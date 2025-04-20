@@ -1,14 +1,17 @@
-import styles from "./RoadmapHeader.module.css";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+
 import Button, {
   ButtonType,
   Color,
   Variant,
 } from "@/components/Button/Button.tsx";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+
+import styles from "./RoadmapHeader.module.css";
 
 function RoadmapHeader() {
   const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   return (

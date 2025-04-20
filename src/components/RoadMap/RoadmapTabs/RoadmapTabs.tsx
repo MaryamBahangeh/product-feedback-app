@@ -1,5 +1,5 @@
-import styles from "./RoadmapTabs.module.css";
 import clsx from "clsx";
+import styles from "./RoadmapTabs.module.css";
 
 type Props = {
   activateColumn: (activeCol: number) => void;

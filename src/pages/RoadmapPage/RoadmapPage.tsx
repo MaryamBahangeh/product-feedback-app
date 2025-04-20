@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import RoadMap from "@/components/RoadMap/RoadMap.tsx";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
-import { useTranslation } from "react-i18next";
-import clsx from "clsx";
 import RoadmapHeader from "@/components/RoadMap/RoadmapHeader/RoadmapHeader.tsx";
-
-import styles from "./RoadmapPage.module.css";
 import RoadmapTabs from "@/components/RoadMap/RoadmapTabs/RoadmapTabs.tsx";
+import styles from "./RoadmapPage.module.css";
 
 function RoadmapPage() {
   const { suggestions } = useContext(SuggestionContext);
@@ -16,9 +15,11 @@ function RoadmapPage() {
   const planned = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[1].value,
   );
+
   const inProgress = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[2].value,
   );
+
   const live = suggestions.filter(
     (s) => s.suggestionStatus === SUGGESTION_STATUS[3].value,
   );

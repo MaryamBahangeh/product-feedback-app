@@ -1,10 +1,10 @@
-import { SuggestionModel } from "@/models/suggestion-model.ts";
-import styles from "./RoadMap.module.css";
 import clsx from "clsx";
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import RoadmapBullet, {
   BulletSize,
 } from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
+import styles from "./RoadMap.module.css";
 
 type Props = {
   type: string;

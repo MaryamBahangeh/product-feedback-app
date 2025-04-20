@@ -1,5 +1,6 @@
 import { useContext, useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
@@ -9,7 +10,6 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
-import { useTranslation } from "react-i18next";
 
 function SuggestionEditPage() {
   const { suggestions, dispatch } = useContext(SuggestionContext);

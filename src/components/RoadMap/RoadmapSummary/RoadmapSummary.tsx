@@ -1,18 +1,14 @@
-// import { Link } from "react-router";
-
-import clsx from "clsx";
-
-import Card from "@/components/Card/Card.tsx";
-
-import styles from "./RoadmapSummary.module.css";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { useContext } from "react";
+import clsx from "clsx";
+import Card from "@/components/Card/Card.tsx";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 import RoadmapBullet, {
   BulletSize,
 } from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
+import styles from "./RoadmapSummary.module.css";
 
 type Props = {
   className?: string;
