@@ -16,6 +16,7 @@ import styles from "./Suggestion.module.css";
 import RoadmapBullet, {
   BulletSize,
 } from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
+import clsx from "clsx";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { increaseRank } = useContext(SuggestionContext);
@@ -23,7 +24,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { t } = useTranslation();
 
   const location = useLocation();
-
+  console.log(location.pathname);
   const suggestionType = t(
     SUGGESTION_TYPES.filter((x) => x.value === suggestion.suggestionType)[0]
       .translationKey as never,
@@ -34,7 +35,12 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   };
 
   return (
-    <Card className={styles.suggestion}>
+    <Card
+      className={clsx(
+        styles.suggestion,
+        location.pathname === "/roadmap" && styles[suggestion.suggestionStatus],
+      )}
+    >
       <Button
         variant={Variant.TONAL}
         color={Color.IDLE}
@@ -48,7 +54,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         {suggestion.rank}
       </Button>
       <Link
-        className={styles.content}
+        className={clsx(styles.content)}
         to={"/suggestion/" + suggestion.id}
         state={{ from: location.pathname }}
       >

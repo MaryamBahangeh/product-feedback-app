@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import RoadmapBullet, {
@@ -25,7 +24,6 @@ function Roadmap({ type, description, suggestions }: Props) {
 
       {suggestions.map((s) => (
         <div key={s.id}>
-          <div className={clsx(styles.line, styles[type])}></div>
           <Suggestion suggestion={s} />
         </div>
       ))}
