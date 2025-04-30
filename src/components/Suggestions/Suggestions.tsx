@@ -8,18 +8,25 @@ import styles from "./Suggestions.module.css";
 
 import clsx from "clsx";
 
+import SuggestionSkeleton from "@/components/Skeleton/SuggestionSkeleton.tsx";
+
 type Props = {
   className?: string;
+  isLoading: boolean;
 };
 
-function Suggestions({ className }: Props) {
+function Suggestions({ className, isLoading }: Props) {
   const { filteredSuggestions } = useContext(SearchContext);
 
   return (
     <ul className={clsx(styles.suggestions, className)}>
       {filteredSuggestions.map((suggestion) => (
         <li key={suggestion.id}>
-          <Suggestion suggestion={suggestion} />
+          {isLoading ? (
+            <SuggestionSkeleton />
+          ) : (
+            <Suggestion suggestion={suggestion} />
+          )}
         </li>
       ))}
     </ul>

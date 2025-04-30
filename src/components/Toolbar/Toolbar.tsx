@@ -1,4 +1,4 @@
-import {ChangeEvent, useContext} from "react";
+import { ChangeEvent, useContext } from "react";
 
 import clsx from "clsx";
 
@@ -18,12 +18,15 @@ import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.t
 import { useTranslation } from "react-i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 import Select from "@/components/Select/Select.tsx";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
   className?: string;
+  isLoading: boolean;
 };
 
-function Toolbar({ className }: Props) {
+function Toolbar({ className, isLoading }: Props) {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   const { t } = useTranslation();
@@ -43,13 +46,15 @@ function Toolbar({ className }: Props) {
     }
   };
 
+  if (isLoading)
+    return <Skeleton className={styles.skeleton} height="7.2rem" />;
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
         <span>
-            {t("toolbar.suggestion", { count: filteredSuggestions.length })}
+          {t("toolbar.suggestion", { count: filteredSuggestions.length })}
         </span>
       </div>
 

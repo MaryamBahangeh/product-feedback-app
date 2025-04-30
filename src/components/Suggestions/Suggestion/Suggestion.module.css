@@ -6,6 +6,9 @@
 
   gap: 2rem;
 
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+
   &.Planned {
     border-block-start: 0.75rem solid var(--color-danger);
   }
@@ -37,7 +40,6 @@
     text-decoration: none;
 
     border-radius: var(--border-radious);
-    padding: 1rem;
 
     .suggestionType {
       justify-self: start;
@@ -75,5 +77,11 @@
     .comments {
       align-self: center;
     }
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }

@@ -4,6 +4,7 @@ import {
   PropsWithChildren,
   useEffect,
   useReducer,
+  useState,
 } from "react";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
@@ -19,12 +20,14 @@ type ContextTypes = {
   suggestions: SuggestionModel[];
   dispatch: Dispatch<SuggestionAction>;
   increaseRank: (id: string) => void;
+  isLoading: boolean;
 };
 
 export const SuggestionContext = createContext<ContextTypes>({
   suggestions: [],
   dispatch: () => {},
   increaseRank: () => {},
+  isLoading: true,
 });
 
 function defaultLocalstorage<T>(key: string, defaultValue: T): T {
@@ -42,6 +45,8 @@ function SuggestionProvider({ children }: Props) {
     defaultLocalstorage<SuggestionModel[]>(LOCAL_STORAGE_SUGGESTION_KEY, []),
   );
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const increaseRank = (id: string): void => {
     dispatch({ type: "rank_increased", suggestionId: id });
   };
@@ -53,12 +58,23 @@ function SuggestionProvider({ children }: Props) {
     );
   }, [suggestions]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <SuggestionContext.Provider
       value={{
         suggestions,
         dispatch,
         increaseRank,
+        isLoading,
       }}
     >
       {children}
