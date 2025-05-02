@@ -7,6 +7,14 @@
     background-color: transparent;
     appearance: none;
   }
+
+  .searchSkeleton {
+    height: 12rem;
+  }
+
+  .roadmapSkeleton {
+    height: 10.9rem;
+  }
 }
 
 @media (max-width: 639px) {

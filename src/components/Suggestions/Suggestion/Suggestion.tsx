@@ -24,7 +24,6 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
   const { t } = useTranslation();
 
   const location = useLocation();
-  console.log(location.pathname);
   const suggestionType = t(
     SUGGESTION_TYPES.filter((x) => x.value === suggestion.suggestionType)[0]
       .translationKey as never,
