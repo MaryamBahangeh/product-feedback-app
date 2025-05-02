@@ -1,9 +1,7 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 
 import { v4 as uuidv4 } from "uuid";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import Button, {
@@ -23,9 +21,10 @@ import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionPage.module.css";
 import { useTranslation } from "react-i18next";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function SuggestionPage() {
-  const { suggestions, dispatch } = useContext(SuggestionContext);
+  const { suggestions, editSuggestion } = useSuggestionStore();
 
   const { t } = useTranslation();
 
@@ -55,24 +54,18 @@ function SuggestionPage() {
       comments: [],
     };
 
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: suggestion.id,
-      newSuggestion: {
+    editSuggestion(
+      {
         ...suggestion,
         comments: [...suggestion.comments, newComment],
       },
-    });
-
+      suggestion.id,
+    );
     setCommentText("");
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: suggestion.id,
-      newSuggestion: { ...suggestion, comments },
-    });
+    editSuggestion({ ...suggestion, comments }, suggestion.id);
   };
 
   useEffect(() => {

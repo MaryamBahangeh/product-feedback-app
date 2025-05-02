@@ -1,8 +1,5 @@
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
@@ -17,9 +14,10 @@ import RoadmapBullet, {
   BulletSize,
 } from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 import clsx from "clsx";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const { increaseRank } = useContext(SuggestionContext);
+  const { increaseRank } = useSuggestionStore();
 
   const { t } = useTranslation();
 

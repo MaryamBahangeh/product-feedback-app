@@ -3,14 +3,13 @@ import {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
-  useContext,
   useMemo,
   useState,
 } from "react";
 
-import { SuggestionContext } from "./SuggestionProvider.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 type ContextType = {
   filter: string;
@@ -29,7 +28,7 @@ export const SearchContext = createContext<ContextType>({
 });
 
 function SearchProvider({ children }: PropsWithChildren) {
-  const { suggestions } = useContext(SuggestionContext);
+  const { suggestions } = useSuggestionStore();
 
   const [filter, setFilter] = useState("All");
 

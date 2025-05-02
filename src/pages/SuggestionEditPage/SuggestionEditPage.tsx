@@ -1,8 +1,6 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
@@ -10,9 +8,11 @@ import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
 import styles from "./SuggestionEditPage.module.css";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function SuggestionEditPage() {
-  const { suggestions, dispatch } = useContext(SuggestionContext);
+  const { suggestions, editSuggestion, removeSuggestion } =
+    useSuggestionStore();
 
   const { t } = useTranslation();
 
@@ -29,17 +29,13 @@ function SuggestionEditPage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel): void => {
-    dispatch({
-      type: "edited_suggestion",
-      suggestionId: id!,
-      newSuggestion,
-    });
+    editSuggestion(newSuggestion!, id!);
 
     goBackHandler();
   };
 
   const removeClickHandler = (): void => {
-    dispatch({ type: "removed_suggestion", suggestionId: id! });
+    removeSuggestion(suggestion!.id);
     navigate("/");
   };
 

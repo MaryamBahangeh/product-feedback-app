@@ -1,7 +1,3 @@
-import { useContext } from "react";
-
-import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
-
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 
@@ -10,11 +6,12 @@ import { SuggestionModel } from "@/models/suggestion-model.ts";
 import styles from "./SuggestionCreatePage.module.css";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function SuggestionCreatePage() {
   const { t } = useTranslation();
 
-  const { dispatch } = useContext(SuggestionContext);
+  const { addSuggestion } = useSuggestionStore();
 
   const navigate = useNavigate();
 
@@ -23,7 +20,7 @@ function SuggestionCreatePage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    dispatch({ type: "added_suggestion", newSuggestion });
+    addSuggestion(newSuggestion);
     goBackHandler();
   };
 
