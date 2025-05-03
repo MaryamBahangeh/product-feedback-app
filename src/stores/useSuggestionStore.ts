@@ -1,15 +1,18 @@
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { create } from "zustand/react";
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { LOCAL_STORAGE_SUGGESTION_KEY } from "@/constants/localstorage.constants.ts";
+import { StateCreator } from "zustand";
 
 type SuggestionState = {
   suggestions: SuggestionModel[];
   addSuggestion: (suggestion: SuggestionModel) => void;
   removeSuggestion: (suggestionId: string) => void;
-  editSuggestion: (suggestion: SuggestionModel, id: string) => void;
+  editSuggestion: (suggestion: SuggestionModel, suggestionId: string) => void;
   increaseRank: (suggestionId: string) => void;
 };
 
-export const useSuggestionStore = create<SuggestionState>((set) => ({
+const suggestionStore: StateCreator<SuggestionState> = (set) => ({
   suggestions: [],
   addSuggestion: (suggestion: SuggestionModel) =>
     set((state) => ({
@@ -21,19 +24,28 @@ export const useSuggestionStore = create<SuggestionState>((set) => ({
       suggestions: state.suggestions.filter((s) => s.id != suggestionId),
     })),
 
-  editSuggestion: (suggestion: SuggestionModel) =>
+  editSuggestion: (suggestion: SuggestionModel, suggestionId) =>
     set((state) => ({
-      suggestions: state.suggestions.map((s) => {
-        if (s.id === suggestion.id) return suggestion;
-        return s;
-      }),
+      suggestions: state.suggestions.map((s) =>
+        s.id === suggestionId ? suggestion : s,
+      ),
     })),
 
   increaseRank: (suggestionId) =>
     set((state) => ({
-      suggestions: state.suggestions.map((s) => {
-        if (s.id === suggestionId) s.rank++;
-        return s;
-      }),
+      suggestions: state.suggestions.map((s) =>
+        s.id === suggestionId ? { ...s, rank: s.rank + 1 } : s,
+      ),
     })),
-}));
+});
+
+const isDev = process.env.NODE_ENV === "development";
+const middleware = isDev
+  ? devtools(persist(suggestionStore, { name: LOCAL_STORAGE_SUGGESTION_KEY }), {
+      name: "SuggestionStore",
+    })
+  : persist(suggestionStore, { name: LOCAL_STORAGE_SUGGESTION_KEY });
+
+export const useSuggestionStore = create<SuggestionState>()(
+  middleware as never,
+);
