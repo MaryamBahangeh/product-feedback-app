@@ -12,37 +12,58 @@ type SuggestionState = {
   increaseRank: (suggestionId: string) => void;
 };
 
-const suggestionStore: StateCreator<SuggestionState> = (set) => ({
+type SuggestionStoreCreator = StateCreator<
+  SuggestionState,
+  [["zustand/devtools", { name: string }], ["zustand/persist", unknown]]
+>;
+
+const suggestionStore: SuggestionStoreCreator = (set) => ({
   suggestions: [],
   addSuggestion: (suggestion: SuggestionModel) =>
-    set((state) => ({
-      suggestions: [...state.suggestions, suggestion],
-    })),
+    set(
+      (state) => ({
+        suggestions: [...state.suggestions, suggestion],
+      }),
+      false,
+      "addSuggestion",
+    ),
 
   removeSuggestion: (suggestionId) =>
-    set((state) => ({
-      suggestions: state.suggestions.filter((s) => s.id != suggestionId),
-    })),
+    set(
+      (state) => ({
+        suggestions: state.suggestions.filter((s) => s.id != suggestionId),
+      }),
+      false,
+      "removeSuggestion",
+    ),
 
   editSuggestion: (suggestion: SuggestionModel, suggestionId) =>
-    set((state) => ({
-      suggestions: state.suggestions.map((s) =>
-        s.id === suggestionId ? suggestion : s,
-      ),
-    })),
+    set(
+      (state) => ({
+        suggestions: state.suggestions.map((s) =>
+          s.id === suggestionId ? suggestion : s,
+        ),
+      }),
+      false,
+      "editSuggestion",
+    ),
 
   increaseRank: (suggestionId) =>
-    set((state) => ({
-      suggestions: state.suggestions.map((s) =>
-        s.id === suggestionId ? { ...s, rank: s.rank + 1 } : s,
-      ),
-    })),
+    set(
+      (state) => ({
+        suggestions: state.suggestions.map((s) =>
+          s.id === suggestionId ? { ...s, rank: s.rank + 1 } : s,
+        ),
+      }),
+      false,
+      "increaseRank",
+    ),
 });
 
 const isDev = process.env.NODE_ENV === "development";
 const middleware = isDev
-  ? devtools(persist(suggestionStore, { name: LOCAL_STORAGE_SUGGESTION_KEY }), {
-      name: "SuggestionStore",
+  ? persist(devtools(suggestionStore as never, { name: "SuggestionStore" }), {
+      name: LOCAL_STORAGE_SUGGESTION_KEY,
     })
   : persist(suggestionStore, { name: LOCAL_STORAGE_SUGGESTION_KEY });
 
