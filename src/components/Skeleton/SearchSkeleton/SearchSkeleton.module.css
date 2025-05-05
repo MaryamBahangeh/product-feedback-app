@@ -1,0 +1,36 @@
+.SearchSkeleton {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  height: 16rem;
+
+  .skeleton {
+    border-radius: var(--border-radious);
+    height: 2.6rem;
+
+    &.skeleton1 {
+      width: 3.8rem;
+    }
+
+    &.skeleton2 {
+      width: 3.4rem;
+    }
+
+    &.skeleton3 {
+      width: 3.9rem;
+    }
+
+    &.skeleton4 {
+      width: 11.5rem;
+    }
+
+    &.skeleton5 {
+      width: 7.5rem;
+    }
+
+    &.skeleton6 {
+      width: 4.7rem;
+    }
+  }
+}

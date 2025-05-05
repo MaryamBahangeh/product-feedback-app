@@ -7,7 +7,10 @@ function SuggestionSkeleton() {
       <Skeleton className={styles.title}></Skeleton>
       <Skeleton className={styles.description}></Skeleton>
       <Skeleton className={styles.type}></Skeleton>
-      <Skeleton className={styles.rank}></Skeleton>
+      <div className={styles.rankComment}>
+        <Skeleton className={styles.rank} />
+        <Skeleton className={styles.comment} />
+      </div>
     </Card>
   );
 }

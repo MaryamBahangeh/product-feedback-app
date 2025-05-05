@@ -9,6 +9,7 @@ import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.t
 import CardSkeleton from "@/components/Skeleton/CardSkeleton.tsx";
 
 import styles from "./Sidebar.module.css";
+import SearchSkeleton from "@/components/Skeleton/SearchSkeleton/SearchSkeleton.tsx";
 
 type Props = {
   className?: string;
@@ -21,11 +22,7 @@ export default function Sidebar({ className, isLoading }: Props): ReactElement {
   return (
     <div className={clsx(styles.sidebar, className)}>
       <Board />
-      {isLoading ? (
-        <CardSkeleton className={styles.searchSkeleton} />
-      ) : (
-        <Search className={styles.search} />
-      )}
+      {isLoading ? <SearchSkeleton /> : <Search className={styles.search} />}
       {isLoading ? (
         <CardSkeleton className={styles.roadmapSkeleton} />
       ) : (

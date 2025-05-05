@@ -8,7 +8,7 @@ import styles from "./Suggestions.module.css";
 
 import clsx from "clsx";
 
-import SuggestionSkeleton from "@/components/Skeleton/SuggestionSkeleton.tsx";
+import SuggestionSkeleton from "@/components/Skeleton/SuggestionSkeleton/SuggestionSkeleton.tsx";
 
 type Props = {
   className?: string;
