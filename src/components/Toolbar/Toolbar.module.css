@@ -10,6 +10,9 @@
   gap: 2rem;
   align-items: center;
 
+  /*opacity: 0;*/
+  /*animation: fadeIn 0.4s ease-in forwards;*/
+
   .suggestions {
     display: flex;
     gap: 0.5rem;
@@ -28,12 +31,8 @@
 
     border: none;
     outline: none;
+    padding-block: 0;
   }
-}
-
-.skeleton {
-  border-radius: 1rem;
-  height: 6rem;
 }
 
 @media (max-width: 640px) {
@@ -45,3 +44,9 @@
     }
   }
 }
+
+/*@keyframes fadeIn {*/
+/*  to {*/
+/*    opacity: 1;*/
+/*  }*/
+/*}*/

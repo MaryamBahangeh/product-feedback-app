@@ -18,7 +18,6 @@ import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.t
 import { useTranslation } from "react-i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 import Select from "@/components/Select/Select.tsx";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
@@ -26,7 +25,7 @@ type Props = {
   isLoading: boolean;
 };
 
-function Toolbar({ className, isLoading }: Props) {
+function Toolbar({ className }: Props) {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   const { t } = useTranslation();
@@ -46,8 +45,7 @@ function Toolbar({ className, isLoading }: Props) {
     }
   };
 
-  if (isLoading)
-    return <Skeleton className={styles.skeleton} height="7.2rem" />;
+  // if (isLoading) return <ToolbarSkeleton />;
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>

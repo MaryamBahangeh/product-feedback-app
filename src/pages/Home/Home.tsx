@@ -14,7 +14,7 @@ function Home() {
     <div className={styles.home}>
       <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f5f5f5">
         <Sidebar className={styles.sidebar} isLoading={isLoading} />
-        <Toolbar className={styles.toolbar} isLoading={isLoading} />
+        <Toolbar className={styles.toolbar} />
         <Suggestions className={styles.suggestions} isLoading={isLoading} />
       </SkeletonTheme>
     </div>

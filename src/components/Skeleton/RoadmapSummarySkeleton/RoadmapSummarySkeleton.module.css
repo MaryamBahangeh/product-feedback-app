@@ -1,7 +1,6 @@
 .roadmapSkeleton {
   display: grid;
   gap: 2rem;
-  height: 16.9rem;
 
   .title {
     display: flex;

@@ -3,8 +3,6 @@
   flex-wrap: wrap;
   gap: 1rem;
 
-  height: 16rem;
-
   .skeleton {
     border-radius: var(--border-radious);
     height: 2.6rem;
