@@ -6,33 +6,41 @@
     border-radius: 1rem;
   }
 
-  .title {
-    width: 50%;
-    height: 2.54rem;
-  }
+  .content {
+    display: grid;
+    gap: 1.2rem;
 
-  .description {
-    width: 90%;
-    height: 1.72rem;
-  }
+    .title {
+      width: 50%;
+      height: 2.54rem;
+    }
 
-  .type {
-    width: 10%;
-    height: 1.63rem;
+    .description {
+      width: 90%;
+      height: 1.72rem;
+    }
+
+    .type {
+      width: 10%;
+      height: 2.5rem;
+      border-radius: var(--border-radious);
+    }
   }
 
   .rankComment {
     display: flex;
     justify-content: space-between;
+    align-items: end;
 
     .rank {
       width: 6rem;
-      height: 2.73rem;
+      height: 3.6rem;
+      border-radius: var(--border-radious);
     }
 
     .comment {
       width: 4rem;
-      height: 2.73rem;
+      height: 1.73rem;
     }
   }
 }
