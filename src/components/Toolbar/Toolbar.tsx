@@ -22,7 +22,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
   className?: string;
-  isLoading: boolean;
 };
 
 function Toolbar({ className }: Props) {
