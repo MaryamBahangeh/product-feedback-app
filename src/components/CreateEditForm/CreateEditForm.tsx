@@ -7,12 +7,12 @@ import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { ComponentProps, FormEvent, ReactElement, useState } from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import styles from "./CreateEditForm.module.css";
 import Select from "@/components/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
-
+import { Controller, useForm } from "react-hook-form";
 
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
@@ -32,64 +32,66 @@ function CreateEditForm({
   onCancel,
   onRemove,
 }: Props) {
-  const [newSuggestion, setNewSuggestion] = useState<SuggestionModel>({
-    id: uuidv4(),
-    title: "",
-    description: "",
-    suggestionType: SUGGESTION_TYPES[0].value,
-    suggestionStatus:SUGGESTION_STATUS[0].value,
-    rank: 0,
-    comments: [],
-    ...defaultValues,
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<SuggestionModel>({
+    defaultValues: defaultValues || {
+      id: uuidv4(),
+      title: "",
+      description: "",
+      suggestionType: SUGGESTION_TYPES[0].value,
+      suggestionStatus: SUGGESTION_STATUS[0].value,
+      rank: 0,
+      comments: [],
+    },
   });
 
-  const handleChange = (field: string, value: string) => {
-    setNewSuggestion({ ...newSuggestion, [field]: value });
-  };
-
-  const SubmitClickHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmitClick(newSuggestion);
+  const onSubmit = (data: SuggestionModel) => {
+    onSubmitClick({ ...data });
   };
   const { t } = useTranslation();
 
   return (
-    <form className={styles.form} onSubmit={SubmitClickHandler}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       {titleIcon}
       <h2>{pageTitle}</h2>
 
       <div>
         <h3>
-          {t("createEditForm.feedbackTitle")}{" "}
+          {t("createEditForm.feedbackTitle")}
           <span className={styles.star}> *</span>
         </h3>
+
         <span className={"subtitle"}>
           {t("createEditForm.titleDescription")}
         </span>
+
         <input
-          value={newSuggestion.title}
-          onChange={(e) => handleChange("title", e.currentTarget.value)}
-          required
+          {...register("title", {
+            required: t("createEditForm.titleIsRequired"),
+          })}
         />
-        <span className={styles["error-message"]}>
-          {t("createEditForm.titleIsRequired")}
-        </span>
+        {errors.title && <span>{t("createEditForm.titleIsRequired")}</span>}
       </div>
 
       <div>
         <h3>{t("createEditForm.category")}</h3>
         <span className={"subtitle"}>
-          {" "}
           {t("createEditForm.categoryDescription")}
         </span>
-        <Select
+
+        <Controller
           name="suggestionType"
-          options={SUGGESTION_TYPES}
-          value={newSuggestion.suggestionType}
-          onChange={(e) =>
-            handleChange("suggestionType", e.currentTarget.value)
-          }
-        ></Select>
+          control={control}
+          render={({ field }) => (
+            <>
+              <Select options={SUGGESTION_TYPES} {...field}></Select>
+            </>
+          )}
+        />
       </div>
 
       <div>
@@ -97,14 +99,16 @@ function CreateEditForm({
         <span className={"subtitle"}>
           {t("createEditForm.statusDescription")}
         </span>
-        <Select
+
+        <Controller
           name="suggestionStatus"
-          options={SUGGESTION_STATUS}
-          value={newSuggestion.suggestionStatus}
-          onChange={(e) =>
-            handleChange("suggestionStatus", e.currentTarget.value)
-          }
-        ></Select>
+          control={control}
+          render={({ field }) => (
+            <>
+              <Select options={SUGGESTION_STATUS} {...field}></Select>
+            </>
+          )}
+        />
       </div>
 
       <div>
@@ -112,21 +116,32 @@ function CreateEditForm({
           {t("createEditForm.feedbackDetail")}{" "}
           <span className={styles.star}>*</span>
         </h3>
-
         <span className={"subtitle"}>
           {t("createEditForm.feedbackDetailDescription")}
         </span>
-        <Textarea
-          value={newSuggestion.description}
-          onChange={(e) => {
-            handleChange("description", e.target.value);
-          }}
+
+        <Controller
           name="description"
-          required
-        ></Textarea>
-        <span className={styles["error-message"]}>
-          {t("createEditForm.descriptionIsRequired.")}
-        </span>
+          control={control}
+          defaultValue=""
+          rules={{ required: t("createEditForm.descriptionIsRequired") }}
+          render={({ field, fieldState }) => (
+            <>
+              <Textarea {...field} />
+              {fieldState.error && <span>{fieldState.error.message}</span>}
+            </>
+          )}
+        />
+
+        {/*<Textarea*/}
+        {/*  value=""*/}
+        {/*  {...register("description", {*/}
+        {/*    required: t("createEditForm.descriptionIsRequired"),*/}
+        {/*  })}*/}
+        {/*></Textarea>*/}
+        {/*{errors.description && (*/}
+        {/*  <span className={styles["error-message"]}></span>*/}
+        {/*)}*/}
       </div>
 
       <div className={styles["button-container"]}>

@@ -47,6 +47,10 @@
       background-color: var(--color-idle);
       color: var(--color-secondary);
 
+      padding-inline: 1rem;
+      padding-block: 0.5rem;
+      border-radius: 0.8rem;
+
       font-size: var(--fz-500);
       font-weight: 600;
     }
