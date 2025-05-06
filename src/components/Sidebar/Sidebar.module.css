@@ -7,10 +7,6 @@
     background-color: transparent;
     appearance: none;
   }
-
-  .roadmapSkeleton {
-    height: 10.9rem;
-  }
 }
 
 @media (max-width: 639px) {

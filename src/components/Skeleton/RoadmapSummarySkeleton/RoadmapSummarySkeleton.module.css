@@ -1,0 +1,37 @@
+.roadmapSkeleton {
+  display: grid;
+  gap: 2rem;
+  height: 16.9rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .options {
+    display: grid;
+    gap: 1rem;
+
+    .option {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+
+      .bullet {
+        width: 7.2rem;
+        height: 1.7rem;
+      }
+
+      .value {
+        width: 2rem;
+        height: 1.7rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .roadmapSkeleton {
+    display: none;
+  }
+}

@@ -2,6 +2,9 @@
   display: grid;
   gap: 2rem;
 
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+
   .title {
     display: flex;
     justify-content: space-between;
@@ -22,5 +25,11 @@
         font-weight: 600;
       }
     }
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }

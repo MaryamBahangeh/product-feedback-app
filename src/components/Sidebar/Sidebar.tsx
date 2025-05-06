@@ -6,10 +6,10 @@ import Menu from "@/components/Menu/Menu.tsx";
 import Board from "@/components/Board/Board.tsx";
 import Search from "@/components/Search/Search.tsx";
 import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.tsx";
-import CardSkeleton from "@/components/Skeleton/CardSkeleton.tsx";
 
 import styles from "./Sidebar.module.css";
 import SearchSkeleton from "@/components/Skeleton/SearchSkeleton/SearchSkeleton.tsx";
+import RoadmapSummarySkeleton from "@/components/Skeleton/RoadmapSummarySkeleton/RoadmapSummarySkeleton.tsx";
 
 type Props = {
   className?: string;
@@ -24,7 +24,7 @@ export default function Sidebar({ className, isLoading }: Props): ReactElement {
       <Board />
       {isLoading ? <SearchSkeleton /> : <Search className={styles.search} />}
       {isLoading ? (
-        <CardSkeleton className={styles.roadmapSkeleton} />
+        <RoadmapSummarySkeleton />
       ) : (
         <RoadmapSummary className={styles.roadmap} />
       )}
