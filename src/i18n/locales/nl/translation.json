@@ -55,7 +55,7 @@
 
     "feedbackDetail": "Feedbackdetails",
     "feedbackDetailDescription": "Geef eventuele specifieke opmerkingen over wat er verbeterd, toegevoegd, etc. moet worden",
-    "descriptionIsRequired.": "Beschrijving is verplicht.",
+    "descriptionIsRequired": "Beschrijving is verplicht.",
 
     "buttons": {
       "saveChanges": "Wijzigingen opslaan",

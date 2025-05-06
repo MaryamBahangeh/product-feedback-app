@@ -53,7 +53,7 @@
 
     "feedbackDetail": "Feedback Detail",
     "feedbackDetailDescription": "Include any specific comments on what should be improved, added, etc",
-    "descriptionIsRequired.": "Description is required.",
+    "descriptionIsRequired": "Description is required.",
 
     "buttons": {
       "saveChanges": "Save Changes",
