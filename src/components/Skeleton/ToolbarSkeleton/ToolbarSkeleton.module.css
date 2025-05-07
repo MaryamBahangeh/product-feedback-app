@@ -1,0 +1,44 @@
+.toolbarSkeleton {
+  background-color: var(--color-white);
+
+  border-radius: 1rem;
+  padding-inline: 2rem;
+  padding-block: 1.2rem;
+
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  .suggestions {
+    display: flex;
+    gap: 0.5rem;
+
+    align-items: center;
+    justify-content: center;
+
+    .suggestionSkeleton {
+      height: 1.7rem;
+      width: 9.5rem;
+    }
+  }
+
+  label {
+    flex: 1 1 0;
+
+    .sortBySkeleton {
+      height: 1.7rem;
+      width: 9.5rem;
+    }
+  }
+
+  .languageSkeleton {
+    height: 1.8rem;
+    width: 9.6rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .toolbarSkeleton {
+    display: none;
+  }
+}

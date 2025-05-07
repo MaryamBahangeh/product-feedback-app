@@ -1,26 +1,43 @@
-import { Link } from "react-router";
-
-import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
+import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router";
 
 import Card from "@/components/Card/Card.tsx";
 import Button, { Color, Variant } from "@/components/Button/Button.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
+import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
+
 import styles from "./Suggestion.module.css";
 
+import RoadmapBullet, {
+  BulletSize,
+} from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
+import clsx from "clsx";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
+
 function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
-  const mutation = useSuggestionUpdateMutation();
+  const { increaseRank } = useSuggestionStore();
+
+  const { t } = useTranslation();
+
+  const location = useLocation();
+  const suggestionType = t(
+    SUGGESTION_TYPES.filter((x) => x.value === suggestion.suggestionType)[0]
+      .translationKey as never,
+  );
 
   const addRankClickHandler = (suggestionId: string) => {
-    mutation.mutate({
-      id: suggestionId,
-      partialSuggestion: { rank: suggestion.rank + 1 },
-    });
+    increaseRank(suggestionId);
   };
 
   return (
-    <Card className={styles.suggestion}>
+    <Card
+      className={clsx(
+        styles.suggestion,
+        location.pathname === "/roadmap" && styles[suggestion.suggestionStatus],
+      )}
+    >
       <Button
         variant={Variant.TONAL}
         color={Color.IDLE}
@@ -33,15 +50,24 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         />
         {suggestion.rank}
       </Button>
+      <Link
+        className={clsx(styles.content)}
+        to={"/suggestion/" + suggestion.id}
+        state={{ from: location.pathname }}
+      >
+        {location.pathname === "/roadmap" && (
+          <RoadmapBullet
+            suggestionStatus={suggestion.suggestionStatus}
+            size={BulletSize.SMALL}
+          />
+        )}
 
-      <Link className={styles.content} to={"/suggestion/" + suggestion.id}>
         <h2>{suggestion.title}</h2>
 
         <div>{suggestion.description}</div>
 
-        <div className={styles.suggestionType}>{suggestion.suggestionType}</div>
+        <div className={styles.suggestionType}>{suggestionType}</div>
       </Link>
-
       <div className={styles.comments}>
         <img src="/images/icones/shared/icon-comments.svg" alt="" />
         {suggestion.comments.length}

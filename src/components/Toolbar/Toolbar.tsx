@@ -1,22 +1,11 @@
-
 import { ChangeEvent, useContext } from "react";
 
-import { useTranslation } from "react-i18next";
-
-
 import clsx from "clsx";
-
-import i18next from "i18next";
-
-import useSuggestionQuery from "@/hooks/use-suggestion-query.ts";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import { SORT_OPTIONS } from "@/dropdown-options/sort-options.ts";
-import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
-import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 
-import Select from "@/components/Select/Select.tsx";
 import Button, {
   ButtonType,
   Color,
@@ -24,15 +13,19 @@ import Button, {
 } from "@/components/Button/Button.tsx";
 
 import styles from "./Toolbar.module.css";
+import i18next from "i18next";
+import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
+import { useTranslation } from "react-i18next";
+import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
+import Select from "@/components/Select/Select.tsx";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
   className?: string;
 };
 
 function Toolbar({ className }: Props) {
-  const { sortBy, setSortBy } = useContext(SearchContext);
-
-  const { data: filteredSuggestions } = useSuggestionQuery();
+  const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   const { t } = useTranslation();
 
@@ -51,13 +44,14 @@ function Toolbar({ className }: Props) {
     }
   };
 
+  // if (isLoading) return <ToolbarSkeleton />;
   return (
     <div className={clsx(styles.toolbar, className)}>
       <div className={styles.suggestions}>
         <img src="/images/icones/suggestion/icon-suggestions.svg" alt="" />
 
         <span>
-            {t("toolbar.suggestion", { count: filteredSuggestions.length })}
+          {t("toolbar.suggestion", { count: filteredSuggestions.length })}
         </span>
       </div>
 

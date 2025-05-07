@@ -1,45 +1,19 @@
 .roadmap {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
 
-  .title {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .options {
+  .header {
     display: grid;
     gap: 1rem;
 
-    .option {
+    .title {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      font-size: var(--fz-500);
+    }
 
-      .bullet {
-        border-radius: 999rem;
-        inline-size: 0.5rem;
-        block-size: 0.5rem;
-
-        &.orange {
-          background-color: var(--color-warning);
-        }
-
-        &.blue {
-          background-color: var(--color-secondary);
-        }
-
-        &.purple {
-          background-color: var(--color-primary);
-        }
-      }
-
-      .value {
-        margin-inline-start: auto;
-        font-weight: 600;
-      }
+    .description {
+      font-size: var(--fz-400);
     }
   }
 }

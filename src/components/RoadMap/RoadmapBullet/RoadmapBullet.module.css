@@ -1,0 +1,45 @@
+.roadmap-bullet {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  .bullet {
+    border-radius: 999rem;
+
+    &.Planned {
+      background-color: var(--color-warning);
+    }
+
+    &.In-Progress {
+      background-color: var(--color-primary);
+    }
+
+    &.Live {
+      background-color: var(--color-secondary);
+    }
+  }
+
+  &.small {
+    font-size: var(--fz-300);
+    > span {
+      inline-size: 0.5rem;
+      block-size: 0.5rem;
+    }
+  }
+
+  &.medium {
+    font-size: var(--fz-400);
+    > span {
+      inline-size: 0.75rem;
+      block-size: 0.75rem;
+    }
+  }
+
+  &.large {
+    font-size: var(--fz-500);
+    > span {
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
+  }
+}

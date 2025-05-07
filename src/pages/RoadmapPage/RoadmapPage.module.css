@@ -1,0 +1,39 @@
+.roadmap {
+  display: grid;
+
+  padding-inline: 3rem;
+  padding-block: 3rem;
+
+  .tabs {
+    display: none;
+  }
+
+  .content {
+    padding-block-start: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap {
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      .column {
+        grid-column: 1 / -1;
+      }
+
+      .not-visible {
+        display: none;
+      }
+    }
+  }
+}

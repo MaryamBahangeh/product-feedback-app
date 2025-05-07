@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router";
-
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 import CreateEditForm from "@/components/CreateEditForm/CreateEditForm.tsx";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
 
-import useSuggestionInsertMutation from "@/hooks/use-suggestion-insert-mutation.ts";
-
 import styles from "./SuggestionCreatePage.module.css";
+import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function SuggestionCreatePage() {
-  const mutation = useSuggestionInsertMutation();
+  const { t } = useTranslation();
+
+  const { addSuggestion } = useSuggestionStore();
 
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ function SuggestionCreatePage() {
   };
 
   const SubmitClickHandler = (newSuggestion: SuggestionModel) => {
-    mutation.mutate(newSuggestion);
+    addSuggestion(newSuggestion);
     goBackHandler();
   };
 
@@ -29,7 +30,7 @@ function SuggestionCreatePage() {
 
       <CreateEditForm
         onSubmitClick={SubmitClickHandler}
-        pageTitle={"Add a new suggestion"}
+        pageTitle={t("createEditForm.addANewSuggestion")}
         onCancel={goBackHandler}
         onRemove={goBackHandler}
       ></CreateEditForm>

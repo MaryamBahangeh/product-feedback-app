@@ -27,6 +27,7 @@
   },
 
   "createEditForm": {
+    "addANewSuggestion": "Add a new suggestion",
     "feedbackTitle": "Feedback Title",
     "titleDescription": "Add a short, descriptive headline",
     "titleIsRequired": "Title is required.",
@@ -45,12 +46,14 @@
     "statusDescription": "Change feature state",
     "statusOptions": {
       "suggestion": "Suggestion",
-      "planned": "Planned"
+      "planned": "Planned",
+      "inProgressed": "In-Progress",
+      "live": "Live"
     },
 
     "feedbackDetail": "Feedback Detail",
     "feedbackDetailDescription": "Include any specific comments on what should be improved, added, etc",
-    "descriptionIsRequired.": "Description is required.",
+    "descriptionIsRequired": "Description is required.",
 
     "buttons": {
       "saveChanges": "Save Changes",
@@ -76,9 +79,9 @@
   "roadMap": {
     "roadMap": "Roadmap",
     "view": "View",
-    "planned": "Planned",
-    "inProgressed": "In-Progressed",
-    "live": "Live"
+    "ideasPrioritizedFoResearch": "Ideas prioritized for research",
+    "currentlyBeingDeveloped": "Currently being developed",
+    "releasedFeatures": "Released features"
   },
 
   "notFound": {

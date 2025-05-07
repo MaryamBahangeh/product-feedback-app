@@ -1,0 +1,35 @@
+.roadmap {
+  display: grid;
+  gap: 2rem;
+
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .options {
+    display: grid;
+    gap: 1rem;
+
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      .value {
+        margin-inline-start: auto;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

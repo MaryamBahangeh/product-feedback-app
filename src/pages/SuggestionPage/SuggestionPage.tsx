@@ -1,11 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 import { v4 as uuidv4 } from "uuid";
-
-import useSuggestionQueryById from "@/hooks/use-suggestion-query-by-id.ts";
-import useSuggestionUpdateMutation from "@/hooks/use-suggestion-update-mutation.ts";
 
 import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
 import Button, {
@@ -18,26 +14,32 @@ import Textarea from "@/components/Textarea/Textarea.tsx";
 import Card from "@/components/Card/Card.tsx";
 import PageHeader from "@/components/PageHeader/PageHeader.tsx";
 
+import { SuggestionModel } from "@/models/suggestion-model.ts";
 import { CommentModel } from "@/models/comment-model.ts";
 
 import { persons } from "@/assets/data/users.ts";
 
 import styles from "./SuggestionPage.module.css";
+import { useTranslation } from "react-i18next";
+import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
 
 function SuggestionPage() {
-  const mutation = useSuggestionUpdateMutation();
+  const { suggestions, editSuggestion } = useSuggestionStore();
 
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const { id } = useParams();
 
   const [commentText, setCommentText] = useState<string>("");
-
   const [leftCharacters, setLeftCharacters] = useState<number>(255);
 
-  const { data: suggestion } = useSuggestionQueryById(id!);
+  const suggestion: SuggestionModel = suggestions.filter(
+    (suggestion) => suggestion.id === id,
+  )[0];
 
   const textAreaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.currentTarget.value);
@@ -52,28 +54,25 @@ function SuggestionPage() {
       comments: [],
     };
 
-    mutation.mutate({
-      id: suggestion!.id,
-      partialSuggestion: {
-        comments: [...suggestion!.comments, newComment],
+    editSuggestion(
+      {
+        ...suggestion,
+        comments: [...suggestion.comments, newComment],
       },
-    });
+      suggestion.id,
+    );
     setCommentText("");
   };
 
   const addHandler = (comments: CommentModel[]): void => {
-    mutation.mutate({
-      id: suggestion!.id,
-      partialSuggestion: { ...suggestion, comments },
-    });
+    editSuggestion({ ...suggestion, comments }, suggestion.id);
   };
 
-  //!!!!!!!!!!!!!
   useEffect(() => {
-    if (!id) {
+    if (!id || !suggestion) {
       navigate("/");
     }
-  }, [id, navigate]);
+  }, [id, navigate, suggestion]);
 
   if (!id || !suggestion) {
     return <div>{t("common.redirecting")}</div>;
@@ -81,7 +80,7 @@ function SuggestionPage() {
 
   return (
     <div className={styles["suggestion-comments"]}>
-      <PageHeader onGoBack={() => navigate("/")}>
+      <PageHeader onGoBack={() => navigate(location.state?.from || "/")}>
         <Button
           buttonType={ButtonType.LINK}
           linkTo={"/suggestion/" + id + "/edit"}

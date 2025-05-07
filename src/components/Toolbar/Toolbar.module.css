@@ -10,6 +10,9 @@
   gap: 2rem;
   align-items: center;
 
+  /*opacity: 0;*/
+  /*animation: fadeIn 0.4s ease-in forwards;*/
+
   .suggestions {
     display: flex;
     gap: 0.5rem;
@@ -28,6 +31,7 @@
 
     border: none;
     outline: none;
+    padding-block: 0;
   }
 }
 
@@ -40,3 +44,9 @@
     }
   }
 }
+
+/*@keyframes fadeIn {*/
+/*  to {*/
+/*    opacity: 1;*/
+/*  }*/
+/*}*/

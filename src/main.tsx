@@ -5,6 +5,7 @@ import "./styles/color.css";
 import "./styles/typography.css";
 import "./index.css";
 import "./i18n";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import App from "./App.tsx";
 

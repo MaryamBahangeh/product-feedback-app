@@ -2,4 +2,12 @@
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }

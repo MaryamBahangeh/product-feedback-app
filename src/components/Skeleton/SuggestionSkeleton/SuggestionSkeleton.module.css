@@ -1,0 +1,52 @@
+.SuggestionSkeleton {
+  display: grid;
+  gap: 2rem;
+
+  > div {
+    border-radius: 1rem;
+  }
+
+  .content {
+    display: grid;
+    gap: 1.2rem;
+
+    .title {
+      width: 50%;
+      height: 2.54rem;
+    }
+
+    .description {
+      width: 90%;
+      height: 1.72rem;
+    }
+
+    .type {
+      width: 10%;
+      height: 2.5rem;
+      border-radius: var(--border-radious);
+    }
+  }
+
+  .rankComment {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    .rank {
+      width: 6rem;
+      height: 3.6rem;
+      border-radius: var(--border-radious);
+    }
+
+    .comment {
+      width: 4rem;
+      height: 1.73rem;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .SuggestionSkeleton {
+    display: none;
+  }
+}

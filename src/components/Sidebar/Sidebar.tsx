@@ -1,26 +1,33 @@
 import { ReactElement, useState } from "react";
-
+import "react-loading-skeleton/dist/skeleton.css";
 import clsx from "clsx";
 
 import Menu from "@/components/Menu/Menu.tsx";
 import Board from "@/components/Board/Board.tsx";
 import Search from "@/components/Search/Search.tsx";
-import RoadMap from "@/components/RoadMap/RoadMap.tsx";
+import RoadmapSummary from "@/components/RoadMap/RoadmapSummary/RoadmapSummary.tsx";
 
 import styles from "./Sidebar.module.css";
+import SearchSkeleton from "@/components/Skeleton/SearchSkeleton/SearchSkeleton.tsx";
+import RoadmapSummarySkeleton from "@/components/Skeleton/RoadmapSummarySkeleton/RoadmapSummarySkeleton.tsx";
 
 type Props = {
   className?: string;
+  isLoading: boolean;
 };
 
-export default function Sidebar({ className }: Props): ReactElement {
+export default function Sidebar({ className, isLoading }: Props): ReactElement {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
     <div className={clsx(styles.sidebar, className)}>
       <Board />
-      <Search className={styles.search} />
-      <RoadMap className={styles.roadmap} />
+      {isLoading ? <SearchSkeleton /> : <Search className={styles.search} />}
+      {isLoading ? (
+        <RoadmapSummarySkeleton />
+      ) : (
+        <RoadmapSummary className={styles.roadmap} />
+      )}
 
       <button
         className={styles.menu}

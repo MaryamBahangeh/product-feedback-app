@@ -1,44 +1,34 @@
-// import { Link } from "react-router";
-
-import clsx from "clsx";
-
-import Card from "@/components/Card/Card.tsx";
-
+import { SuggestionModel } from "@/models/suggestion-model.ts";
+import Suggestion from "@/components/Suggestions/Suggestion/Suggestion.tsx";
+import RoadmapBullet, {
+  BulletSize,
+} from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 import styles from "./RoadMap.module.css";
-import { useTranslation } from "react-i18next";
 
 type Props = {
-  className?: string;
+  type: string;
+  description: string;
+  suggestions: SuggestionModel[];
 };
 
-function RoadMap({ className }: Props) {
-  const { t } = useTranslation();
-
+function Roadmap({ type, description, suggestions }: Props) {
   return (
-    <Card className={clsx(styles["roadmap"], className)}>
-      <div className={styles.title}>
-        <h4>{t("roadMap.roadMap")}</h4>
-        {/*<Link to="./">{t("roadMap.view")}</Link>*/}
+    <div className={styles.roadmap}>
+      <div className={styles.header}>
+        <div className={styles.title}>
+          <RoadmapBullet suggestionStatus={type} size={BulletSize.LARGE} />
+          <span> ({suggestions.length})</span>
+        </div>
+        <div className={styles.description}>{description}</div>
       </div>
 
-      <div className={styles.options}>
-        <div className={styles.option}>
-          <span className={clsx(styles["bullet"], styles["orange"])}></span>
-          {t("roadMap.planned")} <span className={styles.value}>2</span>
+      {suggestions.map((s) => (
+        <div key={s.id}>
+          <Suggestion suggestion={s} />
         </div>
-
-        <div className={styles.option}>
-          <span className={clsx(styles["bullet"], styles["purple"])}></span>
-          {t("roadMap.inProgressed")} <span className={styles.value}>3</span>
-        </div>
-
-        <div className={styles.option}>
-          <span className={clsx(styles["bullet"], styles["blue"])}></span>
-          {t("roadMap.live")} <span className={styles.value}>7</span>
-        </div>
-      </div>
-    </Card>
+      ))}
+    </div>
   );
 }
 
-export default RoadMap;
+export default Roadmap;

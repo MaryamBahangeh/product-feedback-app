@@ -1,0 +1,30 @@
+.roadmap-header {
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background);
+
+  border-radius: 1rem;
+  padding-inline: 2.5rem;
+  padding-block: 1.5rem;
+
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+
+  .content {
+    display: grid;
+    gap: 1.5rem;
+    font-size: var(--fz-600);
+    font-weight: 600;
+
+    button {
+      color: var(--color-gray-98);
+      font-size: var(--fz-300);
+
+      img {
+        padding-inline-end: 1rem;
+        color: var(--color-gray-98);
+      }
+    }
+  }
+}

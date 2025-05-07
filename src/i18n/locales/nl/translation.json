@@ -29,11 +29,12 @@
   },
 
   "createEditForm": {
+    "addANewSuggestion": "Voeg een nieuwe suggestie toe",
     "feedbackTitle": "Feedback Title",
     "titleDescription": "Voeg een korte, beschrijvende kop toe",
     "titleIsRequired": "Titel is vereist.",
 
-    "category": "categorie",
+    "category": "Categorie",
     "categoryDescription": "Kies een categorie voor uw feedback",
     "categoryOptions": {
       "ui": "UI",
@@ -47,12 +48,14 @@
     "statusDescription": "Functiestatus wijzigen",
     "statusOptions": {
       "suggestion": "Suggestie",
-      "planned": "Gepland"
+      "planned": "Gepland",
+      "inProgressed": "In-Uitvoering",
+      "live": "Live"
     },
 
     "feedbackDetail": "Feedbackdetails",
     "feedbackDetailDescription": "Geef eventuele specifieke opmerkingen over wat er verbeterd, toegevoegd, etc. moet worden",
-    "descriptionIsRequired.": "Beschrijving is verplicht.",
+    "descriptionIsRequired": "Beschrijving is verplicht.",
 
     "buttons": {
       "saveChanges": "Wijzigingen opslaan",
@@ -78,9 +81,9 @@
   "roadMap": {
     "roadMap": "Routekaart",
     "view": "Weergave",
-    "planned": "Gepland",
-    "inProgressed": "In-Uitvoering",
-    "live": "Live"
+    "ideasPrioritizedFoResearch": "Ideeën geprioriteerd voor onderzoek",
+    "currentlyBeingDeveloped": "Momenteel in ontwikkeling",
+    "releasedFeatures": "Uitgebrachte functies"
   },
 
   "notFound": {

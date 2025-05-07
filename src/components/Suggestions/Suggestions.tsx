@@ -1,27 +1,32 @@
-import clsx from "clsx";
+import { useContext } from "react";
 
-import useSuggestionQuery from "@/hooks/use-suggestion-query.ts";
+import { SearchContext } from "@/providers/SearchProvider.tsx";
 
 import Suggestion from "./Suggestion/Suggestion.tsx";
 
 import styles from "./Suggestions.module.css";
 
+import clsx from "clsx";
+
+import SuggestionSkeleton from "@/components/Skeleton/SuggestionSkeleton/SuggestionSkeleton.tsx";
+
 type Props = {
   className?: string;
+  isLoading: boolean;
 };
 
-function Suggestions({ className }: Props) {
-  // const [filteredSuggestions, setFilteredSuggestions] = useState<
-  //   SuggestionModel[]
-  // >([]);
-  // fetchSuggestions(filter, sortBy).then((x) => setFilteredSuggestions(x));
-  const { data: filteredSuggestions } = useSuggestionQuery();
+function Suggestions({ className, isLoading }: Props) {
+  const { filteredSuggestions } = useContext(SearchContext);
 
   return (
     <ul className={clsx(styles.suggestions, className)}>
       {filteredSuggestions.map((suggestion) => (
         <li key={suggestion.id}>
-          <Suggestion suggestion={suggestion} />
+          {isLoading ? (
+            <SuggestionSkeleton />
+          ) : (
+            <Suggestion suggestion={suggestion} />
+          )}
         </li>
       ))}
     </ul>
