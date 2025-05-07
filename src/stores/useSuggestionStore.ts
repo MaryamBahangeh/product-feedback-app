@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { LOCAL_STORAGE_SUGGESTION_KEY } from "@/constants/localstorage.constants.ts";
 import { StateCreator } from "zustand";
+import { defaultSuggestions } from "@/assets/data/defaultSuggestions.ts";
 
 type SuggestionState = {
   suggestions: SuggestionModel[];
@@ -18,7 +19,7 @@ type SuggestionStoreCreator = StateCreator<
 >;
 
 const suggestionStore: SuggestionStoreCreator = (set) => ({
-  suggestions: [],
+  suggestions: defaultSuggestions,
   addSuggestion: (suggestion: SuggestionModel) =>
     set(
       (state) => ({
