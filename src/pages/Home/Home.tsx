@@ -3,12 +3,21 @@ import Toolbar from "@/components/Toolbar/Toolbar.tsx";
 import Suggestions from "@/components/Suggestions/Suggestions.tsx";
 
 import styles from "./Home.module.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SuggestionContext } from "@/providers/SuggestionProvider.tsx";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { LOCAL_STORAGE_SUGGESTION_KEY } from "@/constants/localstorage.constants.ts";
+import { defaultSuggestions } from "@/assets/data/defaultSuggestions.ts";
 
 function Home() {
   const { isLoading } = useContext(SuggestionContext);
+
+  useEffect(() => {
+    localStorage.setItem(
+      LOCAL_STORAGE_SUGGESTION_KEY,
+      JSON.stringify(defaultSuggestions),
+    );
+  }, []);
 
   return (
     <div className={styles.home}>
