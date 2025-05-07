@@ -1,7 +1,7 @@
 .form {
   position: relative;
   padding-inline: 4rem;
-  padding-block-start: 4rem;
+  padding-block-start: 2rem;
   padding-block-end: 4rem;
 
   border-radius: var(--border-radious);
@@ -9,7 +9,7 @@
   border: none;
 
   display: grid;
-  gap: 3.5rem;
+  gap: 3rem;
 
   > img {
     position: absolute;
@@ -19,12 +19,12 @@
 
   h2 {
     text-align: center;
-    padding: 1rem;
+    padding-top: 1rem;
   }
 
   > div {
     display: grid;
-    gap: 1.6rem;
+    gap: 1.2rem;
 
     h3 {
       display: flex;
@@ -58,7 +58,7 @@
       grid-template-columns: 1fr auto auto;
     }
 
-    .delete {
+    .save {
       justify-self: start;
     }
   }

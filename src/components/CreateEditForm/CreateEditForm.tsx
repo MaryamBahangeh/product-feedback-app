@@ -146,11 +146,14 @@ function CreateEditForm({
 
       <div className={styles["button-container"]}>
         <Button
+          className={styles.save}
           variant={Variant.SOLID}
-          color={Color.DANGER}
-          className={styles.delete}
-          onClick={onRemove}
+          color={Color.PRIMARY}
         >
+          {t("createEditForm.buttons.saveChanges")}
+        </Button>
+
+        <Button variant={Variant.SOLID} color={Color.DANGER} onClick={onRemove}>
           {t("createEditForm.buttons.delete")}
         </Button>
 
@@ -161,10 +164,6 @@ function CreateEditForm({
           onClick={onCancel}
         >
           {t("createEditForm.buttons.cancel")}
-        </Button>
-
-        <Button variant={Variant.SOLID} color={Color.PRIMARY}>
-          {t("createEditForm.buttons.saveChanges")}
         </Button>
       </div>
     </form>

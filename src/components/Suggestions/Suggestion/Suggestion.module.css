@@ -41,6 +41,15 @@
 
     border-radius: var(--border-radious);
 
+    color: inherit;
+
+    .title {
+      font-size: var(--fz-600);
+    }
+    .description {
+      font-size: var(--fz-400);
+    }
+
     .suggestionType {
       justify-self: start;
 

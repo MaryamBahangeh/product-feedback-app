@@ -2,7 +2,7 @@
   display: grid;
   gap: 2rem;
   padding-inline: 3rem;
-  padding-block: 8rem;
+  padding-block: 4rem;
 
   .comments {
     display: grid;

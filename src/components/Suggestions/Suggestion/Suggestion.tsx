@@ -62,9 +62,15 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
           />
         )}
 
-        <h2>{suggestion.title}</h2>
+        <h2 className={location.pathname === "/roadmap" ? styles.title : ""}>
+          {suggestion.title}
+        </h2>
 
-        <div>{suggestion.description}</div>
+        <div
+          className={location.pathname === "/roadmap" ? styles.description : ""}
+        >
+          {suggestion.description}
+        </div>
 
         <div className={styles.suggestionType}>{suggestionType}</div>
       </Link>
