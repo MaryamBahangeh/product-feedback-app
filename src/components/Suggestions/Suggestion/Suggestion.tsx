@@ -50,30 +50,40 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         />
         {suggestion.rank}
       </Button>
-      <Link
-        className={clsx(styles.content)}
-        to={"/suggestion/" + suggestion.id}
-        state={{ from: location.pathname }}
-      >
-        {location.pathname === "/roadmap" && (
-          <RoadmapBullet
-            suggestionStatus={suggestion.suggestionStatus}
-            size={BulletSize.SMALL}
-          />
-        )}
-
-        <h2 className={location.pathname === "/roadmap" ? styles.title : ""}>
-          {suggestion.title}
-        </h2>
-
-        <div
-          className={location.pathname === "/roadmap" ? styles.description : ""}
-        >
-          {suggestion.description}
+      {location.pathname.includes("/suggestion") ? (
+        <div className={styles.content}>
+          <h2>{suggestion.title}</h2>
+          <div>{suggestion.description}</div>
+          <div className={styles.suggestionType}>{suggestionType}</div>
         </div>
+      ) : (
+        <Link
+          className={clsx(styles.content)}
+          to={"/suggestion/" + suggestion.id}
+          state={{ from: location.pathname }}
+        >
+          {location.pathname === "/roadmap" && (
+            <RoadmapBullet
+              suggestionStatus={suggestion.suggestionStatus}
+              size={BulletSize.SMALL}
+            />
+          )}
 
-        <div className={styles.suggestionType}>{suggestionType}</div>
-      </Link>
+          <h2 className={location.pathname === "/roadmap" ? styles.title : ""}>
+            {suggestion.title}
+          </h2>
+
+          <div
+            className={
+              location.pathname === "/roadmap" ? styles.description : ""
+            }
+          >
+            {suggestion.description}
+          </div>
+
+          <div className={styles.suggestionType}>{suggestionType}</div>
+        </Link>
+      )}
       <div className={styles.comments}>
         <img src="/images/icones/shared/icon-comments.svg" alt="" />
         {suggestion.comments.length}

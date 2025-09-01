@@ -18,10 +18,7 @@ function RoadmapHeader() {
     <div className={styles["roadmap-header"]}>
       <div className={styles.content}>
         <Button variant={Variant.TEXT} onClick={() => navigate("/")}>
-          <img
-            src="/images/icones/shared/icon-arrow-left-white.svg"
-            alt="back"
-          />
+          <div>{"<"}</div>
           {t("pageHeader.goBack")}
         </Button>
         <div>{t("roadMap.roadMap")}</div>

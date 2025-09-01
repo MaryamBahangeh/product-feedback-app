@@ -15,7 +15,7 @@ function PageHeader({ onGoBack, children }: Props) {
   return (
     <div className={styles["page-header"]}>
       <Button variant={Variant.TEXT} onClick={onGoBack}>
-        <img src="/images/icones/shared/icon-arrow-left.svg" alt="back" />
+        <div>{"<"}</div>
         {t("pageHeader.goBack")}
       </Button>
       {children}
