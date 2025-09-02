@@ -104,6 +104,24 @@
   }
 }
 
+@media (max-width: 640px) {
+  .roadmap {
+    grid-template-areas:
+      "content content"
+      "rank comment";
+
+    gap: 2rem;
+
+    .rank {
+      display: flex;
+    }
+
+    .comments {
+      align-self: flex-end;
+    }
+  }
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;

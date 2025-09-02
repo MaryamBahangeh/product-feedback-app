@@ -38,6 +38,7 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
         location.pathname === "/roadmap"
           ? styles[suggestion.suggestionStatus]
           : location.pathname === "/" && styles.suggestionHover,
+        location.pathname === "/roadmap" && styles.roadmap,
       )}
     >
       <Button
