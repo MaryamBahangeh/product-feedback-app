@@ -35,7 +35,9 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
     <Card
       className={clsx(
         styles.suggestion,
-        location.pathname === "/roadmap" && styles[suggestion.suggestionStatus],
+        location.pathname === "/roadmap"
+          ? styles[suggestion.suggestionStatus]
+          : location.pathname === "/" && styles.suggestionHover,
       )}
     >
       <Button
@@ -69,7 +71,12 @@ function Suggestion({ suggestion }: { suggestion: SuggestionModel }) {
             />
           )}
 
-          <h2 className={location.pathname === "/roadmap" ? styles.title : ""}>
+          <h2
+            className={clsx(
+              styles.hoverTitle,
+              location.pathname === "/roadmap" && styles.title,
+            )}
+          >
             {suggestion.title}
           </h2>
 
