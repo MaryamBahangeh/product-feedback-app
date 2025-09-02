@@ -8,6 +8,10 @@
   .title {
     display: flex;
     justify-content: space-between;
+
+    > a:hover {
+      color: var(--color-primary);
+    }
   }
 
   .options {
