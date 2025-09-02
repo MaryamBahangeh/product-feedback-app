@@ -24,6 +24,7 @@ function Suggestions({ className, isLoading }: Props) {
       <AnimatePresence>
         {filteredSuggestions.map((suggestion) => (
           <motion.div
+            layout
             key={suggestion.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
