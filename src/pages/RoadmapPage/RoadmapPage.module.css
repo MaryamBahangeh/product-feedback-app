@@ -18,6 +18,9 @@
 
 @media (max-width: 640px) {
   .roadmap {
+    padding: 0;
+    padding-block-end: 3rem;
+
     .tabs {
       display: flex;
       justify-content: space-between;
@@ -26,6 +29,7 @@
     .content {
       display: grid;
       grid-template-columns: 1fr;
+      padding-inline: 3rem;
 
       .column {
         grid-column: 1 / -1;

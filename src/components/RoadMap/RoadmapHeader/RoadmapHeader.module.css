@@ -4,7 +4,7 @@
 
   border-radius: 1rem;
   padding-inline: 2.5rem;
-  padding-block: 1.5rem;
+  padding-block: 2rem;
 
   display: flex;
   gap: 2rem;
@@ -23,5 +23,11 @@
 
       gap: 1rem;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap-header {
+    border-radius: 0;
   }
 }
