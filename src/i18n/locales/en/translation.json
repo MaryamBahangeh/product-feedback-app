@@ -99,5 +99,14 @@
     "charactersLeft": "characters left",
     "postComment": "Post Comment",
     "confirmDelete": "Are you sure you want to delete?"
+  },
+
+  "nav": {
+    "home": "Home",
+    "roadmap": "Roadmap",
+    "suggestions": "Suggestions",
+    "newSuggestion": "New suggestion",
+    "topSuggestions": "Top suggestions",
+    "recentSuggestions": "Recent suggestions"
   }
 }
