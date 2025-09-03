@@ -13,11 +13,23 @@
   --color-white: hsl(0, 0%, 100%);
 
   --color-primary: hsl(282, 83%, 52%);
+  --color-primary-hover: hsl(282, 83%, 45%);
+
   --color-secondary: hsl(230, 76%, 59%);
+  --color-secondary-hover: hsl(230, 76%, 52%);
+
   --color-secondary-dark: hsl(230, 31%, 31%);
+  --color-secondary-dark-hover: hsl(230, 31%, 25%);
+
   --color-danger: hsl(0, 68%, 45%);
+  --color-danger-hover: hsl(0, 68%, 38%);
+
   --color-warning: hsl(16, 79%, 57%);
+  --color-warning-hover: hsl(16, 79%, 50%);
+
   --color-idle: hsl(231, 100%, 97%);
+  --color-idle-hover: hsl(231, 100%, 92%);
+
   --color-foreground: hsl(239, 22%, 37%);
   --color-background: hsl(230, 60%, 98%);
   --color-form-background: var(--color-white);

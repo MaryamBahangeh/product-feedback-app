@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { SearchContext } from "@/providers/SearchProvider.tsx";
 
@@ -20,15 +21,27 @@ function Suggestions({ className, isLoading }: Props) {
 
   return (
     <ul className={clsx(styles.suggestions, className)}>
-      {filteredSuggestions.map((suggestion) => (
-        <li key={suggestion.id}>
-          {isLoading ? (
-            <SuggestionSkeleton />
-          ) : (
-            <Suggestion suggestion={suggestion} />
-          )}
-        </li>
-      ))}
+      <AnimatePresence>
+        {filteredSuggestions.map((suggestion) => (
+          <motion.div
+            layout
+            key={suggestion.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="card"
+          >
+            <li>
+              {isLoading ? (
+                <SuggestionSkeleton />
+              ) : (
+                <Suggestion suggestion={suggestion} />
+              )}
+            </li>
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </ul>
   );
 }

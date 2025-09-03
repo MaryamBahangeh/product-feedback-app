@@ -24,29 +24,38 @@
   &.text {
     background-color: transparent;
     font-size: var(--fz-600);
+
+    &:hover {
+      color: var(--color-primary-hover);
+    }
   }
 
   &.primary {
     background-color: var(--color-primary);
     color: var(--color-background);
+    --color-hover: var(--color-primary-hover);
   }
 
   &.secondary {
     background-color: var(--color-secondary);
     color: var(--color-background);
+    --color-hover: var(--color-secondary-hover);
   }
 
   &.danger {
     background-color: var(--color-danger);
     color: var(--color-background);
+    --color-hover: var(--color-danger-hover);
   }
 
   &.idle {
     background-color: var(--color-idle);
     color: var(--color-secondary);
+    --color-hover: var(--color-idle-hover);
   }
 
   &:hover {
     cursor: pointer;
+    background-color: var(--color-hover);
   }
 }

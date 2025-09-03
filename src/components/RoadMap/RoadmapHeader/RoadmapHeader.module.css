@@ -4,7 +4,7 @@
 
   border-radius: 1rem;
   padding-inline: 2.5rem;
-  padding-block: 1.5rem;
+  padding-block: 2rem;
 
   display: flex;
   gap: 2rem;
@@ -21,10 +21,13 @@
       color: var(--color-gray-98);
       font-size: var(--fz-300);
 
-      img {
-        padding-inline-end: 1rem;
-        color: var(--color-gray-98);
-      }
+      gap: 1rem;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap-header {
+    border-radius: 0;
   }
 }

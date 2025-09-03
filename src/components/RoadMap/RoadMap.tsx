@@ -4,6 +4,7 @@ import RoadmapBullet, {
   BulletSize,
 } from "@/components/RoadMap/RoadmapBullet/RoadmapBullet.tsx";
 import styles from "./RoadMap.module.css";
+import { motion } from "framer-motion";
 
 type Props = {
   type: string;
@@ -23,9 +24,17 @@ function Roadmap({ type, description, suggestions }: Props) {
       </div>
 
       {suggestions.map((s) => (
-        <div key={s.id}>
+        <motion.div
+          layout
+          key={s.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="card"
+        >
           <Suggestion suggestion={s} />
-        </div>
+        </motion.div>
       ))}
     </div>
   );

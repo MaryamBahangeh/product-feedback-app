@@ -1,0 +1,20 @@
+.modal:not([open]) {
+  display: none;
+}
+
+.modal[open] {
+  display: grid;
+  padding-inline: 3rem;
+  padding-block: 1.8rem;
+  gap: 2.5rem;
+  max-width: 450px;
+  width: calc(100% - 4rem);
+  margin: auto;
+  border-radius: 1rem;
+  border: 1px solid;
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

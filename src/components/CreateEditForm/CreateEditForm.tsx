@@ -13,6 +13,7 @@ import styles from "./CreateEditForm.module.css";
 import Select from "@/components/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
 import { Controller, useForm } from "react-hook-form";
+import DeleteButton from "@/components/DeleteButton/DeleteButton.tsx";
 
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
@@ -49,124 +50,115 @@ function CreateEditForm({
     },
   });
 
+  const { t } = useTranslation();
+
   const onSubmit = (data: SuggestionModel) => {
     onSubmitClick({ ...data });
   };
-  const { t } = useTranslation();
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      {titleIcon}
-      <h2>{pageTitle}</h2>
+    <>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        {titleIcon}
+        <h2>{pageTitle}</h2>
 
-      <div>
-        <h3>
-          {t("createEditForm.feedbackTitle")}
-          <span className={styles.star}> *</span>
-        </h3>
+        <div>
+          <h3>
+            {t("createEditForm.feedbackTitle")}
+            <span className={styles.star}> *</span>
+          </h3>
 
-        <span className={"subtitle"}>
-          {t("createEditForm.titleDescription")}
-        </span>
+          <span className={"subtitle"}>
+            {t("createEditForm.titleDescription")}
+          </span>
 
-        <input
-          {...register("title", {
-            required: t("createEditForm.titleIsRequired"),
-          })}
-        />
-        {errors.title && <span>{t("createEditForm.titleIsRequired")}</span>}
-      </div>
+          <input
+            {...register("title", {
+              required: t("createEditForm.titleIsRequired"),
+            })}
+          />
+          {errors.title && <span>{t("createEditForm.titleIsRequired")}</span>}
+        </div>
 
-      <div>
-        <h3>{t("createEditForm.category")}</h3>
-        <span className={"subtitle"}>
-          {t("createEditForm.categoryDescription")}
-        </span>
+        <div>
+          <h3>{t("createEditForm.category")}</h3>
+          <span className={"subtitle"}>
+            {t("createEditForm.categoryDescription")}
+          </span>
 
-        <Controller
-          name="suggestionType"
-          control={control}
-          render={({ field }) => (
-            <>
-              <Select options={SUGGESTION_TYPES} {...field}></Select>
-            </>
-          )}
-        />
-      </div>
+          <Controller
+            name="suggestionType"
+            control={control}
+            render={({ field }) => (
+              <>
+                <Select options={SUGGESTION_TYPES} {...field}></Select>
+              </>
+            )}
+          />
+        </div>
 
-      <div>
-        <h3>{t("createEditForm.updateStatus")}</h3>
-        <span className={"subtitle"}>
-          {t("createEditForm.statusDescription")}
-        </span>
+        <div>
+          <h3>{t("createEditForm.updateStatus")}</h3>
+          <span className={"subtitle"}>
+            {t("createEditForm.statusDescription")}
+          </span>
 
-        <Controller
-          name="suggestionStatus"
-          control={control}
-          render={({ field }) => (
-            <>
-              <Select options={SUGGESTION_STATUS} {...field}></Select>
-            </>
-          )}
-        />
-      </div>
+          <Controller
+            name="suggestionStatus"
+            control={control}
+            render={({ field }) => (
+              <>
+                <Select options={SUGGESTION_STATUS} {...field}></Select>
+              </>
+            )}
+          />
+        </div>
 
-      <div>
-        <h3>
-          {t("createEditForm.feedbackDetail")}{" "}
-          <span className={styles.star}>*</span>
-        </h3>
-        <span className={"subtitle"}>
-          {t("createEditForm.feedbackDetailDescription")}
-        </span>
+        <div>
+          <h3>
+            {t("createEditForm.feedbackDetail")}{" "}
+            <span className={styles.star}>*</span>
+          </h3>
+          <span className={"subtitle"}>
+            {t("createEditForm.feedbackDetailDescription")}
+          </span>
 
-        <Controller
-          name="description"
-          control={control}
-          defaultValue=""
-          rules={{ required: t("createEditForm.descriptionIsRequired") }}
-          render={({ field, fieldState }) => (
-            <>
-              <Textarea {...field} />
-              {fieldState.error && <span>{fieldState.error.message}</span>}
-            </>
-          )}
-        />
+          <Controller
+            name="description"
+            control={control}
+            defaultValue=""
+            rules={{ required: t("createEditForm.descriptionIsRequired") }}
+            render={({ field, fieldState }) => (
+              <>
+                <Textarea {...field} />
+                {fieldState.error && <span>{fieldState.error.message}</span>}
+              </>
+            )}
+          />
+        </div>
 
-        {/*<Textarea*/}
-        {/*  value=""*/}
-        {/*  {...register("description", {*/}
-        {/*    required: t("createEditForm.descriptionIsRequired"),*/}
-        {/*  })}*/}
-        {/*></Textarea>*/}
-        {/*{errors.description && (*/}
-        {/*  <span className={styles["error-message"]}></span>*/}
-        {/*)}*/}
-      </div>
+        <div className={styles["button-container"]}>
+          <Button
+            className={styles.save}
+            variant={Variant.SOLID}
+            color={Color.PRIMARY}
+          >
+            {t("createEditForm.buttons.saveChanges")}
+          </Button>
 
-      <div className={styles["button-container"]}>
-        <Button
-          className={styles.save}
-          variant={Variant.SOLID}
-          color={Color.PRIMARY}
-        >
-          {t("createEditForm.buttons.saveChanges")}
-        </Button>
+          <DeleteButton onDeleteClick={onRemove} />
 
-        <Button variant={Variant.SOLID} color={Color.DANGER} onClick={onRemove}>
-          {t("createEditForm.buttons.delete")}
-        </Button>
-
-        <Button
-          type="button"
-          variant={Variant.SOLID}
-          color={Color.SECONDARY}
-          onClick={onCancel}
-        >
-          {t("createEditForm.buttons.cancel")}
-        </Button>
-      </div>
-    </form>
+          <Button
+            type="button"
+            variant={Variant.SOLID}
+            color={Color.SECONDARY}
+            onClick={onCancel}
+          >
+            {t("createEditForm.buttons.cancel")}
+          </Button>
+        </div>
+      </form>
+    </>
   );
 }
 

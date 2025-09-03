@@ -3,4 +3,11 @@
   background-color: var(--color-white);
   box-shadow: var(--shadow-400);
   padding: 3rem;
+  transition: box-shadow 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 2rem;
+  }
 }

@@ -4,6 +4,11 @@
   padding-inline: 3rem;
   padding-block: 4rem;
 
+  .actions {
+    display: flex;
+    gap: 1rem;
+  }
+
   .comments {
     display: grid;
     gap: 3rem;
