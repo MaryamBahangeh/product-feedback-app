@@ -22,9 +22,11 @@ import { persons } from "@/assets/data/users.ts";
 import styles from "./SuggestionPage.module.css";
 import { useTranslation } from "react-i18next";
 import { useSuggestionStore } from "@/stores/useSuggestionStore.ts";
+import DeleteButton from "@/components/DeleteButton/DeleteButton.tsx";
 
 function SuggestionPage() {
-  const { suggestions, editSuggestion } = useSuggestionStore();
+  const { suggestions, editSuggestion, removeSuggestion } =
+    useSuggestionStore();
 
   const { t } = useTranslation();
 
@@ -68,6 +70,11 @@ function SuggestionPage() {
     editSuggestion({ ...suggestion, comments }, suggestion.id);
   };
 
+  const removeClickHandler = (): void => {
+    removeSuggestion(suggestion!.id);
+    navigate("/");
+  };
+
   useEffect(() => {
     if (!id || !suggestion) {
       navigate("/");
@@ -81,14 +88,17 @@ function SuggestionPage() {
   return (
     <div className={styles["suggestion-comments"]}>
       <PageHeader onGoBack={() => navigate(location.state?.from || "/")}>
-        <Button
-          buttonType={ButtonType.LINK}
-          linkTo={"/suggestion/" + id + "/edit"}
-          variant={Variant.SOLID}
-          color={Color.SECONDARY}
-        >
-          {t("suggestionPage.editFeedback")}
-        </Button>
+        <div className={styles.actions}>
+          <Button
+            buttonType={ButtonType.LINK}
+            linkTo={"/suggestion/" + id + "/edit"}
+            variant={Variant.SOLID}
+            color={Color.SECONDARY}
+          >
+            {t("suggestionPage.editFeedback")}
+          </Button>
+          <DeleteButton onDeleteClick={removeClickHandler} />
+        </div>
       </PageHeader>
 
       <Suggestion suggestion={suggestion}></Suggestion>
