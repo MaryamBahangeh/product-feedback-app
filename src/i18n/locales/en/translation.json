@@ -97,6 +97,7 @@
     "addComment": "Add Comment",
     "typeYourCommentHere": "Type your comment here",
     "charactersLeft": "characters left",
-    "postComment": "Post Comment"
+    "postComment": "Post Comment",
+    "confirmDelete": "Are you sure you want to delete?"
   }
 }
