@@ -7,13 +7,13 @@ import { SUGGESTION_TYPES } from "@/dropdown-options/suggestion-types.ts";
 import { SUGGESTION_STATUS } from "@/dropdown-options/suggestion-status.ts";
 
 import { SuggestionModel } from "@/models/suggestion-model.ts";
-import { ComponentProps, ReactElement, useRef } from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import styles from "./CreateEditForm.module.css";
 import Select from "@/components/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
 import { Controller, useForm } from "react-hook-form";
-import Modal from "@/components/Modal/Modal.tsx";
+import DeleteButton from "@/components/DeleteButton/DeleteButton.tsx";
 
 type Props = {
   onSubmitClick: (newSuggestion: SuggestionModel) => void;
@@ -50,11 +50,11 @@ function CreateEditForm({
     },
   });
 
-  const dialog = useRef<HTMLDialogElement | null>(null);
+  const { t } = useTranslation();
+
   const onSubmit = (data: SuggestionModel) => {
     onSubmitClick({ ...data });
   };
-  const { t } = useTranslation();
 
   return (
     <>
@@ -146,14 +146,7 @@ function CreateEditForm({
             {t("createEditForm.buttons.saveChanges")}
           </Button>
 
-          <Button
-            variant={Variant.SOLID}
-            color={Color.DANGER}
-            onClick={() => dialog.current?.showModal()}
-            type="button"
-          >
-            {t("createEditForm.buttons.delete")}
-          </Button>
+          <DeleteButton onDeleteClick={onRemove} />
 
           <Button
             type="button"
@@ -165,11 +158,6 @@ function CreateEditForm({
           </Button>
         </div>
       </form>
-      <Modal
-        ref={dialog}
-        onOkDeleteClick={onRemove}
-        onCancelDeleteClick={() => dialog.current?.close()}
-      />
     </>
   );
 }
