@@ -6,17 +6,20 @@ import Home from "@/pages/Home/Home.tsx";
 import SuggestionPage from "@/pages/SuggestionPage/SuggestionPage.tsx";
 import SuggestionCreatePage from "@/pages/SuggestionCreatePage/SuggestionCreatePage.tsx";
 import RoadmapPage from "@/pages/RoadmapPage/RoadmapPage.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 
 function Routing() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/suggestion/create" element={<SuggestionCreatePage />} />
-      <Route path="/suggestion/:id" element={<SuggestionPage />}></Route>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/suggestion/create" element={<SuggestionCreatePage />} />
+        <Route path="/suggestion/:id" element={<SuggestionPage />}></Route>
 
-      <Route path="/suggestion/:id/edit" element={<SuggestionEditPage />} />
-        <Route path='/roadmap' element={<RoadmapPage/>} />
-      <Route path="*" element={<NotFound />} />
+        <Route path="/suggestion/:id/edit" element={<SuggestionEditPage />} />
+        <Route path="/roadmap" element={<RoadmapPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }

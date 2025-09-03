@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import styles from "./Header.module.css";
-import { ButtonType, Color, Variant } from "@/components/Button/Button.tsx";
+
 import i18next from "i18next";
 import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
 import Select from "@/components/Select/Select.tsx";
@@ -10,11 +10,11 @@ import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.t
 // import { Sun, Moon } from "lucide-react"; // for darkmode icon
 
 function Header() {
-  const { t, i18n } = useTranslation();
-  const [darkMode, setDarkMode] = useState(false);
+  const { t } = useTranslation();
+  // const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
+    // setDarkMode((prev) => !prev);
     document.documentElement.classList.toggle("dark"); // if you use tailwind
   };
 

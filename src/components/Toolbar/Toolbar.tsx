@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext } from "react";
+import { useContext } from "react";
 
 import clsx from "clsx";
 
@@ -13,10 +13,9 @@ import Button, {
 } from "@/components/Button/Button.tsx";
 
 import styles from "./Toolbar.module.css";
-import i18next from "i18next";
-import { LANGUAGE_DROPDOWN_OPTIONS } from "@/dropdown-options/language-options.ts";
+
 import { useTranslation } from "react-i18next";
-import { LOCAL_STORAGE_LANGUAGE_KEY } from "@/constants/localstorage.constants.ts";
+
 import Select from "@/components/Select/Select.tsx";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -28,21 +27,6 @@ function Toolbar({ className }: Props) {
   const { filteredSuggestions, sortBy, setSortBy } = useContext(SearchContext);
 
   const { t } = useTranslation();
-
-  const languageChangeHandler = async (
-    e: ChangeEvent<HTMLSelectElement>,
-  ): Promise<void> => {
-    try {
-      await i18next.changeLanguage(e.target.value);
-
-      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, e.target.value);
-
-      document.documentElement.lang = i18next.language;
-      document.documentElement.dir = i18next.dir();
-    } catch (err) {
-      console.log("Something went wrong loading", err);
-    }
-  };
 
   // if (isLoading) return <ToolbarSkeleton />;
   return (
@@ -63,12 +47,6 @@ function Toolbar({ className }: Props) {
           options={SORT_OPTIONS}
         ></Select>
       </label>
-
-      <Select
-        defaultValue={i18next.language}
-        onChange={languageChangeHandler}
-        options={LANGUAGE_DROPDOWN_OPTIONS}
-      ></Select>
 
       <Button
         buttonType={ButtonType.LINK}
